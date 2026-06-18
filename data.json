@@ -1,0 +1,168 @@
+{
+  "_readme": "Edit this file and push to git. status.stluker.com rebuilds in ~30s. Valid status values: live | prog | plan | risk. Risk factors: orphaned | noRepo | noCICD | depPause | depQuota | wiring | undeployed",
+
+  "epics": {
+    "HQ":   { "name": "STLuker HQ",        "color": "#0C66E4", "desc": "Main site + weekly slates" },
+    "HLTH": { "name": "Health",             "color": "#22A06B", "desc": "Knowledge / memory tools" },
+    "FIRE": { "name": "Retirement / FIRE",  "color": "#E2483D", "desc": "Fire intel + API" },
+    "TRIP": { "name": "Trip Companion",     "color": "#8B5CF6", "desc": "Travel planner" },
+    "EVT":  { "name": "Events",             "color": "#D97706", "desc": "Reunion / RSVP" },
+    "FAM":  { "name": "Family",             "color": "#0EA5E9", "desc": "Family hub" },
+    "OPS":  { "name": "Ops / Unfiled",      "color": "#626F86", "desc": "PTO + workers" },
+    "SURF": { "name": "Surfcam",            "color": "#0891B2", "desc": "Parked — low usage" },
+    "PLAN": { "name": "Planned",            "color": "#8590A2", "desc": "Not yet deployed" }
+  },
+
+  "services": [
+    {
+      "key": "stluker",   "uid": "stluker",  "epic": "HQ",
+      "host": "stluker.com",   "title": "stluker.com / www",
+      "status": "live",
+      "summary": "Main ecosystem site and front door.",
+      "labels": ["CF Worker", "stluker.com + www"],
+      "riskFactors": ["noRepo"]
+    },
+    {
+      "key": "stl-sports", "uid": "sports",  "epic": "HQ",
+      "host": "sports.stluker.com",   "title": "sports.stluker.com",
+      "status": "prog",
+      "summary": "STL/7 — rolling 7-day St. Louis sports slate. Live, but deploys are still manual Wrangler pushes.",
+      "labels": ["CF Worker", "KV: SPORTS_KV", "needs CI/CD"],
+      "riskFactors": ["noRepo", "noCICD"]
+    },
+    {
+      "key": "stl-music",  "uid": "music",   "epic": "HQ",
+      "host": "music.stluker.com",    "title": "music.stluker.com",
+      "status": "prog",
+      "summary": "STL/Music — 7-day concerts, comedy & theater slate. Weekly pulse pushed to KV by hand.",
+      "labels": ["CF Worker", "KV: MUSIC_KV", "needs CI/CD"],
+      "riskFactors": ["noRepo", "noCICD", "wiring"]
+    },
+    {
+      "key": "memory-lattice", "uid": "memory", "epic": "HLTH",
+      "host": "memory.stluker.com",   "title": "memory.stluker.com",
+      "status": "live",
+      "summary": "Knowledge tool. Live on Pages; Supabase persistence not yet wired.",
+      "labels": ["CF Pages + Worker", "GitHub repo", "Supabase pending"],
+      "riskFactors": ["depPause", "wiring"]
+    },
+    {
+      "key": "fire-intel", "uid": "fire",    "epic": "FIRE",
+      "host": "fire.stluker.com",     "title": "fire.stluker.com",
+      "status": "live",
+      "summary": "Fire intel dashboard — the FIRE / retirement front end.",
+      "labels": ["CF Pages"],
+      "riskFactors": ["noRepo"]
+    },
+    {
+      "key": "fire-api",   "uid": "fireapi", "epic": "FIRE",
+      "host": "fire-api.stluker.com", "title": "fire-api.stluker.com",
+      "status": "live",
+      "summary": "Backend API powering the fire intel dashboard. Routed through AI Gateway with max_uses capping.",
+      "labels": ["CF Worker", "API", "AI Gateway"],
+      "riskFactors": ["noRepo"]
+    },
+    {
+      "key": "tripcompanion", "uid": "trip", "epic": "TRIP",
+      "host": "trip.stluker.com",     "title": "trip.stluker.com",
+      "status": "live",
+      "summary": "Trip Companion planner. Open: export photos from the app; add custom-domain CNAME.",
+      "labels": ["CF Pages", "photo export open"],
+      "riskFactors": ["noRepo"]
+    },
+    {
+      "key": "reunion",    "uid": "reunion", "epic": "EVT",
+      "host": "reunion.stluker.com",  "title": "reunion.stluker.com",
+      "status": "live",
+      "summary": "Reunion / event page with RSVP. Resend confirmation emails not wired yet.",
+      "labels": ["CF Worker", "Web3Forms", "Resend pending"],
+      "riskFactors": ["noRepo", "wiring"]
+    },
+    {
+      "key": "familyplate", "uid": "family", "epic": "FAM",
+      "host": "family.stluker.com",   "title": "family.stluker.com",
+      "status": "live",
+      "summary": "Family hub. Repo familyplate → worker family. Supabase auth wiring needs confirming.",
+      "labels": ["CF Worker: family", "GitHub: familyplate"],
+      "riskFactors": ["depPause", "wiring"]
+    },
+    {
+      "key": "barrettspto", "uid": "pto",   "epic": "OPS",
+      "host": "pto.stluker.com",      "title": "pto.stluker.com",
+      "status": "live",
+      "summary": "PTO tracker worker.",
+      "labels": ["CF Worker"],
+      "riskFactors": ["noRepo"]
+    },
+    {
+      "key": "barrettspto", "uid": "ptodash", "epic": "OPS",
+      "host": "ptodashboard.stluker.com", "title": "ptodashboard.stluker.com",
+      "status": "live",
+      "summary": "PTO dashboard — CNAME onto the same barrettspto worker.",
+      "labels": ["CNAME → barrettspto"],
+      "riskFactors": ["noRepo"]
+    },
+    {
+      "key": "pokelab",    "uid": "pokelab", "epic": "OPS",
+      "host": "pokelab.stluker.com",  "title": "pokelab.stluker.com",
+      "status": "live",
+      "summary": "Pokémon lab tool. Source recovered and backed up to GitHub repo.",
+      "labels": ["CF Worker", "GitHub: pokelab"],
+      "riskFactors": ["noRepo"]
+    },
+    {
+      "key": "ironrails",  "uid": "trains",  "epic": "OPS",
+      "host": "trains.stluker.com",   "title": "trains.stluker.com",
+      "status": "live",
+      "summary": "ironrails transit tracker. Source recovered and backed up to GitHub repo.",
+      "labels": ["CF Worker", "GitHub: ironrails"],
+      "riskFactors": ["noRepo"]
+    },
+    {
+      "key": "surfcam",    "uid": "surf",    "epic": "SURF",
+      "host": "surf.stluker.com",     "title": "surf.stluker.com",
+      "status": "live",
+      "summary": "Surfcam viewer. Built for dad, parked — running but no active work needed.",
+      "labels": ["CF Worker", "parked"],
+      "riskFactors": []
+    },
+    {
+      "key": "surfflow-scoring", "uid": "surfcam", "epic": "SURF",
+      "host": "surfcam.stluker.com",  "title": "surfcam.stluker.com",
+      "status": "live",
+      "summary": "Surfcam Pages + surfflow-scoring API. Most active worker (15-min cron, YouTube ingest).",
+      "labels": ["CF Pages + Worker", "cron */15", "GitHub: surfcam"],
+      "riskFactors": ["depQuota"]
+    },
+    {
+      "key": "geoq",       "uid": "geo",     "epic": "PLAN",
+      "host": "geo.stluker.com",      "title": "geo.stluker.com",
+      "status": "plan",
+      "summary": "Geo/map tool. Repo exists, deployment deferred.",
+      "labels": ["CF Worker + PostGIS", "GitHub: geoq", "undeployed"],
+      "riskFactors": ["undeployed"]
+    },
+    {
+      "key": "media",      "uid": "media",   "epic": "PLAN",
+      "host": "media.stluker.com",    "title": "media.stluker.com",
+      "status": "plan",
+      "summary": "Media gallery — Cloudinary + R2. Concept only, no app yet.",
+      "labels": ["CF Pages", "Cloudinary + R2", "unbuilt"],
+      "riskFactors": ["undeployed"]
+    }
+  ],
+
+  "backlog": [
+    { "pri": "P1", "key": "memory · family",  "txt": "Cloudflare cron → ping Supabase every 5 days to prevent free-tier pause", "tag": "Supabase" },
+    { "pri": "P2", "key": "reunion",           "txt": "Wire Resend into the reunion worker for confirmation emails", "tag": "reunion" },
+    { "pri": "P2", "key": "stl-sports",        "txt": "Connect Git repo to stl-sports worker for CI/CD", "tag": "sports" },
+    { "pri": "P2", "key": "stl-music",         "txt": "Connect Git + automate the weekly music pulse (scraper/cron → MUSIC_KV)", "tag": "music" },
+    { "pri": "P3", "key": "tripcompanion",     "txt": "Export photos from the Trip Companion app", "tag": "trip" },
+    { "pri": "P3", "key": "tripcompanion",     "txt": "Add tripcompanion.stluker.com custom-domain CNAME", "tag": "trip" },
+    { "pri": "P3", "key": "surfflow-scoring",  "txt": "Cache YouTube API responses in Workers KV (quota risk)", "tag": "surfcam" },
+    { "pri": "done", "key": "pokelab · ironrails", "txt": "Recover & back up orphaned worker source to GitHub", "tag": "shipped" },
+    { "pri": "done", "key": "fire-api",        "txt": "Route through AI Gateway, cap web_search max_uses, add refresh rate limit", "tag": "shipped" },
+    { "pri": "done", "key": "network",         "txt": "Cross-link nav across stluker, family, sports & music", "tag": "shipped" },
+    { "pri": "done", "key": "dns",             "txt": "DNS delegated to Cloudflare · Resend verified · DMARC added", "tag": "shipped" }
+  ]
+}
