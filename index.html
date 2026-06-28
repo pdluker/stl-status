@@ -46,7 +46,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 .page.on{display:block}
 
 /* ── SEARCH RESULTS overlay ── */
-#search-results{display:none;position:fixed;top:49px;left:0;right:0;background:rgba(7,11,18,.98);border-bottom:1px solid var(--border2);z-index:190;padding:16px 20px;max-height:60vh;overflow-y:auto}
+#search-results{display:none;position:fixed;top:82px;left:0;right:0;background:rgba(7,11,18,.98);border-bottom:1px solid var(--border2);z-index:190;padding:16px 20px;max-height:60vh;overflow-y:auto}
 #search-results.on{display:block}
 .sr-section{margin-bottom:14px}
 .sr-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
@@ -215,9 +215,28 @@ table.it td.r{color:var(--red)}
 .tag-p{background:var(--purple-bg);color:var(--purple)}
 .empty{color:var(--text3);font-size:12px;padding:16px 0}
 a{color:inherit;text-decoration:none}
+
+/* ── NETWORK NAV ── */
+#netbar{background:#0a0f1a;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;padding:0 20px;height:34px;position:sticky;top:0;z-index:201}
+.nb-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--text3);margin-right:8px;text-transform:uppercase}
+.nb-link{font-size:11px;font-weight:500;color:var(--text2);padding:3px 10px;border-radius:3px;border:1px solid transparent;transition:all .12s;white-space:nowrap}
+.nb-link:hover{color:var(--green);background:var(--green-dim);border-color:rgba(0,229,160,.15)}
+#topbar{top:34px}
 </style>
 </head>
 <body>
+
+<!-- ── NETWORK NAV ── -->
+<div id="netbar">
+  <span class="nb-label">STLuker Network</span>
+  <a class="nb-link" href="https://stluker.com" target="_blank">✨ Home</a>
+  <a class="nb-link" href="https://sports.stluker.com" target="_blank">🏆 Sports</a>
+  <a class="nb-link" href="https://music.stluker.com" target="_blank">🎵 Music</a>
+  <a class="nb-link" href="https://family.stluker.com" target="_blank">🏠 Family</a>
+  <a class="nb-link" href="https://stl.stluker.com" target="_blank">📋 Weekend</a>
+  <a class="nb-link" href="https://fire.stluker.com" target="_blank">🔥 FIRE</a>
+  <a class="nb-link" href="https://memory.stluker.com" target="_blank">🧠 Memory</a>
+</div>
 
 <!-- ── TOPBAR ── -->
 <div id="topbar">
