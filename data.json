@@ -1,13 +1,13 @@
 {
   "_meta": {
     "lastUpdated": "2026-06-28",
-    "version": "2.1",
-    "updatedBy": "Claude \u2014 FIRE/retire patch added Jun 28, 2026"
+    "version": "2.2",
+    "updatedBy": "Claude \u2014 FIRE fully expanded from App.jsx + retire.html source, Jun 28"
   },
   "stats": {
     "totalSites": 19,
-    "liveSites": 16,
-    "plannedSites": 3,
+    "liveSites": 17,
+    "plannedSites": 2,
     "automatedSites": 5,
     "openTasks": 6
   },
@@ -156,21 +156,39 @@
       "status": "live",
       "category": "Personal Tools",
       "project": "Retirement / FIRE",
-      "stack": "CF Pages: fire-intel (GitHub CI/CD \u2014 push to main \u2192 auto-deploy)",
-      "repo": "GitHub: pdluker/fire-intel (C:\\Users\\pdluk\\fire-intel)",
+      "stack": "CF Pages: fire-intel (GitHub CI/CD) \u2014 React app (App.jsx + D2_D5_Components + C1_C2_Math)",
+      "repo": "GitHub: pdluker/fire-intel",
       "lastDeploy": "2026-06-18",
-      "description": "FIRE / retirement intelligence dashboard. Displays AI-curated risk signals, market intel, and retirement planning data. Git-connected CI/CD via Cloudflare Pages. data.json separated to pdluker/stl-status Jun 18.",
+      "description": "AI-powered FIRE retirement intelligence dashboard (React). Daily AI signal analysis across 6 geopolitical/market topics mapped to FIRE timeline impact. Portfolio $1.059M (Jun 24, 2026). Target: FIRE at 55 (DOB Jul 17, 1977).",
       "features": [
-        "AI-curated FIRE risk signals (5 topics per daily run)",
-        "7-day calendar risk events",
-        "Supabase persistence for signal history",
-        "CF Pages GitHub CI/CD \u2014 push to main = auto-deploy",
-        "data.json source separated to stl-status repo Jun 18"
+        "D1: Dashboard KPI tiles \u2014 portfolio vs Lean $2.16M / Standard $2.70M / Fat $4.05M FIRE targets",
+        "D2: Portfolio Exposure \u2014 factor-weighted holdings from Fidelity CSV + manual 401k (DISABLED Jun 21, re-wiring pending)",
+        "D3: Morning Briefing \u2014 daily AI-written macro brief synthesized from 6 signal topics",
+        "D4: AI Analyst Chat \u2014 floating panel, full portfolio + signal context passed to Claude",
+        "D5: Weather Badge \u2014 macro climate indicator",
+        "C1: FIRE Date Calculator \u2014 probability bands at 5/7/9% return on $11.6K/mo savings",
+        "C2: Timeline Impact Engine \u2014 RED/YELLOW signals mapped to FIRE delay months (1% shock = 1.2 mo delay)",
+        "C3: GDIT Tailwind Score \u2014 federal contract income stability indicator with cited sources",
+        "C4: Contribution Slider \u2014 what-if savings rate vs FIRE date shift",
+        "C5: Scenario Simulator \u2014 Taiwan invasion / Iran oil shock / AI regulation / Ukraine / market crash / recession with factor-weighted portfolio impact",
+        "E1: FIRE Timeline \u2014 age-by-age visual progression to target age 55",
+        "E2: Goals Tracker \u2014 529 Dawson $135K + Chip $87K, mortgage $307K at 2.25% (KV-persisted via fire-api)",
+        "Signal topics: iran_oil / ai_labs / taiwan / ukraine_russia / market_index / gdit_contracts",
+        "Newsletter Archive \u2014 searchable daily signal history with topic + date range filters",
+        "What Changed Card \u2014 delta highlights vs prior day",
+        "Crash Chart \u2014 canvas portfolio value history chart",
+        "Progress bars \u2014 animated fill toward Lean / Standard / Fat targets",
+        "Portfolio upload: Fidelity CSV parser (positions aggregated by symbol) + manual 401k (SP500 / Intl / Target2042 / StableValue / Bond)",
+        "Settings panel \u2014 email frequency preference (KV-persisted)",
+        "ErrorBoundary on all major panels \u2014 isolated failure, no full-page crash",
+        "SignalDots \u2014 trend direction indicator (improving / deteriorating / stable) per topic"
       ],
       "automation": "Manual data.json updates via git push",
       "openTasks": [
-        "Expand topic coverage for retirement signals",
-        "Historical signal trend visualization"
+        "Re-wire D2 Portfolio Exposure \u2014 disabled Jun 21 (DEFAULT_ALLOCATION mismatch with live CSV factor weights)",
+        "Verify CF_AIG_TOKEN secret for authenticated AI Gateway",
+        "Historical signal trend visualization across weeks",
+        "Expand GDIT Tailwind with additional federal contract data sources"
       ]
     },
     {
@@ -184,17 +202,24 @@
       "stack": "CF Worker: fire-api (GitHub: fire-intel/workers/api/) \u2014 daily cron 0 12 * * *",
       "repo": "GitHub: pdluker/fire-intel/workers/api/",
       "lastDeploy": "2026-06-18",
-      "description": "Backend API powering fire.stluker.com. Claude via CF AI Gateway (fire-intel-gateway) with cost controls. Supabase for signal persistence. Rate-limited manual refresh endpoint.",
+      "description": "Backend CF Worker API for fire.stluker.com. Claude via CF AI Gateway with hard cost controls. Handles signal analysis, portfolio ingestion, goals persistence, and daily briefing generation.",
       "features": [
-        "Claude Sonnet via CF AI Gateway: fire-intel-gateway",
-        "web_search tool with max_uses:2 cap (hard cost ceiling)",
+        "Daily cron: 0 12 * * * (noon UTC) \u2014 consumes 1 of 5 CF free-tier cron slots",
+        "6 AI signal topics per run: iran_oil / ai_labs / taiwan / ukraine_russia / market_index / gdit_contracts",
+        "Claude via CF AI Gateway: fire-intel-gateway (authenticated mode)",
+        "web_search max_uses:2 hard cap per topic (cost ceiling \u2014 prevents runaway search spend)",
         "6-hour gateway cache on calendar calls (cf-aig-cache-ttl: 21600)",
-        "2 retries max (down from 3 \u2014 reduces search budget blowout)",
-        "30-min KV rate limit on /api/refresh/:token (prevents manual trigger abuse)",
-        "Daily cron: 0 12 * * * (noon UTC)",
-        "Cost ceiling: ~$0.12/day worst case (6 calls \u00d7 2 searches)",
-        "/api/health endpoint for KV + Supabase status check",
-        "Version: 66153d9c (deployed Jun 18)"
+        "Max 2 retries per topic (down from 3 to limit search budget on failure)",
+        "30-min KV rate limit on /api/refresh/:token (prevents manual trigger cost abuse)",
+        "Cost ceiling: ~$0.12/day worst-case (6 topics x 2 searches)",
+        "/api/health \u2014 KV + Supabase connectivity check",
+        "/api/portfolio/upload-csv/:token \u2014 Fidelity positions CSV ingestion, symbol aggregation, trueTotal calc",
+        "/api/portfolio/update-401k/:token \u2014 manual 401k fund balance entry (5 funds)",
+        "/api/portfolio/exposure \u2014 live factor-weighted exposure calculation",
+        "/api/goals + /api/goals/:token \u2014 E2 goals read/write (KV-persisted)",
+        "/api/settings + /api/settings/:token \u2014 email frequency preference (KV-persisted)",
+        "Supabase persistence for signal history",
+        "Deployed Version: 66153d9c (Jun 18)"
       ],
       "automation": "Daily cron 0 12 * * * \u2014 1 of 5 CF cron slots consumed",
       "openTasks": [
@@ -204,24 +229,38 @@
     },
     {
       "key": "FIRE-3",
-      "name": "Retire",
+      "name": "FIRE OS (Retire)",
       "subdomain": "retire.stluker.com",
       "url": "https://retire.stluker.com",
-      "status": "planned",
+      "status": "live",
       "category": "Personal Tools",
       "project": "Retirement / FIRE",
-      "stack": "TBD \u2014 likely CF Pages or Worker (FIRE project)",
-      "repo": null,
-      "lastDeploy": null,
-      "description": "Planned companion to fire.stluker.com. Specific feature set and backlog live in the Retirement / FIRE Claude project \u2014 consult that project for full context.",
+      "stack": "CF Pages or Worker \u2014 pure HTML/JS (retire.html), Chart.js 4.4.1, IBM Plex Mono + Inter",
+      "repo": "C:\\Users\\pdluk\\fire-intel\\retire.html (confirm repo + deploy status)",
+      "lastDeploy": "Unknown \u2014 confirm live vs local",
+      "description": "Standalone FIRE OS personal finance dashboard \u2014 pure HTML/JS, no React, offline-capable via localStorage. 8-tab comprehensive retirement planning tool covering Monte Carlo, strategy comparison, full tax engine, AI advisor, and accounts register.",
       "features": [
-        "Details in Retirement / FIRE Claude project"
+        "Dashboard \u2014 KPI tiles, net income at retirement ages table, net worth tracker, snapshot history (up to 24 manual snapshots: portfolio + net worth + date)",
+        "Monte Carlo Simulation \u2014 configurable parameters, percentile outcome table (10th/25th/50th/75th/90th)",
+        "Strategy Comparison Engine \u2014 9-metric evaluation: Standard / Lean / Fat / Coast / Shock / Crash scenarios, withdrawal sequence analysis",
+        "Tax Engine \u2014 RMD projection (IRS Uniform Lifetime Table, age-by-age), Roth conversion ladder optimizer (fill 12% bracket annually), SS timing optimizer (break-even crossover chart, 85% taxable above threshold), IRMAA bracket tracking, MO state tax 4.8% (2026 rate), lifetime Roth vs defer comparison chart, mortgage payoff optimizer (2.25% vs invest surplus)",
+        "AI Financial Advisor \u2014 Claude chat tab with full tax context + live account data injected as context",
+        "Next Actions \u2014 prioritized action items panel",
+        "Accounts register \u2014 401k GDIT Fidelity 08093 ($854,982), Roth IRA Fidelity 230-962807 ($49,825), taxable/HSA/UTMA accounts, 529 Dawson ($135K) + Chip ($87K)",
+        "Settings \u2014 editable: income ($373K), age (48), FIRE age (55), savings ($11,593/mo), home value ($630K), mortgage ($307K at 2.25%), 529 balances; JSON export/import, reset to defaults",
+        "localStorage persistence key: fire_os_v5 \u2014 fully offline capable",
+        "Save button with unsaved-changes amber dot indicator",
+        "IBM Plex Mono + Inter typography, dark terminal aesthetic (#080d18 background)",
+        "Chart.js 4.4.1 for Monte Carlo percentile and tax visualizations",
+        "Responsive grid: 4-col -> 2-col -> 1-col at 920px/760px breakpoints"
       ],
       "automation": "None \u2014 planned",
       "openTasks": [
-        "Define feature set in Retirement / FIRE project",
-        "Determine if separate subdomain or redirect to fire.stluker.com",
-        "Build and deploy once scoped"
+        "Confirm retire.html is deployed live at retire.stluker.com (vs local only)",
+        "Add CNAME/Worker route for retire.stluker.com in Cloudflare DNS",
+        "Wire AI Advisor chat to fire-api backend (currently may call Claude directly)",
+        "Connect Accounts page to live portfolio data from fire-api /api/portfolio/exposure",
+        "Sync snapshot history to Supabase (currently localStorage only \u2014 data loss risk on browser clear)"
       ]
     },
     {
