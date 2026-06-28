@@ -1,13 +1,13 @@
 {
   "_meta": {
     "lastUpdated": "2026-06-28",
-    "version": "2.0",
-    "updatedBy": "Claude — compiled from chat history Jun 18 → Jun 28, 2026"
+    "version": "2.1",
+    "updatedBy": "Claude \u2014 FIRE/retire patch added Jun 28, 2026"
   },
   "stats": {
-    "totalSites": 18,
+    "totalSites": 19,
     "liveSites": 16,
-    "plannedSites": 2,
+    "plannedSites": 3,
     "automatedSites": 5,
     "openTasks": 6
   },
@@ -23,11 +23,11 @@
       "stack": "CF Worker: stluker (Assets + KV: STLUKER_KV + Supabase Edge Fn)",
       "repo": "C:\\Users\\pdluk\\stluker-v3",
       "lastDeploy": "2026-06-23",
-      "description": "Main city guide — restaurants, coffee, bars, hotels, entertainment, work visits. SEO Worker with 12 routed URLs, sitemap, Google Search Console verified.",
+      "description": "Main city guide \u2014 restaurants, coffee, bars, hotels, entertainment, work visits. SEO Worker with 12 routed URLs, sitemap, Google Search Console verified.",
       "features": [
         "Weekly AI food pulse (Supabase Edge Fn food-pulse v5)",
         "Paul's Picks rotation Worker + Sentinel (closure/opening detection)",
-        "Newsletter subscribe → Resend → STL Brief audience",
+        "Newsletter subscribe \u2192 Resend \u2192 STL Brief audience",
         "Booking.com affiliate links (BOOKING_AID secret)",
         "CF cron: every 3 days at 9am UTC (stluker worker)",
         "New & Now section (Robin, Esca, Noble Crown)",
@@ -51,13 +51,13 @@
       "stack": "CF Worker: family (Assets + Supabase)",
       "repo": "GitHub: pdluker/familyplate",
       "lastDeploy": "2026-06-22",
-      "description": "Kids/family edition — 123 parks (Park-a-Poolza list), family restaurants, activities, decision engine. Hybrid STLuker brand in kid-friendly palette.",
+      "description": "Kids/family edition \u2014 123 parks (Park-a-Poolza list), family restaurants, activities, decision engine. Hybrid STLuker brand in kid-friendly palette.",
       "features": [
         "123 parks from Google Maps list",
         "Paul's Picks: Francis Park, Castlewood, Forest Park, Shaw Park, Brentwood Park",
         "Activities: Magic House, Forest Park Nature Playscape, Made for Kids, Frisco Train Store",
         "Decision engine (What kind of day is it?)",
-        "Featured strip: Castlewood · Brentwood Park · Saint Louis Zoo · Science Center",
+        "Featured strip: Castlewood \u00b7 Brentwood Park \u00b7 Saint Louis Zoo \u00b7 Science Center",
         "Paul's Pick badge/stamp component",
         "Newsletter subscribe section",
         "Been Here tracker (localStorage)",
@@ -65,7 +65,7 @@
       ],
       "automation": "Manual content updates",
       "openTasks": [
-        "Map toggle for parks (Leaflet.js — P1 backlog)",
+        "Map toggle for parks (Leaflet.js \u2014 P1 backlog)",
         "Weather-driven activity sorting (P2 backlog)"
       ]
     },
@@ -78,22 +78,22 @@
       "category": "Public Sites",
       "project": "STLuker HQ",
       "stack": "CF Worker: stl-sports (Assets + KV: SPORTS_KV)",
-      "repo": "C:\\Users\\pdluk — manual wrangler deploy",
+      "repo": "C:\\Users\\pdluk \u2014 manual wrangler deploy",
       "lastDeploy": "2026-06-12",
-      "description": "7-day STL sports slate — pro, college, minor league. Rivalry watch, day-by-day filter, ICS calendar export, JSON-LD rich results.",
+      "description": "7-day STL sports slate \u2014 pro, college, minor league. Rivalry watch, day-by-day filter, ICS calendar export, JSON-LD rich results.",
       "features": [
         "ESPN API + iCal feeds for 7 STL colleges",
         "City SC (MLS id: 21812), Cardinals, Blues, Billikens",
-        "Rivalry watch with ⚔ drama flags",
+        "Rivalry watch with \u2694 drama flags",
         "Sport + Level filter chips",
         "ICS calendar export per event",
         "Offseason ledger",
-        "MLS paused Jun-Jul (World Cup break) — expected"
+        "MLS paused Jun-Jul (World Cup break) \u2014 expected"
       ],
-      "automation": "ESPN API cron poller (weekly auto-pulse) — Ticketmaster cron poller in progress",
+      "automation": "ESPN API cron poller (weekly auto-pulse) \u2014 Ticketmaster cron poller in progress",
       "openTasks": [
         "Connect Git repo to CF Worker stl-sports for CI/CD",
-        "Gateway Grizzlies iCal feed (independent MiLB — ESPN silent)"
+        "Gateway Grizzlies iCal feed (independent MiLB \u2014 ESPN silent)"
       ]
     },
     {
@@ -117,7 +117,7 @@
         "On-sale soon ledger",
         "Cross-linked with stluker.com, family, sports in header/footer"
       ],
-      "automation": "Ticketmaster cron poller (in progress — venue IDs lookup pending)",
+      "automation": "Ticketmaster cron poller (in progress \u2014 venue IDs lookup pending)",
       "openTasks": [
         "Complete Ticketmaster venue ID lookup + deploy cron poller Worker",
         "Connect Git repo for CI/CD"
@@ -134,16 +134,16 @@
       "stack": "CF Worker: stl-bucket (KV: STL_BUCKET_KV + Supabase: stl_issues)",
       "repo": "C:\\Users\\pdluk\\stl-bucket-worker",
       "lastDeploy": "2026-06-26",
-      "description": "Auto-curated weekend guide powered by STL Bucket List beehiiv newsletter. Ingests RSS every Friday 9AM CT via CF Cron → Claude Haiku 4.5 extraction → KV render + Supabase history.",
+      "description": "Auto-curated weekend guide powered by STL Bucket List beehiiv newsletter. Ingests RSS every Friday 9AM CT via CF Cron \u2192 Claude Haiku 4.5 extraction \u2192 KV render + Supabase history.",
       "features": [
-        "beehiiv RSS discovery → HTML fetch → Claude Haiku extraction",
+        "beehiiv RSS discovery \u2192 HTML fetch \u2192 Claude Haiku extraction",
         "Structured JSON event output from newsletter",
         "CF Cron: Fridays 9AM CT (0 14 * * 5)",
         "Supabase stl_issues table for historical archive (from Jun 26, 2026)",
         "Manual refresh endpoint: /refresh?secret=...",
         "2-week KV TTL"
       ],
-      "automation": "Fully automated — weekly beehiiv → Claude Haiku → KV pipeline",
+      "automation": "Fully automated \u2014 weekly beehiiv \u2192 Claude Haiku \u2192 KV pipeline",
       "openTasks": [
         "Add stl.stluker.com to top-banner nav on all sibling sites"
       ]
@@ -156,17 +156,22 @@
       "status": "live",
       "category": "Personal Tools",
       "project": "Retirement / FIRE",
-      "stack": "CF Pages: fire-intel (GitHub CI/CD)",
-      "repo": "GitHub: pdluker/fire-intel",
+      "stack": "CF Pages: fire-intel (GitHub CI/CD \u2014 push to main \u2192 auto-deploy)",
+      "repo": "GitHub: pdluker/fire-intel (C:\\Users\\pdluk\\fire-intel)",
       "lastDeploy": "2026-06-18",
-      "description": "FIRE retirement intelligence dashboard. data.json lives in stl-status repo — separated Jun 18 to prevent deploy collisions.",
+      "description": "FIRE / retirement intelligence dashboard. Displays AI-curated risk signals, market intel, and retirement planning data. Git-connected CI/CD via Cloudflare Pages. data.json separated to pdluker/stl-status Jun 18.",
       "features": [
-        "Retirement projections and scenarios",
-        "data.json source moved to pdluker/stl-status",
-        "GitHub push → auto-deploy via CF Pages"
+        "AI-curated FIRE risk signals (5 topics per daily run)",
+        "7-day calendar risk events",
+        "Supabase persistence for signal history",
+        "CF Pages GitHub CI/CD \u2014 push to main = auto-deploy",
+        "data.json source separated to stl-status repo Jun 18"
       ],
       "automation": "Manual data.json updates via git push",
-      "openTasks": []
+      "openTasks": [
+        "Expand topic coverage for retirement signals",
+        "Historical signal trend visualization"
+      ]
     },
     {
       "key": "FIRE-2",
@@ -176,13 +181,48 @@
       "status": "live",
       "category": "Personal Tools",
       "project": "Retirement / FIRE",
-      "stack": "CF Worker: fire-api",
-      "repo": "GitHub: pdluker/fire-intel",
+      "stack": "CF Worker: fire-api (GitHub: fire-intel/workers/api/) \u2014 daily cron 0 12 * * *",
+      "repo": "GitHub: pdluker/fire-intel/workers/api/",
       "lastDeploy": "2026-06-18",
-      "description": "API backend for FIRE Intel dashboard.",
-      "features": [],
-      "automation": "Serverless on-demand",
-      "openTasks": []
+      "description": "Backend API powering fire.stluker.com. Claude via CF AI Gateway (fire-intel-gateway) with cost controls. Supabase for signal persistence. Rate-limited manual refresh endpoint.",
+      "features": [
+        "Claude Sonnet via CF AI Gateway: fire-intel-gateway",
+        "web_search tool with max_uses:2 cap (hard cost ceiling)",
+        "6-hour gateway cache on calendar calls (cf-aig-cache-ttl: 21600)",
+        "2 retries max (down from 3 \u2014 reduces search budget blowout)",
+        "30-min KV rate limit on /api/refresh/:token (prevents manual trigger abuse)",
+        "Daily cron: 0 12 * * * (noon UTC)",
+        "Cost ceiling: ~$0.12/day worst case (6 calls \u00d7 2 searches)",
+        "/api/health endpoint for KV + Supabase status check",
+        "Version: 66153d9c (deployed Jun 18)"
+      ],
+      "automation": "Daily cron 0 12 * * * \u2014 1 of 5 CF cron slots consumed",
+      "openTasks": [
+        "Monitor CF AI Gateway logs for cache hit rate",
+        "Verify CF_AIG_TOKEN secret wired (authenticated gateway)"
+      ]
+    },
+    {
+      "key": "FIRE-3",
+      "name": "Retire",
+      "subdomain": "retire.stluker.com",
+      "url": "https://retire.stluker.com",
+      "status": "planned",
+      "category": "Personal Tools",
+      "project": "Retirement / FIRE",
+      "stack": "TBD \u2014 likely CF Pages or Worker (FIRE project)",
+      "repo": null,
+      "lastDeploy": null,
+      "description": "Planned companion to fire.stluker.com. Specific feature set and backlog live in the Retirement / FIRE Claude project \u2014 consult that project for full context.",
+      "features": [
+        "Details in Retirement / FIRE Claude project"
+      ],
+      "automation": "None \u2014 planned",
+      "openTasks": [
+        "Define feature set in Retirement / FIRE project",
+        "Determine if separate subdomain or redirect to fire.stluker.com",
+        "Build and deploy once scoped"
+      ]
     },
     {
       "key": "MEM-1",
@@ -258,14 +298,14 @@
       "category": "Family / Social",
       "project": "STLuker HQ",
       "stack": "CF Worker: reunion + Web3Forms (RSVP)",
-      "repo": "Unknown — locate source",
+      "repo": "Unknown \u2014 locate source",
       "lastDeploy": "Unknown",
       "description": "Reunion/event page with RSVP via Web3Forms. Resend confirmation emails not yet wired.",
       "features": [
         "Web3Forms RSVP (1/250 submissions used)",
         "Resend domain verified on send.stluker.com"
       ],
-      "automation": "None — manual event management",
+      "automation": "None \u2014 manual event management",
       "openTasks": [
         "Wire Resend for confirmation emails"
       ]
@@ -354,7 +394,7 @@
       "stack": "CF Pages: stl-status (GitHub CI/CD)",
       "repo": "GitHub: pdluker/stl-status",
       "lastDeploy": "2026-06-18",
-      "description": "Jira-inspired ecosystem status board. data.json is the single source of truth — update here, git push, auto-deploys.",
+      "description": "Jira-inspired ecosystem status board. data.json is the single source of truth \u2014 update here, git push, auto-deploys.",
       "features": [
         "Live reachability probe (client-side fetch)",
         "Epic swimlanes by Claude project",
@@ -404,7 +444,7 @@
   "infrastructure": {
     "dns": {
       "registrar": "Squarespace (registrar only, expires Sep 16, 2026)",
-      "provider": "Cloudflare (fully delegated — 19 DNS records)",
+      "provider": "Cloudflare (fully delegated \u2014 19 DNS records)",
       "note": "All routing, proxying, and Worker bindings managed in Cloudflare DNS"
     },
     "cloudflare": {
@@ -422,18 +462,32 @@
       "project": "baknyepgyjurarojdkhy",
       "tier": "Free (Nano)",
       "region": "us-west-2",
-      "keepalive": "cron-job.org → supabase-keepalive.pdluker.workers.dev/keepalive (Bearer auth, fixed Jun 26)",
-      "tables": ["food_pulse_signals", "stl_issues"],
-      "edgeFunctions": ["food-pulse (v5)"]
+      "keepalive": "cron-job.org \u2192 supabase-keepalive.pdluker.workers.dev/keepalive (Bearer auth, fixed Jun 26)",
+      "tables": [
+        "food_pulse_signals",
+        "stl_issues"
+      ],
+      "edgeFunctions": [
+        "food-pulse (v5)"
+      ]
     },
     "github": {
       "username": "pdluker",
-      "repos": ["fire-intel", "surfcam", "memory-lattice", "familyplate", "geoq", "stl-status", "pokelab", "iron-rails"]
+      "repos": [
+        "fire-intel",
+        "surfcam",
+        "memory-lattice",
+        "familyplate",
+        "geoq",
+        "stl-status",
+        "pokelab",
+        "iron-rails"
+      ]
     },
     "email": {
       "provider": "Resend (resend._domainkey.stluker.com DKIM verified)",
       "sendingDomain": "send.stluker.com (SES + SPF)",
-      "dmarc": "p=none monitoring (Jun 17-18 reports received — working correctly)",
+      "dmarc": "p=none monitoring (Jun 17-18 reports received \u2014 working correctly)",
       "audience": "STL Brief (Resend)"
     },
     "externalAPIs": [
@@ -442,7 +496,7 @@
       "Windy Webcams API (surfcam)",
       "YouTube Data API v3 (10k/day quota)",
       "Cloudinary (9.32/25 credits, 588MB)",
-      "beehiiv RSS (stl-bucket — STL Bucket List newsletter)"
+      "beehiiv RSS (stl-bucket \u2014 STL Bucket List newsletter)"
     ]
   },
   "openTasks": [
@@ -451,7 +505,7 @@
       "title": "STL/Music Ticketmaster cron poller",
       "priority": "high",
       "site": "music.stluker.com",
-      "detail": "Venue ID lookup completed — need to deploy cron Worker to auto-populate MUSIC_KV weekly"
+      "detail": "Venue ID lookup completed \u2014 need to deploy cron Worker to auto-populate MUSIC_KV weekly"
     },
     {
       "id": "T-2",
@@ -465,7 +519,7 @@
       "title": "Git CI/CD for stl-sports + stl-music",
       "priority": "medium",
       "site": "sports.stluker.com, music.stluker.com",
-      "detail": "Both currently manual wrangler deploy — connect GitHub repos to CF Workers for auto-deploy on push"
+      "detail": "Both currently manual wrangler deploy \u2014 connect GitHub repos to CF Workers for auto-deploy on push"
     },
     {
       "id": "T-4",
@@ -479,29 +533,82 @@
       "title": "Reunion Resend email wiring",
       "priority": "low",
       "site": "reunion.stluker.com",
-      "detail": "Wire Resend for RSVP confirmation emails — domain already verified"
+      "detail": "Wire Resend for RSVP confirmation emails \u2014 domain already verified"
     },
     {
       "id": "T-6",
       "title": "family.stluker.com map toggle",
       "priority": "high",
       "site": "family.stluker.com",
-      "detail": "P1 Davidson feedback — Leaflet.js map view for 123 parks with amenity-colored pins"
+      "detail": "P1 Davidson feedback \u2014 Leaflet.js map view for 123 parks with amenity-colored pins"
+    },
+    {
+      "id": "T-7",
+      "title": "retire.stluker.com \u2014 scope and build",
+      "priority": "medium",
+      "site": "retire.stluker.com",
+      "detail": "Feature backlog lives in Retirement / FIRE Claude project. Determine scope, stack, and whether it's a companion to or redirect from fire.stluker.com"
+    },
+    {
+      "id": "T-8",
+      "title": "fire-api CF_AIG_TOKEN verification",
+      "priority": "low",
+      "site": "fire-api.stluker.com",
+      "detail": "Confirm CF_AIG_TOKEN secret is set and AI Gateway authenticated mode is active. Check gateway logs for non-zero requests and cache hits."
     }
   ],
   "recentActivity": [
-    { "date": "2026-06-28", "event": "Cross-link nav updated — music.stluker.com added to all three sites (stluker.com, family, sports)" },
-    { "date": "2026-06-26", "event": "stl.stluker.com launched — STL Bucket List beehiiv newsletter auto-ingestion via CF cron + Claude Haiku + Supabase" },
-    { "date": "2026-06-26", "event": "Supabase keepalive fixed — Bearer auth added to cron-job.org request (was silently failing)" },
-    { "date": "2026-06-23", "event": "stluker.com food pulse upgraded — v5 Edge Function with structured JSON output, DM Sans font, improved contrast" },
-    { "date": "2026-06-22", "event": "music.stluker.com launched — STL/Music live events tracker (concerts, comedy, theater) with Ticketmaster API" },
-    { "date": "2026-06-19", "event": "DMARC diagnosed — p=none monitoring working correctly; null SPF on root domain recommended" },
-    { "date": "2026-06-18", "event": "status.stluker.com launched — Jira-inspired ecosystem dashboard; data.json separated from fire-intel" },
-    { "date": "2026-06-16", "event": "Davidson feedback mapped — Paul's Pick badge deployed across all sites; pokelab + iron-rails source recovered to GitHub" },
-    { "date": "2026-06-12", "event": "Supabase keepalive Worker deployed — cron-job.org daily ping to supabase-keepalive.pdluker.workers.dev" },
-    { "date": "2026-06-12", "event": "Cross-link nav added — stluker.com ↔ family.stluker.com ↔ sports.stluker.com (top banner + footer)" },
-    { "date": "2026-06-12", "event": "sports.stluker.com fully wired — stl-sports Worker, SPORTS_KV, ESPN + iCal feeds, rivalry watch" },
-    { "date": "2026-06-11", "event": "stluker.com SEO rearchitect — 12 routed URLs, sitemap, GSC verified, Booking.com affiliate setup" },
-    { "date": "2026-06-08", "event": "surfcam deployed — Windy Webcams API integrated, surfflow-scoring Worker with 15-min cron" }
+    {
+      "date": "2026-06-28",
+      "event": "Cross-link nav updated \u2014 music.stluker.com added to all three sites (stluker.com, family, sports)"
+    },
+    {
+      "date": "2026-06-26",
+      "event": "stl.stluker.com launched \u2014 STL Bucket List beehiiv newsletter auto-ingestion via CF cron + Claude Haiku + Supabase"
+    },
+    {
+      "date": "2026-06-26",
+      "event": "Supabase keepalive fixed \u2014 Bearer auth added to cron-job.org request (was silently failing)"
+    },
+    {
+      "date": "2026-06-23",
+      "event": "stluker.com food pulse upgraded \u2014 v5 Edge Function with structured JSON output, DM Sans font, improved contrast"
+    },
+    {
+      "date": "2026-06-22",
+      "event": "music.stluker.com launched \u2014 STL/Music live events tracker (concerts, comedy, theater) with Ticketmaster API"
+    },
+    {
+      "date": "2026-06-19",
+      "event": "DMARC diagnosed \u2014 p=none monitoring working correctly; null SPF on root domain recommended"
+    },
+    {
+      "date": "2026-06-18",
+      "event": "status.stluker.com launched \u2014 Jira-inspired ecosystem dashboard; data.json separated from fire-intel"
+    },
+    {
+      "date": "2026-06-16",
+      "event": "Davidson feedback mapped \u2014 Paul's Pick badge deployed across all sites; pokelab + iron-rails source recovered to GitHub"
+    },
+    {
+      "date": "2026-06-12",
+      "event": "Supabase keepalive Worker deployed \u2014 cron-job.org daily ping to supabase-keepalive.pdluker.workers.dev"
+    },
+    {
+      "date": "2026-06-12",
+      "event": "Cross-link nav added \u2014 stluker.com \u2194 family.stluker.com \u2194 sports.stluker.com (top banner + footer)"
+    },
+    {
+      "date": "2026-06-12",
+      "event": "sports.stluker.com fully wired \u2014 stl-sports Worker, SPORTS_KV, ESPN + iCal feeds, rivalry watch"
+    },
+    {
+      "date": "2026-06-11",
+      "event": "stluker.com SEO rearchitect \u2014 12 routed URLs, sitemap, GSC verified, Booking.com affiliate setup"
+    },
+    {
+      "date": "2026-06-08",
+      "event": "surfcam deployed \u2014 Windy Webcams API integrated, surfflow-scoring Worker with 15-min cron"
+    }
   ]
 }
