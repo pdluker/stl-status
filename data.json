@@ -649,5 +649,71 @@
       "date": "2026-06-08",
       "event": "surfcam deployed — Windy Webcams API integrated, surfflow-scoring Worker with 15-min cron"
     }
-  ]
+  ],
+  "verification": {
+    "ranAt": "2026-07-02T18:14:52.060Z",
+    "findingsCount": 5,
+    "findings": [
+      {
+        "type": "cron_drift",
+        "severity": "warning",
+        "worker": "stl-music",
+        "expected": "0 11 * * 2",
+        "live": [
+          "0 10 * * 1"
+        ],
+        "message": "Deployed cron for stl-music (0 10 * * 1) does not match declared \"0 11 * * 2\"."
+      },
+      {
+        "type": "cron_drift",
+        "severity": "warning",
+        "worker": "stl-bucket",
+        "expected": "0 14 * * 5",
+        "live": [],
+        "message": "Deployed cron for stl-bucket (none) does not match declared \"0 14 * * 5\"."
+      },
+      {
+        "type": "phantom_worker",
+        "severity": "warning",
+        "worker": "memory-lattice",
+        "message": "data.json references Worker \"memory-lattice\" but it no longer exists in Cloudflare. Remove stale references/recommendations."
+      },
+      {
+        "type": "untracked_worker",
+        "severity": "info",
+        "worker": "retire",
+        "message": "Deployed Worker \"retire\" is not tracked in data.json."
+      },
+      {
+        "type": "untracked_worker",
+        "severity": "info",
+        "worker": "status",
+        "message": "Deployed Worker \"status\" is not tracked in data.json."
+      }
+    ]
+  },
+  "autoRecommendations": [
+    {
+      "icon": "🟠",
+      "title": "Deployed cron for stl-music (0 10 * * 1) does not match declared \"0 11 * * 2\".",
+      "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
+      "cat": "DRIFT"
+    },
+    {
+      "icon": "🟠",
+      "title": "Deployed cron for stl-bucket (none) does not match declared \"0 14 * * 5\".",
+      "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
+      "cat": "DRIFT"
+    },
+    {
+      "icon": "🟠",
+      "title": "data.json references Worker \"memory-lattice\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
+      "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
+      "cat": "DRIFT"
+    }
+  ],
+  "meta": {
+    "lastUpdated": "2026-07-02",
+    "version": "1.0"
+  }
 }
