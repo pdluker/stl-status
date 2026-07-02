@@ -651,7 +651,7 @@
     }
   ],
   "verification": {
-    "ranAt": "2026-07-02T18:14:52.060Z",
+    "ranAt": "2026-07-02T18:15:37.328Z",
     "findingsCount": 5,
     "findings": [
       {
@@ -714,6 +714,6 @@
   ],
   "meta": {
     "lastUpdated": "2026-07-02",
-    "version": "1.0"
+    "version": "1.1"
   }
 }
