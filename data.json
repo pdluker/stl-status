@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastUpdated": "2026-07-06",
-    "version": "3.0"
+    "version": "3.1"
   },
   "stats": {
     "totalSites": 16,
@@ -9,7 +9,7 @@
     "plannedSites": 0,
     "inactiveSites": 0,
     "automatedSites": 6,
-    "openTasks": 7
+    "openTasks": 6
   },
   "sites": [
     {
@@ -447,13 +447,6 @@
       "detail": "Confirm CF_AIG_TOKEN secret is set and AI Gateway authenticated mode is active"
     },
     {
-      "id": "T-10",
-      "title": "Confirm stl-sports cron expression",
-      "priority": "low",
-      "site": "sports.stluker.com",
-      "detail": "Last unconfirmed cron string in the ecosystem — every other Worker's schedule is now verified. Check CF dashboard > stl-sports > Settings > Trigger Events and update infrastructure.cloudflare.crons accordingly."
-    },
-    {
       "id": "T-12",
       "title": "fire-api keepalive ping never activated in stl-dispatcher",
       "priority": "low",
@@ -565,7 +558,7 @@
       "cronSlotsTotal": 5,
       "crons": [
         "stluker: 0 9 */3 * * (food pulse)",
-        "stl-sports: (ESPN poller)",
+        "stl-sports: 0 11 * * 1 (ESPN poller, weekly Monday 11:00 UTC — confirmed Jul 6)",
         "stl-music: 0 11 * * 2 (Ticketmaster, Tue 11AM UTC)",
         "stl-dispatcher: 0 11 * * * (daily — drives keepalive [heartbeat-gated, ~5d cadence] + status-sync)",
         "stl-bucket: 0 14 * * 5 (Friday newsletter ingestion — restored Jul 2 after being dropped by a failed deploy sync)"
