@@ -1,0 +1,653 @@
+{
+  "_meta": {
+    "lastUpdated": "2026-06-29",
+    "version": "2.3",
+    "updatedBy": "Auto-sync Worker — 2026-06-29 (3 sites updated)"
+  },
+  "stats": {
+    "totalSites": 19,
+    "liveSites": 17,
+    "plannedSites": 2,
+    "automatedSites": 5,
+    "openTasks": 6
+  },
+  "sites": [
+    {
+      "key": "STL-1",
+      "name": "STLuker",
+      "subdomain": "stluker.com",
+      "url": "https://stluker.com",
+      "status": "live",
+      "category": "Public Sites",
+      "project": "STLuker HQ",
+      "stack": "CF Worker: stluker (Assets + KV: STLUKER_KV + Supabase Edge Fn)",
+      "repo": "C:\\Users\\pdluk\\stluker-v3",
+      "lastDeploy": "2026-06-23",
+      "description": "Main city guide — restaurants, coffee, bars, hotels, entertainment, work visits. SEO Worker with 12 routed URLs, sitemap, Google Search Console verified.",
+      "features": [
+        "Weekly AI food pulse (Supabase Edge Fn food-pulse v5)",
+        "Paul's Picks rotation Worker + Sentinel (closure/opening detection)",
+        "Newsletter subscribe → Resend → STL Brief audience",
+        "Booking.com affiliate links (BOOKING_AID secret)",
+        "CF cron: every 3 days at 9am UTC (stluker worker)",
+        "New & Now section (Robin, Esca, Noble Crown)",
+        "Entertainment section (Flight Club, Sandbox VR, etc.)",
+        "Paul's Pick badge/stamp component"
+      ],
+      "automation": "Weekly food pulse via Supabase pg_cron + Edge Function",
+      "openTasks": [
+        "Confirm Booking.com affiliate account approved",
+        "Monitor GSC impressions on /work/cortex and /work/cass"
+      ]
+    },
+    {
+      "key": "STL-2",
+      "name": "STLuker Jr. (Family Hub)",
+      "subdomain": "family.stluker.com",
+      "url": "https://family.stluker.com",
+      "status": "live",
+      "category": "Public Sites",
+      "project": "STLuker HQ",
+      "stack": "CF Worker: family (Assets + Supabase)",
+      "repo": "GitHub: pdluker/familyplate",
+      "lastDeploy": "2026-06-22",
+      "description": "Kids/family edition — 123 parks (Park-a-Poolza list), family restaurants, activities, decision engine. Hybrid STLuker brand in kid-friendly palette.",
+      "features": [
+        "123 parks from Google Maps list",
+        "Paul's Picks: Francis Park, Castlewood, Forest Park, Shaw Park, Brentwood Park",
+        "Activities: Magic House, Forest Park Nature Playscape, Made for Kids, Frisco Train Store",
+        "Decision engine (What kind of day is it?)",
+        "Featured strip: Castlewood · Brentwood Park · Saint Louis Zoo · Science Center",
+        "Paul's Pick badge/stamp component",
+        "Newsletter subscribe section",
+        "Been Here tracker (localStorage)",
+        "Mobile bottom nav"
+      ],
+      "automation": "Manual content updates",
+      "openTasks": [
+        "Map toggle for parks (Leaflet.js — P1 backlog)",
+        "Weather-driven activity sorting (P2 backlog)"
+      ]
+    },
+    {
+      "key": "STL-3",
+      "name": "STL/7 Sports",
+      "subdomain": "sports.stluker.com",
+      "url": "https://sports.stluker.com",
+      "status": "live",
+      "category": "Public Sites",
+      "project": "STLuker HQ",
+      "stack": "CF Worker: stl-sports (Assets + KV: SPORTS_KV)",
+      "repo": "C:\\Users\\pdluk — manual wrangler deploy",
+      "lastDeploy": "2026-06-18",
+      "description": "7-day STL sports slate — pro, college, minor league. Rivalry watch, day-by-day filter, ICS calendar export, JSON-LD rich results.",
+      "features": [
+        "ESPN API + iCal feeds for 7 STL colleges",
+        "City SC (MLS id: 21812), Cardinals, Blues, Billikens",
+        "Rivalry watch with ⚔ drama flags",
+        "Sport + Level filter chips",
+        "ICS calendar export per event",
+        "Offseason ledger",
+        "MLS paused Jun-Jul (World Cup break) — expected"
+      ],
+      "automation": "ESPN API cron poller (weekly auto-pulse) — Ticketmaster cron poller in progress",
+      "openTasks": [
+        "Connect Git repo to CF Worker stl-sports for CI/CD",
+        "Gateway Grizzlies iCal feed (independent MiLB — ESPN silent)"
+      ]
+    },
+    {
+      "key": "STL-4",
+      "name": "STL/Music",
+      "subdomain": "music.stluker.com",
+      "url": "https://music.stluker.com",
+      "status": "live",
+      "category": "Public Sites",
+      "project": "STLuker HQ",
+      "stack": "CF Worker: stl-music (Assets + KV: MUSIC_KV id: 029e3ba66a3743bbaf4a2fef5992aae9)",
+      "repo": "C:\\Users\\pdluk\\stl-music",
+      "lastDeploy": "2026-06-22",
+      "description": "7-day live music, comedy & theater tracker. Mirror of sports.stluker.com architecture. Ticketmaster Discovery API for venue-based event lookup.",
+      "features": [
+        "Concert / Comedy / Theater format filters",
+        "Genre filter chips",
+        "Ticketmaster venue IDs for STL major venues",
+        "ICS calendar export",
+        "JSON-LD MusicEvent / ComedyEvent / TheaterEvent schema",
+        "On-sale soon ledger",
+        "Cross-linked with stluker.com, family, sports in header/footer"
+      ],
+      "automation": "Ticketmaster cron poller (in progress — venue IDs lookup pending)",
+      "openTasks": [
+        "Complete Ticketmaster venue ID lookup + deploy cron poller Worker",
+        "Connect Git repo for CI/CD"
+      ]
+    },
+    {
+      "key": "STL-5",
+      "name": "STL Weekend Guide",
+      "subdomain": "stl.stluker.com",
+      "url": "https://stl.stluker.com",
+      "status": "live",
+      "category": "Public Sites",
+      "project": "STLuker HQ",
+      "stack": "CF Worker: stl-bucket (KV: STL_BUCKET_KV + Supabase: stl_issues)",
+      "repo": "C:\\Users\\pdluk\\stl-bucket-worker",
+      "lastDeploy": "2026-06-26",
+      "description": "Auto-curated weekend guide powered by STL Bucket List beehiiv newsletter. Ingests RSS every Friday 9AM CT via CF Cron → Claude Haiku 4.5 extraction → KV render + Supabase history.",
+      "features": [
+        "beehiiv RSS discovery → HTML fetch → Claude Haiku extraction",
+        "Structured JSON event output from newsletter",
+        "CF Cron: Fridays 9AM CT (0 14 * * 5)",
+        "Supabase stl_issues table for historical archive (from Jun 26, 2026)",
+        "Manual refresh endpoint: /refresh?secret=...",
+        "2-week KV TTL"
+      ],
+      "automation": "Fully automated — weekly beehiiv → Claude Haiku → KV pipeline",
+      "openTasks": [
+        "Add stl.stluker.com to top-banner nav on all sibling sites"
+      ]
+    },
+    {
+      "key": "FIRE-1",
+      "name": "FIRE Intel",
+      "subdomain": "fire.stluker.com",
+      "url": "https://fire.stluker.com",
+      "status": "live",
+      "category": "Personal Tools",
+      "project": "Retirement / FIRE",
+      "stack": "CF Pages: fire-intel (GitHub CI/CD) — React app (App.jsx + D2_D5_Components + C1_C2_Math)",
+      "repo": "GitHub: pdluker/fire-intel",
+      "lastDeploy": "2026-06-18",
+      "description": "AI-powered FIRE retirement intelligence dashboard (React). Daily AI signal analysis across 6 geopolitical/market topics mapped to FIRE timeline impact. Portfolio $1.059M (Jun 24, 2026). Target: FIRE at 55 (DOB Jul 17, 1977).",
+      "features": [
+        "D1: Dashboard KPI tiles — portfolio vs Lean $2.16M / Standard $2.70M / Fat $4.05M FIRE targets",
+        "D2: Portfolio Exposure — factor-weighted holdings from Fidelity CSV + manual 401k (DISABLED Jun 21, re-wiring pending)",
+        "D3: Morning Briefing — daily AI-written macro brief synthesized from 6 signal topics",
+        "D4: AI Analyst Chat — floating panel, full portfolio + signal context passed to Claude",
+        "D5: Weather Badge — macro climate indicator",
+        "C1: FIRE Date Calculator — probability bands at 5/7/9% return on $11.6K/mo savings",
+        "C2: Timeline Impact Engine — RED/YELLOW signals mapped to FIRE delay months (1% shock = 1.2 mo delay)",
+        "C3: GDIT Tailwind Score — federal contract income stability indicator with cited sources",
+        "C4: Contribution Slider — what-if savings rate vs FIRE date shift",
+        "C5: Scenario Simulator — Taiwan invasion / Iran oil shock / AI regulation / Ukraine / market crash / recession with factor-weighted portfolio impact",
+        "E1: FIRE Timeline — age-by-age visual progression to target age 55",
+        "E2: Goals Tracker — 529 Dawson $135K + Chip $87K, mortgage $307K at 2.25% (KV-persisted via fire-api)",
+        "Signal topics: iran_oil / ai_labs / taiwan / ukraine_russia / market_index / gdit_contracts",
+        "Newsletter Archive — searchable daily signal history with topic + date range filters",
+        "What Changed Card — delta highlights vs prior day",
+        "Crash Chart — canvas portfolio value history chart",
+        "Progress bars — animated fill toward Lean / Standard / Fat targets",
+        "Portfolio upload: Fidelity CSV parser (positions aggregated by symbol) + manual 401k (SP500 / Intl / Target2042 / StableValue / Bond)",
+        "Settings panel — email frequency preference (KV-persisted)",
+        "ErrorBoundary on all major panels — isolated failure, no full-page crash",
+        "SignalDots — trend direction indicator (improving / deteriorating / stable) per topic"
+      ],
+      "automation": "Manual data.json updates via git push",
+      "openTasks": [
+        "Re-wire D2 Portfolio Exposure — disabled Jun 21 (DEFAULT_ALLOCATION mismatch with live CSV factor weights)",
+        "Verify CF_AIG_TOKEN secret for authenticated AI Gateway",
+        "Historical signal trend visualization across weeks",
+        "Expand GDIT Tailwind with additional federal contract data sources"
+      ]
+    },
+    {
+      "key": "FIRE-2",
+      "name": "FIRE API",
+      "subdomain": "fire-api.stluker.com",
+      "url": "https://fire-api.stluker.com",
+      "status": "live",
+      "category": "Personal Tools",
+      "project": "Retirement / FIRE",
+      "stack": "CF Worker: fire-api (GitHub: fire-intel/workers/api/) — daily cron 0 12 * * *",
+      "repo": "GitHub: pdluker/fire-intel/workers/api/",
+      "lastDeploy": "2026-06-18",
+      "description": "Backend CF Worker API for fire.stluker.com. Claude via CF AI Gateway with hard cost controls. Handles signal analysis, portfolio ingestion, goals persistence, and daily briefing generation.",
+      "features": [
+        "Daily cron: 0 12 * * * (noon UTC) — consumes 1 of 5 CF free-tier cron slots",
+        "6 AI signal topics per run: iran_oil / ai_labs / taiwan / ukraine_russia / market_index / gdit_contracts",
+        "Claude via CF AI Gateway: fire-intel-gateway (authenticated mode)",
+        "web_search max_uses:2 hard cap per topic (cost ceiling — prevents runaway search spend)",
+        "6-hour gateway cache on calendar calls (cf-aig-cache-ttl: 21600)",
+        "Max 2 retries per topic (down from 3 to limit search budget on failure)",
+        "30-min KV rate limit on /api/refresh/:token (prevents manual trigger cost abuse)",
+        "Cost ceiling: ~$0.12/day worst-case (6 topics x 2 searches)",
+        "/api/health — KV + Supabase connectivity check",
+        "/api/portfolio/upload-csv/:token — Fidelity positions CSV ingestion, symbol aggregation, trueTotal calc",
+        "/api/portfolio/update-401k/:token — manual 401k fund balance entry (5 funds)",
+        "/api/portfolio/exposure — live factor-weighted exposure calculation",
+        "/api/goals + /api/goals/:token — E2 goals read/write (KV-persisted)",
+        "/api/settings + /api/settings/:token — email frequency preference (KV-persisted)",
+        "Supabase persistence for signal history",
+        "Deployed Version: 66153d9c (Jun 18)"
+      ],
+      "automation": "Daily cron 0 12 * * * — 1 of 5 CF cron slots consumed",
+      "openTasks": [
+        "Monitor CF AI Gateway logs for cache hit rate",
+        "Verify CF_AIG_TOKEN secret wired (authenticated gateway)"
+      ]
+    },
+    {
+      "key": "FIRE-3",
+      "name": "FIRE OS (Retire)",
+      "subdomain": "retire.stluker.com",
+      "url": "https://retire.stluker.com",
+      "status": "live",
+      "category": "Personal Tools",
+      "project": "Retirement / FIRE",
+      "stack": "CF Pages or Worker — pure HTML/JS (retire.html), Chart.js 4.4.1, IBM Plex Mono + Inter",
+      "repo": "C:\\Users\\pdluk\\fire-intel\\retire.html (confirm repo + deploy status)",
+      "lastDeploy": "Unknown — confirm live vs local",
+      "description": "Standalone FIRE OS personal finance dashboard — pure HTML/JS, no React, offline-capable via localStorage. 8-tab comprehensive retirement planning tool covering Monte Carlo, strategy comparison, full tax engine, AI advisor, and accounts register.",
+      "features": [
+        "Dashboard — KPI tiles, net income at retirement ages table, net worth tracker, snapshot history (up to 24 manual snapshots: portfolio + net worth + date)",
+        "Monte Carlo Simulation — configurable parameters, percentile outcome table (10th/25th/50th/75th/90th)",
+        "Strategy Comparison Engine — 9-metric evaluation: Standard / Lean / Fat / Coast / Shock / Crash scenarios, withdrawal sequence analysis",
+        "Tax Engine — RMD projection (IRS Uniform Lifetime Table, age-by-age), Roth conversion ladder optimizer (fill 12% bracket annually), SS timing optimizer (break-even crossover chart, 85% taxable above threshold), IRMAA bracket tracking, MO state tax 4.8% (2026 rate), lifetime Roth vs defer comparison chart, mortgage payoff optimizer (2.25% vs invest surplus)",
+        "AI Financial Advisor — Claude chat tab with full tax context + live account data injected as context",
+        "Next Actions — prioritized action items panel",
+        "Accounts register — 401k GDIT Fidelity 08093 ($854,982), Roth IRA Fidelity 230-962807 ($49,825), taxable/HSA/UTMA accounts, 529 Dawson ($135K) + Chip ($87K)",
+        "Settings — editable: income ($373K), age (48), FIRE age (55), savings ($11,593/mo), home value ($630K), mortgage ($307K at 2.25%), 529 balances; JSON export/import, reset to defaults",
+        "localStorage persistence key: fire_os_v5 — fully offline capable",
+        "Save button with unsaved-changes amber dot indicator",
+        "IBM Plex Mono + Inter typography, dark terminal aesthetic (#080d18 background)",
+        "Chart.js 4.4.1 for Monte Carlo percentile and tax visualizations",
+        "Responsive grid: 4-col -> 2-col -> 1-col at 920px/760px breakpoints"
+      ],
+      "automation": "None — planned",
+      "openTasks": [
+        "Confirm retire.html is deployed live at retire.stluker.com (vs local only)",
+        "Add CNAME/Worker route for retire.stluker.com in Cloudflare DNS",
+        "Wire AI Advisor chat to fire-api backend (currently may call Claude directly)",
+        "Connect Accounts page to live portfolio data from fire-api /api/portfolio/exposure",
+        "Sync snapshot history to Supabase (currently localStorage only — data loss risk on browser clear)"
+      ]
+    },
+    {
+      "key": "MEM-1",
+      "name": "Memory Lattice",
+      "subdomain": "memory.stluker.com",
+      "url": "https://memory.stluker.com",
+      "status": "live",
+      "category": "Personal Tools",
+      "project": "Health",
+      "stack": "CF Pages: memory-lattice (GitHub CI/CD) + Worker",
+      "repo": "GitHub: pdluker/memory-lattice",
+      "lastDeploy": "2026-06-12",
+      "description": "Knowledge / memory tool. Supabase persistence wiring pending.",
+      "features": [
+        "Pages + Worker deployed",
+        "Supabase keepalive covered by cron-job.org"
+      ],
+      "automation": "Static + Supabase on-demand",
+      "openTasks": [
+        "Wire Supabase persistence + auth"
+      ]
+    },
+    {
+      "key": "SURF-1",
+      "name": "Surfcam",
+      "subdomain": "surf.stluker.com",
+      "url": "https://surf.stluker.com",
+      "status": "live",
+      "category": "Personal Tools",
+      "project": "STLuker HQ",
+      "stack": "CF Worker: surfcam",
+      "repo": "GitHub: pdluker/surfcam (C:\\Users\\pdluk\\surfcam)",
+      "lastDeploy": "2026-06-08",
+      "description": "Global surf webcam dashboard with wave scoring. Auto-rotates by predictive forecast. Windy API integration for live webcam embeds.",
+      "features": [
+        "Windy Webcams API (50k+ cameras worldwide)",
+        "Swell/wave scoring via surfflow-scoring Worker",
+        "YouTube Data API v3 (quota: 10k/day)",
+        "15-min cron refresh (1 of 5 CF cron slots)",
+        "Supabase keepalive via surfflow-scoring cron"
+      ],
+      "automation": "surfflow-scoring Worker cron: */15 * * * *",
+      "openTasks": [
+        "Cache YouTube API responses in Workers KV (quota risk)"
+      ]
+    },
+    {
+      "key": "SURF-2",
+      "name": "Surfcam Pages",
+      "subdomain": "surfcam.stluker.com",
+      "url": "https://surfcam.stluker.com",
+      "status": "live",
+      "category": "Personal Tools",
+      "project": "STLuker HQ",
+      "stack": "CF Pages: surfcam + Worker: surfflow-scoring",
+      "repo": "GitHub: pdluker/surfcam",
+      "lastDeploy": "2026-06-08",
+      "description": "Surfcam Pages frontend + surfflow-scoring API backend. SURF_KV binding confirmed.",
+      "features": [
+        "surfflow-scoring Bundle: 18.30 KiB",
+        "SURF_KV namespace: 13e61a90c0f3445790ae14e063ee0626",
+        "Routes: surfcam.stluker.com/api/*"
+      ],
+      "automation": "*/15 * * * * cron (15-min scoring refresh)",
+      "openTasks": []
+    },
+    {
+      "key": "FAM-1",
+      "name": "Reunion",
+      "subdomain": "reunion.stluker.com",
+      "url": "https://reunion.stluker.com",
+      "status": "live",
+      "category": "Family / Social",
+      "project": "STLuker HQ",
+      "stack": "CF Worker: reunion + Web3Forms (RSVP)",
+      "repo": "Unknown — locate source",
+      "lastDeploy": "Unknown",
+      "description": "Reunion/event page with RSVP via Web3Forms. Resend confirmation emails not yet wired.",
+      "features": [
+        "Web3Forms RSVP (1/250 submissions used)",
+        "Resend domain verified on send.stluker.com"
+      ],
+      "automation": "None — manual event management",
+      "openTasks": [
+        "Wire Resend for confirmation emails"
+      ]
+    },
+    {
+      "key": "PTO-1",
+      "name": "PTO Tracker",
+      "subdomain": "pto.stluker.com",
+      "url": "https://pto.stluker.com",
+      "status": "live",
+      "category": "Personal Tools",
+      "project": "STLuker HQ",
+      "stack": "CF Worker: barrettspto",
+      "repo": "Unknown",
+      "lastDeploy": "Unknown",
+      "description": "PTO tracking dashboard. Also accessible at ptodashboard.stluker.com.",
+      "features": [
+        "Dual domain: pto.stluker.com + ptodashboard.stluker.com"
+      ],
+      "automation": "None",
+      "openTasks": []
+    },
+    {
+      "key": "POKE-1",
+      "name": "Pokelab",
+      "subdomain": "pokelab.stluker.com",
+      "url": "https://pokelab.stluker.com",
+      "status": "live",
+      "category": "Personal Tools",
+      "project": "STLuker HQ",
+      "stack": "CF Worker: pokelab",
+      "repo": "GitHub: pdluker/pokelab (recovered Jun 16)",
+      "lastDeploy": "Unknown",
+      "description": "Pokelab tool. Source recovered from CF dashboard and pushed to GitHub.",
+      "features": [],
+      "automation": "None",
+      "openTasks": [
+        "Connect GitHub repo to CF Worker for CI/CD"
+      ]
+    },
+    {
+      "key": "RAIL-1",
+      "name": "Iron Rails",
+      "subdomain": "trains.stluker.com",
+      "url": "https://trains.stluker.com",
+      "status": "live",
+      "category": "Personal Tools",
+      "project": "STLuker HQ",
+      "stack": "CF Worker: ironrails",
+      "repo": "GitHub: pdluker/iron-rails (recovered Jun 16)",
+      "lastDeploy": "Unknown",
+      "description": "Train/transit tracker. Source recovered from CF dashboard and pushed to GitHub.",
+      "features": [],
+      "automation": "None",
+      "openTasks": [
+        "Connect GitHub repo to CF Worker for CI/CD"
+      ]
+    },
+    {
+      "key": "TRIP-1",
+      "name": "Trip Companion",
+      "subdomain": "trip.stluker.com",
+      "url": "https://trip.stluker.com",
+      "status": "live",
+      "category": "Personal Tools",
+      "project": "Trip Companion",
+      "stack": "CF Pages: tripcompanion",
+      "repo": "GitHub: tripcompanion",
+      "lastDeploy": "Unknown",
+      "description": "Trip planning companion app. Custom domain CNAME status unconfirmed.",
+      "features": [],
+      "automation": "None",
+      "openTasks": [
+        "Export photos from Trip Companion app",
+        "Confirm tripcompanion.stluker.com CNAME in CF"
+      ]
+    },
+    {
+      "key": "STAT-1",
+      "name": "Status Board",
+      "subdomain": "status.stluker.com",
+      "url": "https://status.stluker.com",
+      "status": "live",
+      "category": "Infrastructure",
+      "project": "STLuker HQ",
+      "stack": "CF Pages: stl-status (GitHub CI/CD)",
+      "repo": "GitHub: pdluker/stl-status",
+      "lastDeploy": "2026-06-28",
+      "description": "Jira-inspired ecosystem status board. data.json is the single source of truth — update here, git push, auto-deploys.",
+      "features": [
+        "Live reachability probe (client-side fetch)",
+        "Epic swimlanes by Claude project",
+        "Kanban-style status lozenges",
+        "data.json separated from fire-intel Jun 18"
+      ],
+      "automation": "Manual data.json updates via git push",
+      "openTasks": []
+    },
+    {
+      "key": "GEO-1",
+      "name": "GeoQ",
+      "subdomain": "geo.stluker.com",
+      "url": "https://geo.stluker.com",
+      "status": "planned",
+      "category": "Infrastructure",
+      "project": "STLuker HQ",
+      "stack": "CF Worker + Supabase PostGIS (repo: pdluker/geoq)",
+      "repo": "GitHub: pdluker/geoq",
+      "lastDeploy": "2014-07-07",
+      "description": "Geo/map tool. Repo exists, deployment deferred. PostGIS on Supabase for location queries.",
+      "features": [],
+      "automation": "None",
+      "openTasks": [
+        "Deploy to CF Worker when prioritized"
+      ]
+    },
+    {
+      "key": "MEDIA-1",
+      "name": "Media Gallery",
+      "subdomain": "media.stluker.com",
+      "url": "https://media.stluker.com",
+      "status": "planned",
+      "category": "Infrastructure",
+      "project": "STLuker HQ",
+      "stack": "CF Pages + Cloudinary + R2 (planned)",
+      "repo": null,
+      "lastDeploy": null,
+      "description": "Planned media gallery using Cloudinary (9.32/25 credits, 588MB) + R2 raw storage.",
+      "features": [],
+      "automation": "None",
+      "openTasks": [
+        "Design and build when prioritized"
+      ]
+    }
+  ],
+  "infrastructure": {
+    "dns": {
+      "registrar": "Squarespace (registrar only, expires Sep 16, 2026)",
+      "provider": "Cloudflare (fully delegated — 19 DNS records)",
+      "note": "All routing, proxying, and Worker bindings managed in Cloudflare DNS"
+    },
+    "cloudflare": {
+      "account": "pdluker@gmail.com",
+      "tier": "Free",
+      "cronSlotsUsed": 3,
+      "cronSlotsTotal": 5,
+      "crons": [
+        "stluker worker: 0 9 */3 * * (food pulse trigger, every 3 days)",
+        "surfflow-scoring: */15 * * * * (wave scoring)",
+        "stl-bucket: 0 14 * * 5 (STL Bucket List, Fri 9AM CT)"
+      ]
+    },
+    "supabase": {
+      "project": "baknyepgyjurarojdkhy",
+      "tier": "Free (Nano)",
+      "region": "us-west-2",
+      "keepalive": "cron-job.org → supabase-keepalive.pdluker.workers.dev/keepalive (Bearer auth, fixed Jun 26)",
+      "tables": [
+        "food_pulse_signals",
+        "stl_issues"
+      ],
+      "edgeFunctions": [
+        "food-pulse (v5)"
+      ]
+    },
+    "github": {
+      "username": "pdluker",
+      "repos": [
+        "fire-intel",
+        "surfcam",
+        "memory-lattice",
+        "familyplate",
+        "geoq",
+        "stl-status",
+        "pokelab",
+        "iron-rails"
+      ]
+    },
+    "email": {
+      "provider": "Resend (resend._domainkey.stluker.com DKIM verified)",
+      "sendingDomain": "send.stluker.com (SES + SPF)",
+      "dmarc": "p=none monitoring (Jun 17-18 reports received — working correctly)",
+      "audience": "STL Brief (Resend)"
+    },
+    "externalAPIs": [
+      "Ticketmaster Discovery API (stl-music)",
+      "ESPN API (stl-sports)",
+      "Windy Webcams API (surfcam)",
+      "YouTube Data API v3 (10k/day quota)",
+      "Cloudinary (9.32/25 credits, 588MB)",
+      "beehiiv RSS (stl-bucket — STL Bucket List newsletter)"
+    ]
+  },
+  "openTasks": [
+    {
+      "id": "T-1",
+      "title": "STL/Music Ticketmaster cron poller",
+      "priority": "high",
+      "site": "music.stluker.com",
+      "detail": "Venue ID lookup completed — need to deploy cron Worker to auto-populate MUSIC_KV weekly"
+    },
+    {
+      "id": "T-2",
+      "title": "stl.stluker.com cross-link nav",
+      "priority": "medium",
+      "site": "stl.stluker.com",
+      "detail": "Add stl.stluker.com to top-banner on stluker.com, family, sports, music"
+    },
+    {
+      "id": "T-3",
+      "title": "Git CI/CD for stl-sports + stl-music",
+      "priority": "medium",
+      "site": "sports.stluker.com, music.stluker.com",
+      "detail": "Both currently manual wrangler deploy — connect GitHub repos to CF Workers for auto-deploy on push"
+    },
+    {
+      "id": "T-4",
+      "title": "Trip Companion photo export + CNAME",
+      "priority": "low",
+      "site": "trip.stluker.com",
+      "detail": "Export photos from Trip Companion app; confirm tripcompanion.stluker.com CNAME in CF"
+    },
+    {
+      "id": "T-5",
+      "title": "Reunion Resend email wiring",
+      "priority": "low",
+      "site": "reunion.stluker.com",
+      "detail": "Wire Resend for RSVP confirmation emails — domain already verified"
+    },
+    {
+      "id": "T-6",
+      "title": "family.stluker.com map toggle",
+      "priority": "high",
+      "site": "family.stluker.com",
+      "detail": "P1 Davidson feedback — Leaflet.js map view for 123 parks with amenity-colored pins"
+    },
+    {
+      "id": "T-7",
+      "title": "retire.stluker.com — scope and build",
+      "priority": "medium",
+      "site": "retire.stluker.com",
+      "detail": "Feature backlog lives in Retirement / FIRE Claude project. Determine scope, stack, and whether it's a companion to or redirect from fire.stluker.com"
+    },
+    {
+      "id": "T-8",
+      "title": "fire-api CF_AIG_TOKEN verification",
+      "priority": "low",
+      "site": "fire-api.stluker.com",
+      "detail": "Confirm CF_AIG_TOKEN secret is set and AI Gateway authenticated mode is active. Check gateway logs for non-zero requests and cache hits."
+    }
+  ],
+  "recentActivity": [
+    {
+      "date": "2026-06-28",
+      "event": "Cross-link nav updated — music.stluker.com added to all three sites (stluker.com, family, sports)"
+    },
+    {
+      "date": "2026-06-26",
+      "event": "stl.stluker.com launched — STL Bucket List beehiiv newsletter auto-ingestion via CF cron + Claude Haiku + Supabase"
+    },
+    {
+      "date": "2026-06-26",
+      "event": "Supabase keepalive fixed — Bearer auth added to cron-job.org request (was silently failing)"
+    },
+    {
+      "date": "2026-06-23",
+      "event": "stluker.com food pulse upgraded — v5 Edge Function with structured JSON output, DM Sans font, improved contrast"
+    },
+    {
+      "date": "2026-06-22",
+      "event": "music.stluker.com launched — STL/Music live events tracker (concerts, comedy, theater) with Ticketmaster API"
+    },
+    {
+      "date": "2026-06-19",
+      "event": "DMARC diagnosed — p=none monitoring working correctly; null SPF on root domain recommended"
+    },
+    {
+      "date": "2026-06-18",
+      "event": "status.stluker.com launched — Jira-inspired ecosystem dashboard; data.json separated from fire-intel"
+    },
+    {
+      "date": "2026-06-16",
+      "event": "Davidson feedback mapped — Paul's Pick badge deployed across all sites; pokelab + iron-rails source recovered to GitHub"
+    },
+    {
+      "date": "2026-06-12",
+      "event": "Supabase keepalive Worker deployed — cron-job.org daily ping to supabase-keepalive.pdluker.workers.dev"
+    },
+    {
+      "date": "2026-06-12",
+      "event": "Cross-link nav added — stluker.com ↔ family.stluker.com ↔ sports.stluker.com (top banner + footer)"
+    },
+    {
+      "date": "2026-06-12",
+      "event": "sports.stluker.com fully wired — stl-sports Worker, SPORTS_KV, ESPN + iCal feeds, rivalry watch"
+    },
+    {
+      "date": "2026-06-11",
+      "event": "stluker.com SEO rearchitect — 12 routed URLs, sitemap, GSC verified, Booking.com affiliate setup"
+    },
+    {
+      "date": "2026-06-08",
+      "event": "surfcam deployed — Windy Webcams API integrated, surfflow-scoring Worker with 15-min cron"
+    }
+  ]
+}

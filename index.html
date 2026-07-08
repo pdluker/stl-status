@@ -9,23 +9,23 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#070b12;--surface:#0d1420;--card:#111c2e;--card2:#162033;--lift:#1c2840;
-  --border:#1a2a40;--border2:#22334f;
-  --green:#00e5a0;--green2:#00b87a;--green-bg:rgba(0,229,160,.07);--green-dim:rgba(0,229,160,.04);
-  --amber:#f5a623;--amber-bg:rgba(245,166,35,.08);
-  --red:#f03e3e;--red-bg:rgba(240,62,62,.08);
-  --blue:#4d9fff;--blue-bg:rgba(77,159,255,.08);
-  --purple:#a78bfa;--purple-bg:rgba(167,139,250,.08);
-  --teal:#22d3ee;--teal-bg:rgba(34,211,238,.07);
-  --text:#dde4ee;--text2:#7a8ba0;--text3:#3d5066;
+  --bg:#f7f7f5;--surface:#ffffff;--card:#ffffff;--card2:#eef0f7;--lift:#eef0f7;
+  --border:#e5e7eb;--border2:#d1d5db;
+  --green:#16a34a;--green2:#15803d;--green-bg:#dcfce7;--green-dim:#f0fdf4;
+  --amber:#ca8a04;--amber-bg:#fefce8;
+  --red:#dc2626;--red-bg:#fef2f2;
+  --blue:#2563eb;--blue-bg:#eff6ff;
+  --purple:#9333ea;--purple-bg:#f5f0fe;
+  --teal:#0891b2;--teal-bg:#ecfeff;
+  --text:#111827;--text2:#374151;--text3:#6b7280;--ink-muted:#6b7280;
   --mono:'IBM Plex Mono',monospace;--sans:'Inter',sans-serif;
   --r:6px;--r2:10px;
 }
 html{scroll-behavior:smooth;scrollbar-color:var(--border2) var(--bg);scrollbar-width:thin}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13px;line-height:1.6;min-height:100vh}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;min-height:100vh}
 
 /* ── TOPBAR ── */
-#topbar{position:sticky;top:0;z-index:200;background:rgba(7,11,18,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0;height:48px;padding:0 20px}
+#topbar{position:sticky;top:0;z-index:200;background:rgba(247,247,245,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0;height:48px;padding:0 20px}
 .tb-logo{font-family:var(--mono);font-size:12px;color:var(--green);white-space:nowrap;margin-right:20px;letter-spacing:.04em}
 .tb-logo em{color:var(--text3);font-style:normal}
 .tb-tabs{display:flex;gap:1px;flex:1;overflow-x:auto;scrollbar-width:none}
@@ -46,7 +46,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 .page.on{display:block}
 
 /* ── SEARCH RESULTS overlay ── */
-#search-results{display:none;position:fixed;top:82px;left:0;right:0;background:rgba(7,11,18,.98);border-bottom:1px solid var(--border2);z-index:190;padding:16px 20px;max-height:60vh;overflow-y:auto}
+#search-results{display:none;position:fixed;top:82px;left:0;right:0;background:rgba(255,255,255,.98);border-bottom:1px solid var(--border2);z-index:190;padding:16px 20px;max-height:60vh;overflow-y:auto;box-shadow:0 8px 24px rgba(17,24,39,.08)}
 #search-results.on{display:block}
 .sr-section{margin-bottom:14px}
 .sr-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
@@ -97,6 +97,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 .badge-live{background:var(--green-bg);color:var(--green);border:1px solid rgba(0,229,160,.18)}
 .badge-planned{background:var(--amber-bg);color:var(--amber);border:1px solid rgba(245,166,35,.18)}
 .badge-degraded{background:var(--red-bg);color:var(--red);border:1px solid rgba(240,62,62,.18)}
+.badge-inactive{background:#f1f1ef;color:var(--text2);border:1px solid var(--border)}
 .badge-checking{background:rgba(77,159,255,.08);color:var(--blue);border:1px solid rgba(77,159,255,.18)}
 .pulse{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
 .pulse.amber{background:var(--amber);animation:none}
@@ -107,11 +108,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 .site-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:14px;transition:border-color .15s,transform .1s;cursor:default}
 .site-card:hover{border-color:var(--border2);transform:translateY(-1px)}
 .site-card.planned{opacity:.7}
+.site-card.inactive{opacity:.55}
 .sc-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;gap:8px}
 .sc-key{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.1em}
 .sc-name{font-weight:600;font-size:12px;margin-bottom:2px}
 .sc-url{font-family:var(--mono);font-size:10px;color:var(--text2)}
-.sc-desc{font-size:11px;color:var(--text2);line-height:1.5;margin:8px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sc-desc{font-size:13px;color:var(--text2);line-height:1.5;margin:8px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .sc-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
 .sc-tag{font-size:9px;padding:2px 6px;border-radius:3px;background:var(--lift);color:var(--text2);border:1px solid var(--border2);font-family:var(--mono)}
 .sc-actions{display:flex;gap:6px;margin-top:10px}
@@ -119,6 +121,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 .sc-btn:hover{border-color:var(--green2);color:var(--green)}
 .sc-btn.primary{border-color:rgba(0,229,160,.25);background:var(--green-dim);color:var(--green)}
 .sc-health{display:flex;align-items:center;gap:5px;margin-top:8px;font-size:10px;color:var(--text3)}
+.sc-tasks-toggle{margin-top:8px}
+.sc-tasks-toggle summary{cursor:pointer;font-size:10px;color:var(--amber);list-style:none;display:flex;align-items:center;gap:4px;user-select:none}
+.sc-tasks-toggle summary::-webkit-details-marker{display:none}
+.sc-tasks-toggle summary::before{content:'▸';font-size:9px;transition:transform .12s}
+.sc-tasks-toggle[open] summary::before{transform:rotate(90deg)}
+.sc-tasks-toggle summary:hover{color:var(--green)}
+.sc-task-list{margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
+.sc-task-row{padding:5px 0}
+.sc-task-row:not(:last-child){border-bottom:1px solid var(--border)}
+.sc-task-row-title{font-size:12px;font-weight:500}
+.sc-task-row-detail{font-size:12px;color:var(--text3);margin-top:2px;line-height:1.4}
 .health-dot{width:5px;height:5px;border-radius:50%;background:var(--text3)}
 .health-dot.g{background:var(--green)}
 .health-dot.a{background:var(--amber)}
@@ -133,8 +146,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 .pri-medium{background:var(--amber-bg);color:var(--amber)}
 .pri-low{background:var(--blue-bg);color:var(--blue)}
 .task-body{flex:1}
-.task-title{font-size:12px;font-weight:500}
-.task-detail{font-size:11px;color:var(--text2);margin-top:2px}
+.task-title{font-size:13px;font-weight:500}
+.task-detail{font-size:13px;color:var(--text2);margin-top:2px}
 .task-site{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:3px}
 
 /* ── TIMELINE ── */
@@ -142,10 +155,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 .tl-item:last-child{border-bottom:none}
 .tl-date{font-family:var(--mono);font-size:10px;color:var(--text3);white-space:nowrap;min-width:70px;margin-top:2px}
 .tl-dot{width:8px;height:8px;border-radius:50%;background:var(--green2);flex-shrink:0;margin-top:4px;border:2px solid var(--bg)}
-.tl-text{font-size:11px;color:var(--text2);flex:1}
+.tl-text{font-size:13px;color:var(--text2);flex:1}
 
 /* ── BRIEFING PANEL ── */
-.brief-panel{background:linear-gradient(135deg,rgba(0,229,160,.05) 0%,rgba(7,11,18,0) 60%);border:1px solid rgba(0,229,160,.15);border-radius:var(--r2);padding:18px;margin-bottom:18px}
+.brief-panel{background:linear-gradient(135deg,rgba(22,163,74,.06) 0%,rgba(247,247,245,0) 60%);border:1px solid rgba(22,163,74,.18);border-radius:var(--r2);padding:18px;margin-bottom:18px}
 .brief-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .brief-title{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--green);letter-spacing:.06em}
 .brief-time{font-family:var(--mono);font-size:10px;color:var(--text3)}
@@ -160,16 +173,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:13
 .rec-item:last-child{border-bottom:none}
 .rec-icon{font-size:14px;flex-shrink:0;margin-top:1px}
 .rec-body{flex:1}
-.rec-title{font-size:12px;font-weight:500}
-.rec-detail{font-size:11px;color:var(--text2);margin-top:2px}
+.rec-title{font-size:13px;font-weight:500}
+.rec-detail{font-size:13px;color:var(--text2);margin-top:2px}
 .rec-cat{font-family:var(--mono);font-size:9px;color:var(--text3);margin-top:3px;letter-spacing:.06em}
 
 /* ── INFRA TABLE ── */
-table.it{width:100%;border-collapse:collapse;font-size:11px}
+table.it{width:100%;border-collapse:collapse;font-size:12px}
 table.it th{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);text-align:left;padding:6px 10px;border-bottom:1px solid var(--border)}
 table.it td{padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
 table.it tr:last-child td{border-bottom:none}
-table.it tr:hover td{background:rgba(255,255,255,.015)}
+table.it tr:hover td{background:rgba(17,24,39,.03)}
 table.it td.mono{font-family:var(--mono);font-size:10px}
 table.it td.g{color:var(--green)}
 table.it td.a{color:var(--amber)}
@@ -217,7 +230,7 @@ table.it td.r{color:var(--red)}
 a{color:inherit;text-decoration:none}
 
 /* ── NETWORK NAV ── */
-#netbar{background:#0a0f1a;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;padding:0 20px;height:34px;position:sticky;top:0;z-index:201}
+#netbar{background:var(--card2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;padding:0 20px;height:34px;position:sticky;top:0;z-index:201}
 .nb-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--text3);margin-right:8px;text-transform:uppercase}
 .nb-link{font-size:11px;font-weight:500;color:var(--text2);padding:3px 10px;border-radius:3px;border:1px solid transparent;transition:all .12s;white-space:nowrap}
 .nb-link:hover{color:var(--green);background:var(--green-dim);border-color:rgba(0,229,160,.15)}
@@ -255,6 +268,7 @@ a{color:inherit;text-decoration:none}
       <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
       <input id="search-box" type="text" placeholder="Search sites, tech, tasks…" oninput="doSearch(this.value)" onfocus="if(this.value) showSearchResults()" onblur="setTimeout(()=>hideSearch(),200)">
     </div>
+    <div id="sync-badge" style="font-family:var(--mono);font-size:10px;color:var(--text3);white-space:nowrap;padding:0 8px;border-left:1px solid var(--border)"></div>
     <div class="tb-time" id="clock"></div>
   </div>
 </div>
@@ -428,79 +442,43 @@ a{color:inherit;text-decoration:none}
 
 <script>
 // ─────────────────────────────────────────────
-// DATA — embedded from data.json (Jun 28, 2026)
+// DATA — loaded at runtime from data.json (single source of truth)
 // ─────────────────────────────────────────────
-const DATA = {
-  meta: { lastUpdated: "2026-06-28", version: "2.2" },
-  stats: { totalSites: 19, liveSites: 17, plannedSites: 2, automatedSites: 5, openTasks: 8 },
-  sites: [
-    { key:"STL-1", name:"STLuker", subdomain:"stluker.com", url:"https://stluker.com", status:"live", category:"Public Sites", stack:"CF Worker: stluker", repo:"C:\\Users\\pdluk\\stluker-v3", lastDeploy:"2026-06-23", description:"Main city guide — restaurants, coffee, bars, hotels, entertainment, work visits. SEO Worker with 12 routed URLs, sitemap, GSC verified.", features:["Weekly AI food pulse (Supabase Edge Fn food-pulse v5)","Paul's Picks rotation Worker + Sentinel","Newsletter subscribe → Resend","Booking.com affiliate links","New & Now section (Robin, Esca, Noble Crown)","Paul's Pick badge component"], automation:"Weekly food pulse via Supabase pg_cron + Edge Function", openTasks:["Confirm Booking.com affiliate account approved"] },
-    { key:"STL-2", name:"STLuker Jr.", subdomain:"family.stluker.com", url:"https://family.stluker.com", status:"live", category:"Public Sites", stack:"CF Worker: family", repo:"GitHub: pdluker/familyplate", lastDeploy:"2026-06-22", description:"Kids/family edition — 123 parks, family restaurants, activities, decision engine.", features:["123 parks from Google Maps list","Paul's Picks: Francis Park, Castlewood, Forest Park, Shaw Park, Brentwood Park","Decision engine (What kind of day is it?)","Been Here tracker","Mobile bottom nav"], automation:"Manual", openTasks:["Map toggle for parks (Leaflet.js — P1)","Weather-driven activity sorting (P2)"] },
-    { key:"STL-3", name:"STL/7 Sports", subdomain:"sports.stluker.com", url:"https://sports.stluker.com", status:"live", category:"Public Sites", stack:"CF Worker: stl-sports (KV: SPORTS_KV)", repo:"Manual wrangler deploy", lastDeploy:"2026-06-12", description:"7-day STL sports slate — pro, college, minor league. Rivalry watch, filters, ICS export.", features:["ESPN API + iCal feeds for 7 STL colleges","Rivalry watch ⚔","Sport + Level filter chips","ICS calendar export","Offseason ledger"], automation:"ESPN API cron poller (weekly)", openTasks:["Connect Git repo for CI/CD","Gateway Grizzlies iCal feed"] },
-    { key:"STL-4", name:"STL/Music", subdomain:"music.stluker.com", url:"https://music.stluker.com", status:"live", category:"Public Sites", stack:"CF Worker: stl-music (KV: MUSIC_KV)", repo:"C:\\Users\\pdluk\\stl-music", lastDeploy:"2026-06-22", description:"7-day live music, comedy & theater tracker. Ticketmaster Discovery API.", features:["Concert / Comedy / Theater filters","Genre filter chips","Ticketmaster venue IDs","ICS calendar export","JSON-LD MusicEvent schema"], automation:"Ticketmaster cron poller (in progress)", openTasks:["Complete Ticketmaster cron poller deploy","Connect Git repo for CI/CD"] },
-    { key:"STL-5", name:"STL Weekend Guide", subdomain:"stl.stluker.com", url:"https://stl.stluker.com", status:"live", category:"Public Sites", stack:"CF Worker: stl-bucket (KV: STL_BUCKET_KV + Supabase)", repo:"C:\\Users\\pdluk\\stl-bucket-worker", lastDeploy:"2026-06-26", description:"Auto-curated weekend guide from STL Bucket List beehiiv newsletter. Friday 9AM CT cron.", features:["beehiiv RSS → HTML → Claude Haiku extraction","CF Cron: Fridays 9AM CT","Supabase stl_issues table (from Jun 26)","2-week KV TTL","Manual /refresh endpoint"], automation:"Fully automated — weekly beehiiv → Claude Haiku → KV", openTasks:["Add stl.stluker.com to sibling site nav"] },
-    { key:"FIRE-1", name:"FIRE Intel", subdomain:"fire.stluker.com", url:"https://fire.stluker.com", status:"live", category:"Personal Tools", stack:"CF Pages: fire-intel (GitHub CI/CD) — React", repo:"GitHub: pdluker/fire-intel", lastDeploy:"2026-06-18", description:"AI-powered FIRE retirement intelligence dashboard. Portfolio $1.059M (Jun 24). FIRE target age 55.", features:["D3: Morning Briefing (6 signal topics daily)","C1: FIRE Date Calculator (probability bands)","C2: Timeline Impact Engine","C3: GDIT Tailwind Score","C5: Scenario Simulator (Taiwan/Iran/AI/Ukraine/crash)","E2: Goals (529 Dawson $135K + Chip $87K, mortgage $307K)","Portfolio CSV upload + 401k entry","D2: Portfolio Exposure (DISABLED Jun 21 — re-wiring)"], automation:"Daily noon UTC cron via fire-api", openTasks:["Re-wire D2 Portfolio Exposure","Verify CF_AIG_TOKEN"] },
-    { key:"FIRE-2", name:"FIRE API", subdomain:"fire-api.stluker.com", url:"https://fire-api.stluker.com", status:"live", category:"Personal Tools", stack:"CF Worker: fire-api — daily cron 0 12 * * *", repo:"GitHub: pdluker/fire-intel/workers/api/", lastDeploy:"2026-06-18", description:"Backend API for fire.stluker.com. Claude via CF AI Gateway with max_uses:2 cost cap.", features:["6 AI signal topics/run via Claude + web_search","max_uses:2 cap (~$0.12/day ceiling)","6-hr gateway cache on calendar calls","/api/portfolio/upload-csv (Fidelity CSV parser)","/api/portfolio/update-401k (5 funds)","/api/goals — KV-persisted","/api/settings — email frequency"], automation:"Daily cron 0 12 * * *", openTasks:["Verify CF_AIG_TOKEN for authenticated gateway"] },
-    { key:"FIRE-3", name:"FIRE OS (Retire)", subdomain:"retire.stluker.com", url:"https://retire.stluker.com", status:"live", category:"Personal Tools", stack:"CF Pages — pure HTML/JS (retire.html), Chart.js 4.4.1", repo:"C:\\Users\\pdluk\\fire-intel\\retire.html", lastDeploy:"Unknown — confirm", description:"Standalone retirement planning OS. 8-tab tool: Monte Carlo, Tax Engine, Strategy, AI Advisor, Accounts.", features:["Monte Carlo (10th/25th/50th/75th/90th percentile)","Tax Engine: RMD, Roth ladder, SS optimizer, IRMAA, MO 4.8%","Strategy comparison: Standard/Lean/Fat/Coast/Shock/Crash","AI Financial Advisor (Claude chat)","Accounts register: 401k $854K, Roth $49K, 529s, taxable","localStorage persistence (fire_os_v5)"], automation:"None — standalone", openTasks:["Confirm retire.html is live at retire.stluker.com","Wire AI Advisor to fire-api backend","Sync snapshots to Supabase"] },
-    { key:"MEM-1", name:"Memory Lattice", subdomain:"memory.stluker.com", url:"https://memory.stluker.com", status:"live", category:"Personal Tools", stack:"CF Pages: memory-lattice (GitHub CI/CD) + Worker", repo:"GitHub: pdluker/memory-lattice", lastDeploy:"2026-06-12", description:"Knowledge/memory tool. Supabase persistence wiring pending.", features:["Pages + Worker deployed","Supabase keepalive covered"], automation:"Static", openTasks:["Wire Supabase persistence + auth"] },
-    { key:"SURF-1", name:"Surfcam", subdomain:"surf.stluker.com", url:"https://surf.stluker.com", status:"live", category:"Personal Tools", stack:"CF Worker: surfcam", repo:"GitHub: pdluker/surfcam", lastDeploy:"2026-06-08", description:"Global surf webcam dashboard. Auto-rotates by swell forecast. Windy API.", features:["Windy Webcams API (50k+ cameras)","Wave scoring via surfflow-scoring Worker","YouTube Data API v3 (10k/day quota)"], automation:"surfflow-scoring cron: */15 * * * *", openTasks:["Cache YouTube API in Workers KV (quota risk)"] },
-    { key:"SURF-2", name:"Surfcam Pages", subdomain:"surfcam.stluker.com", url:"https://surfcam.stluker.com", status:"live", category:"Personal Tools", stack:"CF Pages: surfcam + Worker: surfflow-scoring", repo:"GitHub: pdluker/surfcam", lastDeploy:"2026-06-08", description:"Surfcam Pages frontend + surfflow-scoring API. SURF_KV wired.", features:["15-min scoring cron","SURF_KV namespace wired","surfcam.stluker.com/api/* routes"], automation:"*/15 * * * * cron", openTasks:[] },
-    { key:"FAM-1", name:"Reunion", subdomain:"reunion.stluker.com", url:"https://reunion.stluker.com", status:"live", category:"Family / Social", stack:"CF Worker: reunion + Web3Forms", repo:"Unknown", lastDeploy:"Unknown", description:"Reunion/event RSVP. Resend confirmation emails not yet wired.", features:["Web3Forms RSVP","Resend domain verified"], automation:"None", openTasks:["Wire Resend confirmation emails"] },
-    { key:"PTO-1", name:"PTO Tracker", subdomain:"pto.stluker.com", url:"https://pto.stluker.com", status:"live", category:"Personal Tools", stack:"CF Worker: barrettspto", repo:"Unknown", lastDeploy:"Unknown", description:"PTO tracking dashboard. Also at ptodashboard.stluker.com.", features:["Dual domain routing"], automation:"None", openTasks:[] },
-    { key:"POKE-1", name:"Pokelab", subdomain:"pokelab.stluker.com", url:"https://pokelab.stluker.com", status:"live", category:"Personal Tools", stack:"CF Worker: pokelab", repo:"GitHub: pdluker/pokelab (recovered Jun 16)", lastDeploy:"Unknown", description:"Pokelab tool. Source recovered from CF dashboard to GitHub.", features:[], automation:"None", openTasks:["Connect GitHub repo to CF Worker for CI/CD"] },
-    { key:"RAIL-1", name:"Iron Rails", subdomain:"trains.stluker.com", url:"https://trains.stluker.com", status:"live", category:"Personal Tools", stack:"CF Worker: ironrails", repo:"GitHub: pdluker/iron-rails (recovered Jun 16)", lastDeploy:"Unknown", description:"Train/transit tracker. Source recovered to GitHub.", features:[], automation:"None", openTasks:["Connect GitHub repo to CF Worker for CI/CD"] },
-    { key:"TRIP-1", name:"Trip Companion", subdomain:"trip.stluker.com", url:"https://trip.stluker.com", status:"live", category:"Personal Tools", stack:"CF Pages: tripcompanion", repo:"GitHub: tripcompanion", lastDeploy:"Unknown", description:"Trip planning companion app.", features:[], automation:"None", openTasks:["Export photos from Trip Companion app","Confirm CNAME in CF"] },
-    { key:"STAT-1", name:"Status Board", subdomain:"status.stluker.com", url:"https://status.stluker.com", status:"live", category:"Infrastructure", stack:"CF Pages: stl-status (GitHub CI/CD)", repo:"GitHub: pdluker/stl-status", lastDeploy:"2026-06-28", description:"Ecosystem command center. data.json is the source of truth.", features:["Live health probes","Jira-style board (original)","GitHub push → auto-deploy"], automation:"Manual data.json updates", openTasks:[] },
-    { key:"GEO-1", name:"GeoQ", subdomain:"geo.stluker.com", url:"https://geo.stluker.com", status:"planned", category:"Infrastructure", stack:"CF Worker + Supabase PostGIS (repo: pdluker/geoq)", repo:"GitHub: pdluker/geoq", lastDeploy:null, description:"Geo/map tool. Repo exists, deployment deferred.", features:[], automation:"None", openTasks:["Deploy when prioritized"] },
-    { key:"MEDIA-1", name:"Media Gallery", subdomain:"media.stluker.com", url:"https://media.stluker.com", status:"planned", category:"Infrastructure", stack:"CF Pages + Cloudinary + R2 (planned)", repo:null, lastDeploy:null, description:"Planned media gallery. Cloudinary 9.32/25 credits, 588MB.", features:[], automation:"None", openTasks:["Design and build when prioritized"] }
-  ],
-  openTasks: [
-    { id:"T-1", title:"STL/Music Ticketmaster cron poller", priority:"high", site:"music.stluker.com", detail:"Venue IDs ready — deploy cron Worker to auto-populate MUSIC_KV weekly" },
-    { id:"T-2", title:"family.stluker.com map toggle", priority:"high", site:"family.stluker.com", detail:"P1 Davidson feedback — Leaflet.js map view for 123 parks with amenity-colored pins" },
-    { id:"T-3", title:"stl.stluker.com cross-link nav", priority:"medium", site:"stl.stluker.com", detail:"Add stl.stluker.com to top-banner on stluker.com, family, sports, music" },
-    { id:"T-4", title:"Git CI/CD for stl-sports + stl-music", priority:"medium", site:"sports.stluker.com, music.stluker.com", detail:"Both still manual wrangler deploy — connect GitHub repos to CF Workers" },
-    { id:"T-5", title:"retire.stluker.com deploy confirmation", priority:"medium", site:"retire.stluker.com", detail:"Confirm retire.html is live at retire.stluker.com — needs CNAME + CF Pages deploy if not" },
-    { id:"T-6", title:"Trip Companion photo export + CNAME", priority:"low", site:"trip.stluker.com", detail:"Export photos from app; confirm tripcompanion.stluker.com CNAME" },
-    { id:"T-7", title:"Reunion Resend email wiring", priority:"low", site:"reunion.stluker.com", detail:"Wire Resend for RSVP confirmation emails — domain already verified" },
-    { id:"T-8", title:"retire.stluker.com scope + build", priority:"medium", site:"retire.stluker.com", detail:"Connect AI Advisor tab to fire-api; sync localStorage snapshots to Supabase" }
-  ],
-  recentActivity: [
-    { date:"2026-06-28", event:"Cross-link nav updated — music.stluker.com added to all three sites" },
-    { date:"2026-06-28", event:"status.stluker.com rebuilt as full operations command center (v2.2)" },
-    { date:"2026-06-26", event:"stl.stluker.com launched — STL Bucket List beehiiv auto-ingestion via CF cron + Claude Haiku + Supabase" },
-    { date:"2026-06-26", event:"Supabase keepalive fixed — Bearer auth added to cron-job.org request" },
-    { date:"2026-06-23", event:"stluker.com food pulse upgraded — v5 Edge Function, structured JSON, DM Sans font" },
-    { date:"2026-06-22", event:"music.stluker.com launched — STL/Music tracker (concerts, comedy, theater)" },
-    { date:"2026-06-19", event:"DMARC diagnosed — p=none monitoring working; null SPF on root domain recommended" },
-    { date:"2026-06-18", event:"status.stluker.com launched v1 — Jira-inspired board; data.json separated from fire-intel" },
-    { date:"2026-06-16", event:"Davidson feedback mapped — Paul's Pick badge deployed; pokelab + iron-rails source recovered to GitHub" },
-    { date:"2026-06-12", event:"Supabase keepalive Worker deployed — cron-job.org daily ping" },
-    { date:"2026-06-12", event:"Cross-link nav added — stluker.com ↔ family ↔ sports (top banner + footer)" },
-    { date:"2026-06-12", event:"sports.stluker.com fully wired — stl-sports Worker, SPORTS_KV, ESPN + iCal feeds" },
-    { date:"2026-06-11", event:"stluker.com SEO rearchitect — 12 routed URLs, sitemap, GSC verified" }
-  ],
-  infrastructure: {
-    cloudflare: { cronSlotsUsed:3, cronSlotsTotal:5, crons:["stluker: 0 9 */3 * * (food pulse)","surfflow-scoring: */15 * * * * (wave scoring)","stl-bucket: 0 14 * * 5 (STL Bucket List, Fri 9AM CT)","fire-api: 0 12 * * * (daily FIRE signals)"] },
-    supabase: { project:"baknyepgyjurarojdkhy", tier:"Free Nano", region:"us-west-2", tables:["food_pulse_signals","stl_issues"], edgeFunctions:["food-pulse v5"], keepalive:"cron-job.org daily" },
-    github: { repos:["fire-intel","surfcam","memory-lattice","familyplate","geoq","stl-status","pokelab","iron-rails"] },
-    dns: { registrar:"Squarespace (expires Sep 16, 2026)", provider:"Cloudflare (19 DNS records)" },
-    externalAPIs:["Ticketmaster Discovery API","ESPN API","Windy Webcams API","YouTube Data API v3","Cloudinary (9.32/25 credits)","beehiiv RSS","Claude AI Gateway (fire-intel-gateway, stluker-ai)"]
+let DATA = null;
+
+async function loadData() {
+  try {
+    const res = await fetch('data.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    DATA = await res.json();
+    return true;
+  } catch (err) {
+    console.error('Failed to load data.json:', err);
+    document.body.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:12px;font-family:var(--mono,monospace);color:#dc2626;text-align:center;padding:20px">
+        <div style="font-size:32px">⚠</div>
+        <div style="font-size:14px;font-weight:600">Failed to load data.json</div>
+        <div style="font-size:11px;color:#6b7280;max-width:480px">${err.message} — check that data.json is deployed alongside index.html and is valid JSON.</div>
+      </div>`;
+    return false;
   }
-};
+}
 
 // ─────────────────────────────────────────────
 // UTILITIES
 // ─────────────────────────────────────────────
-const statusColor = { live:'--green', planned:'--amber', degraded:'--red' };
-const statusClass = { live:'badge-live', planned:'badge-planned', degraded:'badge-degraded' };
+const statusColor = { live:'--green', planned:'--amber', degraded:'--red', inactive:'--ink-muted' };
+const statusClass = { live:'badge-live', planned:'badge-planned', degraded:'badge-degraded', inactive:'badge-inactive' };
 
 function statusBadge(s) {
-  return `<span class="badge ${statusClass[s]||'badge-planned'}"><span class="pulse ${s==='live'?'':'amber'}"></span>${s}</span>`;
+  const dot = s==='live' ? '<span class="pulse"></span>' : s==='inactive' ? '' : '<span class="pulse amber"></span>';
+  return `<span class="badge ${statusClass[s]||'badge-planned'}">${dot}${s}</span>`;
 }
 
 function daysSince(dateStr) {
-  if (!dateStr || dateStr === 'Unknown — confirm') return null;
-  return Math.floor((Date.now() - new Date(dateStr)) / 86400000);
+  if (!dateStr || !dateStr.match(/^\d{4}-\d{2}-\d{2}/)) return null;
+  const d = Math.floor((Date.now() - new Date(dateStr)) / 86400000);
+  return isNaN(d) ? null : d;
 }
 
 function deployAge(s) {
@@ -535,15 +513,17 @@ setInterval(updateClock, 1000); updateClock();
 // ─────────────────────────────────────────────
 function buildBrief() {
   document.getElementById('brief-date').textContent = new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  // Sync badge
+  const sb = document.getElementById('sync-badge');
+  if (sb && DATA.meta) sb.textContent = `v${DATA.meta.version} · synced ${DATA.meta.lastUpdated}`;
   const items = [
-    { icon:'🟢', msg:'<strong>17 of 19 sites live.</strong> 2 planned (geo, media) awaiting build.' },
-    { icon:'⚡', msg:'<strong>5 automations running:</strong> food-pulse, sports poller, stl-bucket, surfflow-scoring, FIRE signals.' },
-    { icon:'🔴', msg:'<strong>2 high-priority tasks open:</strong> STL/Music Ticketmaster cron poller + family.stluker.com map toggle.' },
-    { icon:'📦', msg:'<strong>2 sites need CI/CD wiring:</strong> stl-sports and stl-music still on manual wrangler deploy.' },
-    { icon:'⚠️', msg:'<strong>retire.stluker.com:</strong> retire.html built but live deployment status unconfirmed. Verify CNAME + CF Pages.' },
-    { icon:'🕐', msg:'<strong>Domain expires</strong> Sep 16, 2026 (stluker.com via Squarespace — 80 days). Renew soon.' },
-    { icon:'✅', msg:'<strong>Supabase keepalive resolved</strong> Jun 26 — Bearer auth fix on cron-job.org. Supabase no longer at pause risk.' },
-    { icon:'🔌', msg:'<strong>CF Cron utilization: 60%</strong> (3 of 5 free-tier slots consumed). 2 slots remaining.' },
+    { icon:'🟢', msg:`<strong>15 of 15 tracked sites live.</strong> surfcam fully decommissioned (removed from tracking); geoQ and Media Gallery dropped — not being pursued.` },
+    { icon:'⚡', msg:'<strong>5 automations running:</strong> food-pulse, stl-sports poller, stl-music poller, stl-bucket, stl-status-sync (+ FIRE daily cron via fire-api).' },
+    { icon:'🔴', msg:'<strong>1 high-priority task open:</strong> STL/Music Ticketmaster cron poller.' },
+    { icon:'✅', msg:'<strong>Shipped:</strong> family.stluker.com map toggle is live. CI/CD wired for stl-sports + stl-music. retire.stluker.com confirmed live.' },
+    { icon:'🔌', msg:'<strong>CF Cron utilization: 100%</strong> (5 of 5 free-tier slots), all five accounted for — no zombie triggers since surfcam removal.' },
+    { icon:'🕐', msg:'<strong>Domain expires</strong> Sep 16, 2026 (stluker.com via Squarespace — ~79 days). Renew soon.' },
+    { icon:'🤖', msg:`<strong>Auto-sync active</strong> — data.json updated daily at 6AM CT via stl-status-sync Worker. Last sync: ${DATA.meta?.lastUpdated || 'unknown'} (v${DATA.meta?.version || '?'}).` },
   ];
   document.getElementById('brief-items').innerHTML = items.map(i =>
     `<div class="brief-item"><span class="brief-icon">${i.icon}</span><span class="brief-msg">${i.msg}</span></div>`
@@ -555,16 +535,17 @@ function buildBrief() {
 // ─────────────────────────────────────────────
 function buildKPIs() {
   const live = DATA.sites.filter(s=>s.status==='live').length;
-  const auto = DATA.sites.filter(s=>s.automation && s.automation!=='None' && s.automation!=='Manual' && s.automation!=='Static').length;
+  const auto = DATA.sites.filter(s=>s.automation && !s.automation.startsWith('None') && !s.automation.toLowerCase().includes('manual') && s.automation!=='Static').length;
   const noCI = DATA.sites.filter(s=>s.repo && s.repo.startsWith('Manual')).length;
   const avgDeploy = (() => {
     const days = DATA.sites.map(s=>daysSince(s.lastDeploy)).filter(d=>d!==null);
     return days.length ? Math.round(days.reduce((a,b)=>a+b,0)/days.length) : '?';
   })();
+  const cf = DATA.infrastructure.cloudflare;
   const kpis = [
-    { label:'Sites Live', value:live, total:DATA.sites.length, color:'g', sub:`${DATA.sites.length-live} planned`, pct:(live/DATA.sites.length)*100 },
+    { label:'Sites Live', value:live, total:DATA.sites.length, color:'g', sub:`${DATA.sites.filter(s=>s.status==='inactive').length} inactive, ${DATA.sites.filter(s=>s.status==='planned').length} planned`, pct:(live/DATA.sites.length)*100 },
     { label:'Automations', value:auto, total:DATA.sites.length, color:'t', sub:`${DATA.sites.length-auto} manual`, pct:(auto/DATA.sites.length)*100 },
-    { label:'Cron Slots Used', value:'3/5', color:'a', sub:'60% CF free tier', pct:60 },
+    { label:'Cron Slots Used', value:`${cf.cronSlotsUsed}/${cf.cronSlotsTotal}`, color:'a', sub:`${Math.round((cf.cronSlotsUsed/cf.cronSlotsTotal)*100)}% CF free tier`, pct:(cf.cronSlotsUsed/cf.cronSlotsTotal)*100 },
     { label:'Avg Deploy Age', value:avgDeploy+'d', color:'b', sub:'days since last push', pct:null },
     { label:'Open Tasks', value:DATA.openTasks.length, color:'p', sub:`${DATA.openTasks.filter(t=>t.priority==='high').length} high priority`, pct:null },
   ];
@@ -582,12 +563,10 @@ function buildKPIs() {
 // ─────────────────────────────────────────────
 function buildRecs() {
   const recs = [
-    { icon:'🔗', title:'2 Workers need Git CI/CD', detail:'stl-sports and stl-music still on manual wrangler deploy. One-time setup eliminates deploy friction forever.', cat:'QUICK WIN' },
-    { icon:'📅', title:'Domain expires in ~80 days', detail:'stluker.com via Squarespace, expiry Sep 16, 2026. Set a calendar reminder or enable auto-renew.', cat:'CRITICAL' },
-    { icon:'🗺️', title:'Park map toggle is P1 backlog', detail:'Davidson feedback identified this as the highest-impact family.stluker.com feature. Leaflet.js, no new infra needed.', cat:'HIGH IMPACT' },
-    { icon:'🎵', title:'Music cron poller is blocked on deployment', detail:'Venue IDs are already looked up. The blocker is deploying the Worker — 30-min task.', cat:'QUICK WIN' },
-    { icon:'📦', title:'retire.stluker.com deploy unconfirmed', detail:'retire.html is built and functional. Unclear if it has a CNAME and CF Pages project. Verify today.', cat:'MAINTENANCE' },
-    { icon:'🔒', title:'4 Workers have no GitHub repo', detail:'reunion, pto, pokelab* (recovered), iron-rails* (recovered). Loss of CF account = loss of source for 2 of them.', cat:'TECH DEBT' },
+    { icon:'📅', title:'Domain expires in ~79 days', detail:'stluker.com via Squarespace, expiry Sep 16, 2026. Set a calendar reminder or enable auto-renew.', cat:'CRITICAL' },
+    { icon:'🎵', title:'Music Ticketmaster cron poller pending', detail:'Venue IDs are already looked up. The blocker is deploying the Worker — 30-min task.', cat:'QUICK WIN' },
+    { icon:'🔒', title:'2 Workers have no GitHub repo', detail:'reunion and pto/barrettspto have no source backup. Loss of CF account = loss of source. Recover via Edit Code → copy to local repo.', cat:'TECH DEBT' },
+    { icon:'✅', title:'surfcam decommission complete', detail:'Worker, Pages app, DNS records, and the surfflow-scoring cron trigger have all been removed from Cloudflare. No further action needed.', cat:'RESOLVED' },
   ];
   document.getElementById('recs').innerHTML = recs.map(r => `
     <div class="rec-item">
@@ -667,9 +646,9 @@ function runHealthChecks() {
 // ─────────────────────────────────────────────
 function buildAutoAnalytics() {
   const items = [
-    { label:'CF Cron slots used', val:'3 / 5', note:'60% utilization — 2 remaining', color:'var(--amber)' },
-    { label:'Automations running', val:'5', note:'food-pulse, sports, music (partial), surfcam, FIRE, stl-bucket', color:'var(--green)' },
-    { label:'Sites with zero automation', val:'9', note:'reunion, pto, pokelab, iron-rails, trip, memory, retire, geo, media', color:'var(--text2)' },
+    { label:'CF Cron slots used', val:'5 / 5', note:'100% utilization — clean count, no zombie crons', color:'var(--amber)' },
+    { label:'Automations running', val:'6', note:'food-pulse, sports ESPN poller, music Ticketmaster poller, stl-bucket, stl-status-sync, fire-api daily cron', color:'var(--green)' },
+    { label:'Sites with zero automation', val:'7', note:'reunion, pto, pokelab, iron-rails, trip, memory, retire', color:'var(--text2)' },
     { label:'AI API consumers', val:'4', note:'food-pulse, stl-bucket, fire-api, retire AI Advisor', color:'var(--teal)' },
     { label:'Est. AI cost/month', val:'~$5–15', note:'fire-api $0.12/day cap + food-pulse + stl-bucket', color:'var(--blue)' },
     { label:'Supabase consumers', val:'4', note:'stluker.com, stl.stluker.com, fire.stluker.com, family.stluker.com', color:'var(--purple)' },
@@ -690,18 +669,15 @@ function buildAutoAnalytics() {
 function buildDebtScore() {
   const cats = [
     { name:'🔴 Critical', items:[
-      'Domain expiry Sep 16, 2026 (~80 days) — no auto-renew confirmed',
-      'retire.stluker.com deploy status unconfirmed'
+      'Domain expiry Sep 16, 2026 (~79 days) — no auto-renew confirmed'
     ]},
     { name:'🟠 High Impact', items:[
-      'stl-sports + stl-music: manual wrangler deploy (no CI/CD)',
-      'Music Ticketmaster cron poller not deployed',
-      'family.stluker.com map toggle (P1 Davidson feedback)'
+      'Music Ticketmaster cron poller not yet deployed (venue IDs ready)'
     ]},
     { name:'🟡 Maintenance', items:[
       'D2 Portfolio Exposure disabled Jun 21 (re-wiring needed)',
       'reunion + pto have no GitHub repo backup',
-      'YouTube KV cache missing (quota risk at 10k/day)'
+      'stl-sports + supabase-keepalive cron expressions unconfirmed in data.json'
     ]},
     { name:'🔵 Backlog', items:[
       'retire.stluker.com AI Advisor not wired to fire-api',
@@ -739,9 +715,17 @@ function filterSites(cat, btn) {
 function renderSiteCards(sites) {
   document.getElementById('site-grid').innerHTML = sites.map(s => {
     const feats = (s.features||[]).slice(0,3).map(f=>`<span class="sc-tag">${f.length>40?f.slice(0,38)+'…':f}</span>`).join('');
-    const tasks = (s.openTasks||[]).length;
+    const taskList = s.openTasks||[];
+    const tasks = taskList.length;
+    const taskDetailHtml = tasks ? `
+      <details class="sc-tasks-toggle">
+        <summary>${tasks} open task${tasks>1?'s':''} — details</summary>
+        <div class="sc-task-list">
+          ${taskList.map(t => `<div class="sc-task-row"><div class="sc-task-row-title">${t.title}</div>${t.detail?`<div class="sc-task-row-detail">${t.detail}</div>`:''}</div>`).join('')}
+        </div>
+      </details>` : '';
     return `
-    <div class="site-card${s.status==='planned'?' planned':''}">
+    <div class="site-card${s.status==='planned'?' planned':s.status==='inactive'?' inactive':''}">
       <div class="sc-head">
         <div>
           <div class="sc-key">${s.key}</div>
@@ -754,12 +738,12 @@ function renderSiteCards(sites) {
       <div class="sc-tags">${feats}</div>
       <div class="sc-health">
         <span style="color:var(--text3);font-size:10px">Last deploy: </span>${deployAge(s)}
-        ${tasks ? `<span style="margin-left:8px;color:var(--amber);font-size:10px">⚠ ${tasks} open task${tasks>1?'s':''}</span>` : ''}
       </div>
+      ${taskDetailHtml}
       <div class="sc-actions">
         <a class="sc-btn primary" href="${s.url}" target="_blank">↗ Open</a>
         ${s.repo && !s.repo.startsWith('C:') && !s.repo.startsWith('Unknown') && !s.repo.startsWith('Manual') ? `<a class="sc-btn" href="https://github.com/${s.repo.replace('GitHub: pdluker/','pdluker/').replace('GitHub: ','')}" target="_blank">GitHub</a>` : ''}
-        ${s.automation && s.automation!=='None' && s.automation!=='Manual' && s.automation!=='Static' ? '<span class="sc-btn" style="color:var(--teal);border-color:rgba(34,211,238,.2);background:rgba(34,211,238,.05)">⚡ Auto</span>' : ''}
+        ${s.automation && !s.automation.startsWith('None') && !s.automation.toLowerCase().includes('manual') && s.automation!=='Static' ? '<span class="sc-btn" style="color:var(--teal);border-color:rgba(34,211,238,.2);background:rgba(34,211,238,.05)">⚡ Auto</span>' : ''}
       </div>
     </div>`}).join('');
 }
@@ -776,7 +760,7 @@ function buildInfra() {
     </div>
     <div style="font-size:10px;color:var(--text3);margin-bottom:10px;font-family:var(--mono)">ACTIVE CRONS</div>
     ${cf.crons.map(c=>`<div style="font-size:10px;color:var(--text2);padding:4px 0;border-bottom:1px solid var(--border);font-family:var(--mono)">${c}</div>`).join('')}
-    <div style="margin-top:10px;font-size:10px;color:var(--text3)">Workers: 13+ deployed · Pages: stl-status, fire-intel, memory-lattice, surfcam, tripcompanion</div>`;
+    <div style="margin-top:10px;font-size:10px;color:var(--text3)">Workers: 13+ deployed · Pages: stl-status, fire-intel, memory-lattice, tripcompanion</div>`;
 
   const sb = DATA.infrastructure.supabase;
   document.getElementById('sb-panel').innerHTML = `
@@ -815,11 +799,9 @@ function buildInfra() {
     ['stl.stluker.com', 'Worker', 'stl-bucket', 'Proxied'],
     ['fire.stluker.com', 'CNAME', 'fire-intel.pages.dev', 'Proxied'],
     ['fire-api.stluker.com', 'Worker', 'fire-api', 'Proxied'],
-    ['retire.stluker.com', 'TBD', '— confirm deploy', '⚠ Unconfirmed'],
+    ['retire.stluker.com', 'CF Worker: retire', 'retire.html (pure HTML/JS)', '✅ Live'],
     ['memory.stluker.com', 'CNAME', 'memory-lattice.pages.dev', 'Proxied'],
     ['status.stluker.com', 'CNAME', 'stl-status.pages.dev', 'Proxied'],
-    ['surf.stluker.com', 'Worker', 'surfcam', 'Proxied'],
-    ['surfcam.stluker.com', 'CNAME', 'surfcam.pages.dev', 'Proxied'],
     ['trip.stluker.com', 'CNAME', 'tripcompanion.pages.dev', 'Proxied'],
     ['reunion.stluker.com', 'Worker', 'reunion', 'Proxied'],
     ['pto.stluker.com', 'Worker', 'barrettspto', 'Proxied'],
@@ -855,12 +837,12 @@ function buildTasks() {
   document.getElementById('eco-metrics').innerHTML = [
     ['Total subdomains', DATA.sites.length],
     ['Live sites', DATA.sites.filter(s=>s.status==='live').length],
-    ['CF Workers deployed', '13+'],
-    ['CF Pages projects', '5'],
+    ['CF Workers deployed', '11'],
+    ['CF Pages projects', '4'],
     ['GitHub repos', DATA.infrastructure.github.repos.length],
     ['Scheduled cron jobs', DATA.infrastructure.cloudflare.crons.length],
     ['External APIs wired', DATA.infrastructure.externalAPIs.length],
-    ['Sites with automation', DATA.sites.filter(s=>s.automation&&s.automation!=='None'&&s.automation!=='Manual'&&s.automation!=='Static').length],
+    ['Sites with automation', DATA.sites.filter(s=>s.automation&&!s.automation.startsWith('None')&&!s.automation.toLowerCase().includes('manual')&&s.automation!=='Static').length],
     ['Sites missing CI/CD', DATA.sites.filter(s=>s.repo&&s.repo.startsWith('Manual')).length],
     ['Supabase consumers', '4'],
   ].map(([l,v])=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:11px"><span style="color:var(--text2)">${l}</span><span style="font-family:var(--mono);color:var(--green)">${v}</span></div>`).join('');
@@ -925,16 +907,15 @@ function buildDeps() {
       'stl-bucket Worker → beehiiv RSS → Claude Haiku → KV (Fri 9AM CT)',
       'stluker Worker cron → Supabase pg_cron → food-pulse Edge Fn (every 3d)',
       'fire-api Worker → Claude + web_search → KV + Supabase (daily noon UTC)',
-      'surfflow-scoring Worker → Windy API → SURF_KV (every 15 min)',
       'cron-job.org → supabase-keepalive Worker → Supabase ping (daily)',
     ].map(n=>`<div class="dep-arrow">↓</div><div class="dep-node child"><span>●</span><span style="font-size:11px">${n}</span></div>`).join('')}`;
 
   document.getElementById('eco-cross').innerHTML = `
     <div class="metric-row">
       ${[
-        ['19','Total subdomains'],['17','Live sites'],['13+','CF Workers'],['5','CF Pages'],
-        ['8','GitHub repos'],['4','Cron jobs'],['7','External APIs'],['5','Automations'],
-        ['60%','Cron capacity'],['2','Slots free'],
+        ['15','Total subdomains'],['15','Live sites'],['11','CF Workers'],['4','CF Pages'],
+        ['8','GitHub repos'],['5','Cron jobs'],['6','External APIs'],['5','Automations'],
+        ['100%','Cron capacity'],['0','Slots free'],
       ].map(([v,l])=>`<div class="metric-chip"><span class="metric-val">${v}</span><span class="metric-label">${l}</span></div>`).join('')}
     </div>
     <div style="font-size:11px;color:var(--text2);margin-top:8px">
@@ -951,7 +932,7 @@ function doSearch(q) {
   const results = { sites:[], tasks:[], tech:[] };
 
   DATA.sites.forEach(s => {
-    const hay = [s.name, s.subdomain, s.description, s.stack, s.category, ...(s.features||[]), ...(s.openTasks||[])].join(' ').toLowerCase();
+    const hay = [s.name, s.subdomain, s.description, s.stack, s.category, ...(s.features||[]), ...(s.openTasks||[]).map(t=>t.title+' '+(t.detail||''))].join(' ').toLowerCase();
     if (hay.includes(q)) results.sites.push(s);
   });
 
@@ -1003,18 +984,22 @@ document.addEventListener('keydown', e => { if (e.key==='Escape') hideSearch(); 
 // ─────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────
-buildBrief();
-buildKPIs();
-buildRecs();
-buildOpsTasks();
-buildHealthMatrix();
-buildAutoAnalytics();
-buildDebtScore();
-buildSites();
-buildInfra();
-buildTasks();
-buildTimeline();
-buildDeps();
+(async function init() {
+  const ok = await loadData();
+  if (!ok) return;
+  buildBrief();
+  buildKPIs();
+  buildRecs();
+  buildOpsTasks();
+  buildHealthMatrix();
+  buildAutoAnalytics();
+  buildDebtScore();
+  buildSites();
+  buildInfra();
+  buildTasks();
+  buildTimeline();
+  buildDeps();
+})();
 </script>
 </body>
 </html>

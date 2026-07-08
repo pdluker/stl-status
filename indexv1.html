@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STLuker Operations Board — status.stluker.com</title>
+<meta name="description" content="Live status and operations board for the STLuker ecosystem — every subdomain, service, and open task across the Cloudflare stack.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230C66E4'/><text x='50' y='70' font-size='62' text-anchor='middle' fill='white' font-family='monospace' font-weight='700'>S</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Atlassian-grounded neutrals */
+    --n900:#172B4D; --n800:#1D2640; --n700:#2C3E5D; --n300:#626F86; --n200:#8993A4;
+    --n40:#DFE1E6; --n30:#EBECF0; --n20:#F4F5F7; --n10:#FAFBFC; --white:#FFFFFF;
+    /* primary */
+    --blue:#0C66E4; --blue-dark:#0055CC; --blue-soft:#E9F2FF; --blue-bd:#CCE0FF;
+    /* status families */
+    --green-tx:#216E4E; --green-bg:#DCFFF1; --green-bd:#BAF3DB; --green-dot:#22A06B;
+    --prog-tx:#0055CC; --prog-bg:#E9F2FF; --prog-bd:#CCE0FF; --prog-dot:#1D7AFC;
+    --plan-tx:#44546F; --plan-bg:#DCDFE4; --plan-bd:#C1C7D0; --plan-dot:#8590A2;
+    --risk-tx:#974F0C; --risk-bg:#FFF7D6; --risk-bd:#F5E08A; --risk-dot:#E2B203;
+    --down-tx:#AE2E24; --down-bg:#FFECEB; --down-bd:#FFD2CC; --down-dot:#E2483D;
+    --shadow:0 1px 1px rgba(9,30,66,0.12),0 0 1px rgba(9,30,66,0.16);
+    --shadow-r:0 4px 8px -2px rgba(9,30,66,0.18),0 0 1px rgba(9,30,66,0.31);
+    --radius:4px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--n20); color:var(--n900);
+    font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+
+  /* ── network banner ── */
+  .net{
+    background:#091221; display:flex; align-items:center; justify-content:center;
+    gap:8px; padding:6px 16px; flex-wrap:wrap; border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .net-lbl{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.34)}
+  .net a{
+    font-size:11px;font-weight:500;color:rgba(255,255,255,.72);
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;padding:3px 11px;transition:.15s;
+  }
+  .net a:hover{background:rgba(12,102,228,.22);border-color:var(--blue);color:#fff}
+
+  /* ── app bar ── */
+  .bar{
+    background:var(--white); border-bottom:1px solid var(--n40);
+    height:56px; display:flex; align-items:center; gap:16px; padding:0 24px;
+    position:sticky; top:0; z-index:50;
+  }
+  .logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+  .logo-mark{
+    width:30px;height:30px;border-radius:7px;background:var(--blue);
+    display:grid;place-items:center;color:#fff;font-weight:700;font-size:17px;
+    font-family:'JetBrains Mono',monospace;box-shadow:0 2px 6px rgba(12,102,228,.4);
+  }
+  .logo-txt strong{display:block;font-weight:700;font-size:15px;letter-spacing:-.01em;line-height:1.1}
+  .logo-txt span{display:block;font-size:11px;color:var(--n300);font-weight:500}
+  .crumb{color:var(--n300);font-size:13px;display:flex;align-items:center;gap:7px}
+  .crumb svg{opacity:.5}
+  .crumb b{color:var(--n900);font-weight:600}
+  .bar-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+  .clock{font-size:12px;color:var(--n300);text-align:right;line-height:1.3}
+  .clock b{display:block;color:var(--n900);font-weight:600;font-size:12px}
+
+  /* ── board header ── */
+  .head{padding:24px 24px 0;max-width:1320px;margin:0 auto}
+  .head-top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .head h1{font-size:22px;font-weight:700;letter-spacing:-.02em}
+  .head .sub{color:var(--n300);font-size:13px;margin-top:3px}
+  .head .sub b{color:var(--green-tx);font-weight:600}
+  .btn{
+    display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;
+    border-radius:var(--radius);padding:7px 14px;cursor:pointer;border:1px solid transparent;
+    transition:.12s;font-family:inherit;
+  }
+  .btn-primary{background:var(--blue);color:#fff}
+  .btn-primary:hover{background:var(--blue-dark)}
+  .btn-primary:active{transform:translateY(1px)}
+  .btn[disabled]{opacity:.6;cursor:wait}
+  .btn .spin{width:13px;height:13px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
+  .btn.loading .spin{display:block}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ── stat gadgets ── */
+  .gadgets{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0 4px}
+  .gadget{background:var(--white);border:1px solid var(--n40);border-radius:6px;padding:14px 16px;box-shadow:var(--shadow)}
+  .gadget .lbl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--n300);display:flex;align-items:center;gap:6px}
+  .gadget .val{font-size:30px;font-weight:700;letter-spacing:-.03em;margin-top:6px;font-family:'JetBrains Mono',monospace;line-height:1}
+  .gadget .meta{font-size:11px;color:var(--n300);margin-top:5px}
+  .g-dot{width:8px;height:8px;border-radius:50%}
+
+  /* ── tabs ── */
+  .tabs{display:flex;gap:2px;border-bottom:2px solid var(--n40);margin:22px 24px 0;max-width:1320px;margin-left:auto;margin-right:auto;overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{
+    background:none;border:none;font-family:inherit;font-size:14px;font-weight:600;
+    color:var(--n300);padding:9px 14px;cursor:pointer;border-bottom:2px solid transparent;
+    margin-bottom:-2px;white-space:nowrap;transition:.12s;display:flex;align-items:center;gap:7px;
+  }
+  .tab:hover{color:var(--n900)}
+  .tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+  .tab .cnt{font-size:11px;background:var(--n30);color:var(--n300);border-radius:10px;padding:1px 7px;font-weight:600}
+  .tab.active .cnt{background:var(--blue-soft);color:var(--blue-dark)}
+
+  .wrap{max-width:1320px;margin:0 auto;padding:18px 24px 60px}
+  .view{display:none}
+  .view.active{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  /* ── board columns ── */
+  .board{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+  .col{background:var(--n20);border:1px solid var(--n40);border-radius:8px;min-width:300px;flex:1;display:flex;flex-direction:column}
+  .col-head{display:flex;align-items:center;gap:9px;padding:12px 14px 8px;position:sticky;top:0}
+  .col-head .cdot{width:9px;height:9px;border-radius:2px}
+  .col-head h3{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--n300)}
+  .col-head .num{margin-left:auto;font-size:12px;font-weight:600;color:var(--n200);background:var(--n30);border-radius:10px;padding:1px 8px}
+  .col-body{padding:0 10px 12px;display:flex;flex-direction:column;gap:9px}
+
+  /* ── issue card ── */
+  .card{
+    background:var(--white);border:1px solid var(--n40);border-radius:6px;
+    padding:12px 13px 11px;box-shadow:var(--shadow);cursor:default;position:relative;
+    border-left:3px solid var(--epic,var(--n40));transition:.14s;
+  }
+  .card:hover{box-shadow:var(--shadow-r);transform:translateY(-1px)}
+  .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:7px}
+  .key{font-size:11.5px;font-weight:700;color:var(--n300);letter-spacing:.02em}
+  .lozenge{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:3px;white-space:nowrap;border:1px solid transparent}
+  .lz-live{background:var(--green-bg);color:var(--green-tx);border-color:var(--green-bd)}
+  .lz-prog{background:var(--prog-bg);color:var(--prog-tx);border-color:var(--prog-bd)}
+  .lz-plan{background:var(--plan-bg);color:var(--plan-tx);border-color:var(--plan-bd)}
+  .lz-risk{background:var(--risk-bg);color:var(--risk-tx);border-color:var(--risk-bd)}
+  .card h4{font-size:14px;font-weight:600;letter-spacing:-.01em;margin-bottom:3px}
+  .card h4 a:hover{color:var(--blue)}
+  .card .summary{font-size:12.5px;color:var(--n300);line-height:1.45;margin-bottom:9px}
+  .labels{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+  .label{font-size:10.5px;font-weight:500;color:var(--n700);background:var(--n20);border:1px solid var(--n40);border-radius:3px;padding:2px 7px}
+  .card-foot{display:flex;align-items:center;gap:8px;border-top:1px solid var(--n30);padding-top:9px;flex-wrap:wrap}
+  .epic-chip{font-size:10.5px;font-weight:600;color:#fff;border-radius:3px;padding:2px 8px;letter-spacing:.02em}
+  .live{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--n300);margin-left:auto;font-family:'JetBrains Mono',monospace}
+  .pdot{width:8px;height:8px;border-radius:50%;background:var(--plan-dot);flex-shrink:0;transition:.2s}
+  .pdot.up{background:var(--green-dot);box-shadow:0 0 0 3px rgba(34,160,107,.18)}
+  .pdot.down{background:var(--down-dot);box-shadow:0 0 0 3px rgba(226,72,61,.16)}
+  .pdot.checking{background:var(--prog-dot);animation:pulse 1s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+  .ext{color:var(--n200);display:inline-flex;transition:.12s}
+  .ext:hover{color:var(--blue)}
+
+  /* ── epic swimlanes ── */
+  .lane{margin-bottom:18px;background:var(--white);border:1px solid var(--n40);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+  .lane-head{display:flex;align-items:center;gap:11px;padding:12px 16px;border-bottom:1px solid var(--n30);background:var(--n10)}
+  .lane-bar{width:4px;height:28px;border-radius:2px}
+  .lane-head h3{font-size:14px;font-weight:700}
+  .lane-head .epickey{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--n300)}
+  .lane-head .desc{font-size:12px;color:var(--n300);margin-left:auto;text-align:right}
+  .lane-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;padding:14px 16px}
+
+  /* ── services ── */
+  .svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+  .svc{background:var(--white);border:1px solid var(--n40);border-radius:8px;padding:16px;box-shadow:var(--shadow)}
+  .svc-head{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+  .svc-ic{width:34px;height:34px;border-radius:7px;display:grid;place-items:center;font-size:17px;flex-shrink:0}
+  .svc-head h4{font-size:14px;font-weight:700;flex:1}
+  .svc-head .tier{font-size:10px;font-weight:600;color:var(--n300);text-transform:uppercase;letter-spacing:.05em}
+  .meter{margin:11px 0}
+  .meter-top{display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:5px}
+  .meter-top span:first-child{color:var(--n300);font-weight:500}
+  .meter-top span:last-child{font-weight:600;font-family:'JetBrains Mono',monospace}
+  .track{height:6px;background:var(--n30);border-radius:4px;overflow:hidden}
+  .fill{height:100%;border-radius:4px;background:var(--green-dot);transition:width .8s cubic-bezier(.2,.8,.2,1)}
+  .svc-note{font-size:11.5px;color:var(--n300);border-top:1px solid var(--n30);padding-top:10px;margin-top:12px;line-height:1.5}
+  .svc-note b{color:var(--risk-tx);font-weight:600}
+
+  /* ── backlog ── */
+  .backlog{background:var(--white);border:1px solid var(--n40);border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+  .bl-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--n30);transition:.1s}
+  .bl-row:last-child{border-bottom:none}
+  .bl-row:hover{background:var(--n10)}
+  .bl-row.done{opacity:.55}
+  .pri{flex-shrink:0;display:grid;place-items:center;border-radius:3px;font-weight:700;font-size:10.5px;line-height:1;padding:3px 6px;min-width:30px;border:1px solid transparent;font-family:'JetBrains Mono',monospace}
+  .pri-P0{background:var(--down-bg);color:var(--down-tx);border-color:var(--down-bd)}
+  .pri-P1{background:#FFF0E6;color:#B65C02;border-color:#F5C99B}
+  .pri-P2{background:var(--risk-bg);color:var(--risk-tx);border-color:var(--risk-bd)}
+  .pri-P3{background:var(--prog-bg);color:var(--prog-tx);border-color:var(--prog-bd)}
+  .pri-done{background:var(--green-bg);color:var(--green-tx);border-color:var(--green-bd)}
+  .bl-key{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--n300);width:130px;flex-shrink:0;line-height:1.35}
+  .bl-txt{flex:1;font-size:13px;font-weight:500}
+  .bl-row.done .bl-txt{text-decoration:line-through}
+  .bl-tag{font-size:10.5px;font-weight:600;color:var(--blue-dark);background:var(--blue-soft);border:1px solid var(--blue-bd);border-radius:3px;padding:2px 8px;white-space:nowrap}
+
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;font-size:11.5px;color:var(--n300)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend .pdot{width:9px;height:9px}
+
+  footer{max-width:1320px;margin:0 auto;padding:24px;border-top:1px solid var(--n40);color:var(--n300);font-size:12px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  footer a:hover{color:var(--blue)}
+
+  @media(max-width:720px){
+    .bar{padding:0 14px;gap:10px}.crumb{display:none}
+    .head,.wrap{padding-left:14px;padding-right:14px}.tabs{margin-left:14px;margin-right:14px}
+    .board{flex-direction:column}.col{min-width:0}
+    .clock{display:none}
+  }
+  :focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:3px}
+
+  /* ── attention banner ── */
+  .attention{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;
+    background:var(--n40);border:1px solid var(--n40);border-left:4px solid var(--down-dot);
+    border-radius:8px;overflow:hidden;margin:20px 0 4px;box-shadow:var(--shadow);
+  }
+  .att{background:var(--white);padding:13px 16px;display:flex;flex-direction:column;gap:3px}
+  .att .at-lbl{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--n300);display:flex;align-items:center;gap:6px}
+  .att .at-val{font-size:15px;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+  .att .num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700}
+  .att .at-sub{font-size:11px;color:var(--n300)}
+  .att.click{cursor:pointer;transition:background .12s}
+  .att.click:hover{background:var(--n10)}
+  .att .badge{font-size:10px;font-weight:700;padding:1px 7px;border-radius:10px;text-transform:uppercase;letter-spacing:.04em;align-self:flex-start}
+
+  /* ── risk pill on cards ── */
+  .ktag{display:flex;align-items:center;gap:7px;flex-wrap:wrap;min-width:0}
+  .riskpill{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;border:1px solid;cursor:help;white-space:nowrap;display:inline-flex;align-items:center;gap:3px}
+  .rk-crit{background:var(--down-bg);color:var(--down-tx);border-color:var(--down-bd)}
+  .rk-high{background:#FFF0E6;color:#B65C02;border-color:#F5C99B}
+  .rk-med{background:var(--risk-bg);color:var(--risk-tx);border-color:var(--risk-bd)}
+  .rk-low{background:var(--n20);color:var(--n300);border-color:var(--n40)}
+
+  /* ── cost panel ── */
+  .cost{background:var(--white);border:1px solid var(--n40);border-radius:8px;box-shadow:var(--shadow);padding:18px 20px;margin-bottom:18px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+  .cost-total{display:flex;flex-direction:column;gap:2px;padding-right:24px;border-right:1px solid var(--n30)}
+  .cost-total .ct-lbl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--n300)}
+  .cost-total .ct-val{font-size:38px;font-weight:700;letter-spacing:-.03em;font-family:'JetBrains Mono',monospace;line-height:1;color:var(--green-tx)}
+  .cost-total .ct-sub{font-size:11px;color:var(--n300)}
+  .cost-rows{display:flex;flex-wrap:wrap;gap:8px;flex:1}
+  .cost-chip{display:flex;align-items:center;gap:7px;background:var(--n10);border:1px solid var(--n30);border-radius:20px;padding:5px 12px;font-size:12px;font-weight:500}
+  .cost-chip b{font-family:'JetBrains Mono',monospace;color:var(--green-tx);font-weight:700}
+  .cost-foot{flex-basis:100%;font-size:11.5px;color:var(--n300);border-top:1px solid var(--n30);padding-top:11px;margin-top:3px}
+  .cost-foot b{color:var(--risk-tx)}
+
+  /* ── topology ── */
+  .topo-wrap{background:var(--white);border:1px solid var(--n40);border-radius:8px;box-shadow:var(--shadow);padding:8px;overflow-x:auto}
+  .topo-wrap svg{width:100%;min-width:760px;height:auto;display:block}
+  .topo-node rect{transition:.12s}
+  .topo-node:hover rect{filter:brightness(.97)}
+  .topo-node .tn-title{font:600 12px 'Inter',sans-serif;fill:var(--n900)}
+  .topo-node .tn-sub{font:500 9px 'JetBrains Mono',monospace;fill:var(--n300);letter-spacing:.02em}
+  .topo-cap{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:12px;color:var(--n300)}
+  .topo-cap span{display:inline-flex;align-items:center;gap:7px}
+  .topo-cap .ln{width:22px;height:0;border-top:2px solid var(--n200)}
+  .topo-cap .ln.dash{border-top:2px dashed var(--n200)}
+  .topo-note{font-size:12px;color:var(--n300);margin-top:10px;line-height:1.5}
+
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="net">
+  <span class="net-lbl">STLuker Network</span>
+  <a href="https://stluker.com">Home</a>
+  <a href="https://sports.stluker.com">Sports</a>
+  <a href="https://music.stluker.com">Music</a>
+  <a href="https://family.stluker.com">Family</a>
+  <a href="https://fire.stluker.com">FIRE</a>
+  <a href="https://memory.stluker.com">Memory</a>
+</div>
+
+<header class="bar">
+  <div class="logo">
+    <div class="logo-mark">S</div>
+    <div class="logo-txt"><strong>Operations Board</strong><span>status.stluker.com</span></div>
+  </div>
+  <div class="crumb">
+    <span>Projects</span>
+    <svg width="7" height="11" viewBox="0 0 7 11" fill="none"><path d="M1 1l5 4.5L1 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+    <b>STLuker Ecosystem</b>
+  </div>
+  <div class="bar-right">
+    <div class="clock"><b id="clockTime">—</b><span id="clockDate">—</span></div>
+  </div>
+</header>
+
+<div class="head">
+  <div class="head-top">
+    <div>
+      <h1>Ecosystem Health</h1>
+      <div class="sub">17 services across 7 projects · <b id="opCount">—</b> operational · all on Cloudflare free tier</div>
+    </div>
+    <button class="btn btn-primary" id="probeBtn" onclick="runChecks()">
+      <span class="spin"></span>
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M14 8A6 6 0 1 1 8 2v2M8 2l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span id="probeLbl">Run health check</span>
+    </button>
+  </div>
+
+  <div class="attention" id="attention"></div>
+  <div class="gadgets" id="gadgets"></div>
+</div>
+
+<nav class="tabs" role="tablist">
+  <button class="tab active" data-view="board" role="tab">Board <span class="cnt" id="t-board">17</span></button>
+  <button class="tab" data-view="epics" role="tab">Epics <span class="cnt" id="t-epics">7</span></button>
+  <button class="tab" data-view="topology" role="tab">Topology <span class="cnt" id="t-topo">—</span></button>
+  <button class="tab" data-view="services" role="tab">Services <span class="cnt" id="t-svc">8</span></button>
+  <button class="tab" data-view="backlog" role="tab">Backlog <span class="cnt" id="t-bl">—</span></button>
+</nav>
+
+<main class="wrap">
+  <section class="view active" id="view-board">
+    <div class="board" id="board"></div>
+    <div class="legend">
+      <span><i class="pdot up"></i> Reachable now</span>
+      <span><i class="pdot down"></i> No response</span>
+      <span><i class="pdot"></i> Not probed</span>
+      <span style="margin-left:auto">Lozenge = recorded status · dot = live client-side probe</span>
+    </div>
+  </section>
+
+  <section class="view" id="view-epics"></section>
+
+  <section class="view" id="view-topology">
+    <div class="topo-wrap" id="topo"></div>
+    <div class="topo-cap">
+      <span><i class="ln"></i> Active dependency</span>
+      <span><i class="ln dash"></i> Pending / planned wiring</span>
+    </div>
+    <p class="topo-note" id="topoNote"></p>
+  </section>
+
+  <section class="view" id="view-services">
+    <div class="cost" id="cost"></div>
+    <div class="svc-grid" id="svcGrid"></div>
+  </section>
+
+  <section class="view" id="view-backlog">
+    <div class="backlog" id="backlog"></div>
+  </section>
+</main>
+
+<footer>
+  <span>Single source of truth · synced from STLuker HQ infra index · domain expires <b>Sep 16 2026</b></span>
+  <span><a href="https://stluker.com">stluker.com</a> · Cloudflare Pages · <span id="footYear"></span></span>
+</footer>
+
+<script>
+/* ─── STATUS config (display-only, never needs editing) ─────────────────── */
+const STATUS = {
+  live: {col:"Live / Operational", lz:"lz-live", txt:"Operational", cdot:"var(--green-dot)"},
+  prog: {col:"In Progress",        lz:"lz-prog", txt:"In Progress", cdot:"var(--prog-dot)"},
+  plan: {col:"Planned",            lz:"lz-plan", txt:"Planned",     cdot:"var(--plan-dot)"},
+  risk: {col:"At Risk",            lz:"lz-risk", txt:"At Risk",     cdot:"var(--risk-dot)"}
+};
+const COL_ORDER = ["live","prog","plan","risk"];
+
+/* ─── Risk factor point values (logic, not data — stays here) ───────────── */
+const FACTORS = {
+  orphaned:   {pts:60, lbl:"No repo or local source — lose bundle = lose code"},
+  noRepo:     {pts:12, lbl:"No connected Git repo (backup / bus-factor risk)"},
+  noCICD:     {pts:8,  lbl:"Manual deploys, no CI/CD"},
+  depPause:   {pts:22, lbl:"Depends on Supabase free tier (auto-pauses when idle)"},
+  depQuota:   {pts:14, lbl:"Depends on a quota-limited external API"},
+  wiring:     {pts:10, lbl:"Integration not finished"},
+  undeployed: {pts:5,  lbl:"Planned — not deployed"}
+};
+const PRI_ORDER = {P0:0,P1:1,P2:2,P3:3,done:4};
+
+/* ─── Runtime globals populated by loadData() ───────────────────────────── */
+let EPICS={}, SERVICES=[], BACKLOG=[];
+
+function riskScore(svc){
+  return (svc.riskFactors||[]).reduce((a,f)=>a+(FACTORS[f]?.pts||0),0);
+}
+function riskMeta(svc){
+  const sc=riskScore(svc);
+  const [cls,label]=sc>=55?["crit","Critical"]:sc>=35?["high","High"]:sc>=18?["med","Medium"]:["low","Low"];
+  const why=(svc.riskFactors||[]).map(f=>`• ${FACTORS[f]?.lbl||f} (+${FACTORS[f]?.pts||0})`).join("\n")||"No tracked risk factors";
+  return {score:sc,cls,label,why};
+}
+
+
+
+/* ── render: board ── */
+function lozenge(s){return `<span class="lozenge ${STATUS[s].lz}">${STATUS[s].txt}</span>`;}
+function riskPill(s){
+  const r = riskMeta(s.uid);
+  return `<span class="riskpill rk-${r.cls}" title="Risk ${r.score} · ${r.label}&#10;${r.why.replace(/\n/g,"&#10;")}">⚠ ${r.score}</span>`;
+}
+function cardHTML(s){
+  const ep = EPICS[s.epic];
+  return `<div class="card" id="card-${s.uid}" style="--epic:${ep.color}">
+    <div class="card-top"><span class="ktag"><span class="key mono">${s.key}</span>${riskPill(s)}</span>${lozenge(s.status)}</div>
+    <h4><a href="https://${s.host}" target="_blank" rel="noopener">${s.title}</a></h4>
+    <p class="summary">${s.summary}</p>
+    <div class="labels">${s.labels.map(l=>`<span class="label">${l}</span>`).join("")}</div>
+    <div class="card-foot">
+      <span class="epic-chip" style="background:${ep.color}">${ep.name}</span>
+      <span class="live"><i class="pdot" id="dot-${s.uid}"></i><span id="ms-${s.uid}">—</span></span>
+      <a class="ext" href="https://${s.host}" target="_blank" rel="noopener" title="Open ${s.host}">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M6 3H3v10h10v-3M9 3h4v4M13 3L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>`;
+}
+function renderBoard(){
+  const board = document.getElementById("board");
+  board.innerHTML = COL_ORDER.map(st=>{
+    const items = SERVICES.filter(s=>s.status===st);
+    const cfg = STATUS[st];
+    return `<div class="col">
+      <div class="col-head"><i class="cdot" style="background:${cfg.cdot}"></i><h3>${cfg.col}</h3><span class="num">${items.length}</span></div>
+      <div class="col-body">${items.map(cardHTML).join("")||'<div class="summary" style="padding:8px">None</div>'}</div>
+    </div>`;
+  }).join("");
+}
+
+/* ── render: epics ── */
+function renderEpics(){
+  const order = ["HQ","FIRE","HLTH","FAM","EVT","TRIP","OPS","SURF","PLAN"];
+  document.getElementById("view-epics").innerHTML = order.map(ek=>{
+    const items = SERVICES.filter(s=>s.epic===ek);
+    if(!items.length) return "";
+    const ep = EPICS[ek];
+    return `<div class="lane">
+      <div class="lane-head"><i class="lane-bar" style="background:${ep.color}"></i>
+        <span class="epickey mono">${ek}</span><h3>${ep.name}</h3>
+        <span class="desc">${ep.desc} · ${items.length} service${items.length>1?"s":""}</span></div>
+      <div class="lane-grid">${items.map(cardHTML).join("")}</div>
+    </div>`;
+  }).join("");
+}
+
+/* ── render: services ── */
+function renderServices(){
+  document.getElementById("svcGrid").innerHTML = INFRA.map(s=>{
+    const meters = s.meters.map(m=>{
+      const pct = Math.min(100,(m.v/m.max)*100);
+      const col = pct>80?"var(--down-dot)":pct>55?"var(--risk-dot)":"var(--green-dot)";
+      return `<div class="meter"><div class="meter-top"><span>${m.l}</span><span>${m.d}</span></div>
+        <div class="track"><div class="fill" data-pct="${pct}" style="width:0;background:${col}"></div></div></div>`;
+    }).join("");
+    return `<div class="svc">
+      <div class="svc-head"><div class="svc-ic" style="background:${s.bg}">${s.ic}</div>
+        <h4>${s.name}</h4><span class="tier">${s.tier}</span></div>
+      ${meters}<div class="svc-note">${s.note}</div></div>`;
+  }).join("");
+  requestAnimationFrame(()=>document.querySelectorAll(".fill").forEach(f=>f.style.width=f.dataset.pct+"%"));
+}
+
+/* ── render: backlog ── */
+function renderBacklog(){
+  const rows = [...BACKLOG].sort((a,b)=>PRI_ORDER[a.pri]-PRI_ORDER[b.pri]);
+  document.getElementById("backlog").innerHTML = rows.map(b=>`
+    <div class="bl-row ${b.pri==="done"?"done":""}">
+      <span class="pri pri-${b.pri}">${b.pri==="done"?"✓":b.pri}</span>
+      <span class="bl-key">${b.key}</span>
+      <span class="bl-txt">${b.txt}</span>
+      <span class="bl-tag">${b.tag}</span>
+    </div>`).join("");
+  document.getElementById("t-bl").textContent = BACKLOG.filter(b=>b.pri!=="done").length;
+}
+
+/* ── gadgets (status counts) ── */
+function renderGadgets(){
+  const c = k => SERVICES.filter(s=>s.status===k).length;
+  const op = c("live");
+  document.getElementById("opCount").textContent = op;
+  const g = [
+    {lbl:"Operational", val:op, dot:"var(--green-dot)", meta:"live & serving"},
+    {lbl:"In Progress", val:c("prog"), dot:"var(--prog-dot)", meta:"needs CI/CD"},
+    {lbl:"At Risk", val:c("risk"), dot:"var(--risk-dot)", meta:"orphaned workers"},
+    {lbl:"Planned", val:c("plan"), dot:"var(--plan-dot)", meta:"not deployed"}
+  ];
+  document.getElementById("gadgets").innerHTML = g.map(x=>`
+    <div class="gadget"><div class="lbl"><i class="g-dot" style="background:${x.dot}"></i>${x.lbl}</div>
+    <div class="val">${x.val}</div><div class="meta">${x.meta}</div></div>`).join("");
+}
+
+/* ── attention banner: "what needs attention", computed from the data ── */
+function gotoBoard(){
+  document.querySelector('.tab[data-view="board"]').click();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function gotoBacklog(){ document.querySelector('.tab[data-view="backlog"]').click(); }
+function renderAttention(){
+  // highest risk
+  const ranked = [...SERVICES].sort((a,b)=>riskScore(b.uid)-riskScore(a.uid));
+  const top = ranked[0];
+  const topScore = riskScore(top.uid);
+  const tied = SERVICES.filter(s=>riskScore(s.uid)===topScore);
+  const riskName = tied.length>1 ? tied.map(s=>s.key).slice(0,2).join(" · ") : top.key;
+  const rm = riskMeta(top.uid);
+  // next action = top open backlog item
+  const next = [...BACKLOG].filter(b=>b.pri!=="done").sort((a,b)=>PRI_ORDER[a.pri]-PRI_ORDER[b.pri])[0];
+  const badge = {crit:["Critical","var(--down-bg)","var(--down-tx)"],high:["High","#FFF0E6","#B65C02"],med:["Medium","var(--risk-bg)","var(--risk-tx)"],low:["Low","var(--n20)","var(--n300)"]}[rm.cls];
+  const tiles = [
+    {lbl:"🔥 Highest risk", val:riskName, sub:`Score ${topScore}`, badge:badge, click:gotoBoard},
+    {lbl:"⚠ Next action", val:next.txt.split("—")[0].trim().slice(0,42), sub:`${next.pri} · ${next.key}`, click:gotoBacklog},
+    {lbl:"📡 Reachable", val:'<span id="attReach" class="num">—</span>', sub:'<span id="attReachSub">running check…</span>'},
+    {lbl:"🩺 System health", val:'<span id="attHealth" class="num">—</span>', sub:"reachable / total"},
+    {lbl:"💵 Run cost", val:'<span class="num" style="color:var(--green-tx)">$0</span>', sub:"per month · all free tier"}
+  ];
+  document.getElementById("attention").innerHTML = tiles.map((t,i)=>`
+    <div class="att ${t.click?"click":""}" ${t.click?`onclick="(${t.click.name})()"`:""}>
+      <span class="at-lbl">${t.lbl}</span>
+      <span class="at-val ${/num/.test(t.val)?"":""}">${t.val}</span>
+      ${t.badge?`<span class="badge" style="background:${t.badge[1]};color:${t.badge[2]}">${t.badge[0]}</span>`:""}
+      <span class="at-sub">${t.sub}</span>
+    </div>`).join("");
+}
+
+/* ── render: cost (all free tier) ── */
+const COSTS = ["Cloudflare","Supabase","Resend","Cloudinary","Web3Forms","YouTube API","R2","AI Gateway"];
+function renderCost(){
+  document.getElementById("cost").innerHTML = `
+    <div class="cost-total">
+      <span class="ct-lbl">Monthly run cost</span>
+      <span class="ct-val">$0</span>
+      <span class="ct-sub">across 8 services</span>
+    </div>
+    <div class="cost-rows">${COSTS.map(c=>`<span class="cost-chip">${c} <b>$0</b></span>`).join("")}</div>
+    <div class="cost-foot">Every backend runs on a free tier with $0 billable usage. The only real spend is <b>domain registration</b> (Squarespace, billed annually — renews Sep 16 2026).</div>`;
+}
+
+/* ── render: topology (static dependency map) ── */
+function renderTopology(){
+  const N = {
+    fire:    {x:20,  y:24,  w:152,h:38,t:"fire.stluker.com",  s:"CF Pages",   stroke:"#E2483D"},
+    memory:  {x:20,  y:118, w:152,h:38,t:"memory.stluker.com",s:"CF Pages",   stroke:"#22A06B"},
+    family:  {x:20,  y:184, w:152,h:38,t:"family.stluker.com",s:"CF Worker",  stroke:"#0EA5E9"},
+    reunion: {x:20,  y:262, w:152,h:38,t:"reunion.stluker.com",s:"CF Worker", stroke:"#D97706"},
+    surfcam: {x:20,  y:356, w:152,h:38,t:"surfcam.stluker.com",s:"surfflow-scoring", stroke:"#0891B2"},
+    sports:  {x:20,  y:436, w:152,h:38,t:"sports.stluker.com",s:"CF Worker",  stroke:"#0C66E4"},
+    music:   {x:20,  y:498, w:152,h:38,t:"music.stluker.com", s:"CF Worker",  stroke:"#0C66E4"},
+    fireapi: {x:344, y:24,  w:150,h:38,t:"fire-api",   s:"CF Worker",      stroke:"#0C66E4"},
+    gateway: {x:344, y:86,  w:150,h:38,t:"AI Gateway", s:"fire-intel-gateway", stroke:"#0C66E4"},
+    web3:    {x:344, y:262, w:150,h:38,t:"Web3Forms",  s:"form handler",   stroke:"#D97706"},
+    spkv:    {x:344, y:436, w:150,h:38,t:"SPORTS_KV",  s:"Workers KV",     stroke:"#0891B2"},
+    mukv:    {x:344, y:498, w:150,h:38,t:"MUSIC_KV",   s:"Workers KV",     stroke:"#0891B2"},
+    anthropic:{x:664,y:55,  w:150,h:38,t:"Anthropic",  s:"LLM API",        stroke:"#6B4FBB"},
+    supabase:{x:664, y:150, w:150,h:38,t:"Supabase",   s:"Postgres · auth",stroke:"#1F845A"},
+    resend:  {x:664, y:262, w:150,h:38,t:"Resend",     s:"email",          stroke:"#0055CC"},
+    youtube: {x:664, y:356, w:150,h:38,t:"YouTube API",s:"Data API v3",    stroke:"#E2483D"}
+  };
+  const E = [
+    ["fire","fireapi"],["fireapi","gateway","v"],["gateway","anthropic"],
+    ["memory","supabase"],["family","supabase"],
+    ["reunion","web3"],["web3","resend","dash"],
+    ["surfcam","youtube"],["sports","spkv"],["music","mukv"]
+  ];
+  const rMid=n=>[n.x+n.w,n.y+n.h/2], lMid=n=>[n.x,n.y+n.h/2], bMid=n=>[n.x+n.w/2,n.y+n.h], tMid=n=>[n.x+n.w/2,n.y];
+  const edges = E.map(([a,b,mode])=>{
+    const A=N[a],B=N[b]; let p1,p2;
+    if(mode==="v"){p1=bMid(A);p2=tMid(B);}
+    else{p1=rMid(A);p2=lMid(B);}
+    const dash = mode==="dash";
+    const d = mode==="v"
+      ? `M${p1[0]} ${p1[1]} L${p2[0]} ${p2[1]}`
+      : `M${p1[0]} ${p1[1]} C${p1[0]+50} ${p1[1]}, ${p2[0]-50} ${p2[1]}, ${p2[0]} ${p2[1]}`;
+    return `<path d="${d}" fill="none" stroke="${dash?'#C1C7D0':'#8590A2'}" stroke-width="1.8" ${dash?'stroke-dasharray="5 4"':''} marker-end="url(#arr)"/>`;
+  }).join("");
+  const nodes = Object.values(N).map(n=>`
+    <g class="topo-node">
+      <rect x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}" rx="7" fill="#fff" stroke="${n.stroke}" stroke-width="1.6"/>
+      <rect x="${n.x}" y="${n.y}" width="4" height="${n.h}" rx="2" fill="${n.stroke}"/>
+      <text class="tn-title" x="${n.x+14}" y="${n.y+16}">${n.t}</text>
+      <text class="tn-sub" x="${n.x+14}" y="${n.y+29}">${n.s}</text>
+    </g>`).join("");
+  document.getElementById("topo").innerHTML = `
+    <svg viewBox="0 0 830 552" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dependency map">
+      <defs><marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+        <path d="M0 0 L7 3 L0 6 z" fill="#8590A2"/></marker></defs>
+      <text x="20" y="14" font="600 11px Inter" fill="#626F86" style="font:600 11px Inter,sans-serif;letter-spacing:.08em">YOUR APPS</text>
+      <text x="344" y="14" style="font:600 11px Inter,sans-serif;fill:#626F86;letter-spacing:.08em">CLOUDFLARE LAYER</text>
+      <text x="664" y="14" style="font:600 11px Inter,sans-serif;fill:#626F86;letter-spacing:.08em">EXTERNAL SERVICES</text>
+      ${edges}${nodes}
+    </svg>`;
+  document.getElementById("topoNote").innerHTML =
+    "Apps not shown (stluker, trip, pto/ptodashboard, surf, pokelab, ironrails) are self-contained edge/static workers with no external dependency — itself a low-risk signal. " +
+    "Planned, not yet wired: <b>geo → Supabase PostGIS</b>, <b>media → R2 + Cloudinary</b>. " +
+    "The longest live chain — fire → fire-api → AI Gateway → Anthropic — is the one to watch if the gateway or LLM API changes.";
+  document.getElementById("t-topo").textContent = E.length;
+}
+
+/* ── live reachability probe (best-effort, client-side) ── */
+async function probeOne(s){
+  const dot = document.getElementById("dot-"+s.uid);
+  const ms = document.getElementById("ms-"+s.uid);
+  dot.className = "pdot checking"; ms.textContent = "…";
+  const t0 = performance.now();
+  const ctrl = new AbortController();
+  const to = setTimeout(()=>ctrl.abort(), 7000);
+  try{
+    await fetch(s.probe, {mode:"no-cors", cache:"no-store", signal:ctrl.signal});
+    clearTimeout(to);
+    const d = Math.round(performance.now()-t0);
+    dot.className = "pdot up"; ms.textContent = d+"ms";
+    return true;
+  }catch(e){
+    clearTimeout(to);
+    dot.className = "pdot down"; ms.textContent = "no resp";
+    return false;
+  }
+}
+async function runChecks(){
+  const btn = document.getElementById("probeBtn");
+  btn.classList.add("loading"); btn.disabled = true;
+  document.getElementById("probeLbl").textContent = "Checking…";
+  // probe in small batches so the UI stays responsive
+  let up = 0;
+  const batch = 5;
+  for(let i=0;i<SERVICES.length;i+=batch){
+    const slice = SERVICES.slice(i,i+batch);
+    const res = await Promise.all(slice.map(probeOne));
+    up += res.filter(Boolean).length;
+  }
+  const total = SERVICES.length;
+  const rv = document.getElementById("attReach");
+  const rs = document.getElementById("attReachSub");
+  const hv = document.getElementById("attHealth");
+  if(rv) rv.textContent = up+"/"+total;
+  if(rs) rs.textContent = "checked "+new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
+  if(hv) hv.textContent = Math.round(up/total*100)+"%";
+  btn.classList.remove("loading"); btn.disabled = false;
+  document.getElementById("probeLbl").textContent = "Re-run check";
+}
+
+/* ── tabs ── */
+document.querySelectorAll(".tab").forEach(t=>{
+  t.addEventListener("click",()=>{
+    document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+    document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));
+    t.classList.add("active");
+    document.getElementById("view-"+t.dataset.view).classList.add("active");
+  });
+});
+
+/* ── clock ── */
+function tick(){
+  const n = new Date();
+  document.getElementById("clockTime").textContent = n.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
+  document.getElementById("clockDate").textContent = n.toLocaleDateString([], {weekday:"short",month:"short",day:"numeric"});
+}
+
+/* ── data loader ── */
+async function loadData() {
+  const stamp = document.getElementById('dataStamp');
+  try {
+    // Cache-busted so a Pages redeploy always serves the new file
+    const res = await fetch('./data.json?v=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const d = await res.json();
+    EPICS    = d.epics    || {};
+    SERVICES = d.services || [];
+    BACKLOG  = d.backlog  || [];
+    if (stamp) stamp.textContent = 'data.json loaded · ' + new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  } catch(e) {
+    console.error('loadData failed:', e);
+    if (stamp) stamp.textContent = '⚠ data.json load failed — ' + e.message;
+  }
+  renderGadgets(); renderAttention(); renderBoard(); renderEpics();
+  renderTopology(); renderServices(); renderCost(); renderBacklog();
+  tick(); setInterval(tick, 30000);
+  document.getElementById("footYear").textContent = new Date().getFullYear();
+  setTimeout(runChecks, 600);
+}
+
+/* ── init ── */
+window.addEventListener("load", loadData);
+
+</script>
+</body>
+</html>
