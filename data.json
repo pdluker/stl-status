@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-07-07",
-    "version": "3.2"
+    "lastUpdated": "2026-07-12",
+    "version": "3.3"
   },
   "stats": {
     "totalSites": 16,
@@ -603,8 +603,8 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-07-07T11:00:54.715Z",
-    "findingsCount": 7,
+    "ranAt": "2026-07-12T20:40:16.661Z",
+    "findingsCount": 8,
     "findings": [
       {
         "type": "cron_drift",
@@ -653,6 +653,12 @@
         "severity": "info",
         "worker": "status",
         "message": "Deployed Worker \"status\" is not tracked in data.json."
+      },
+      {
+        "type": "heartbeat_missing",
+        "severity": "critical",
+        "job": "stl-bucket:refresh",
+        "message": "No successful run ever recorded for stl-bucket:refresh (or last success aged out of KV). Job may be dead."
       }
     ]
   },
@@ -686,6 +692,12 @@
       "title": "data.json references Worker \"stl-status-sync\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
       "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
       "cat": "DRIFT"
+    },
+    {
+      "icon": "🔴",
+      "title": "No successful run ever recorded for stl-bucket:refresh (or last success aged out of KV). Job may be dead.",
+      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_missing).",
+      "cat": "CRITICAL"
     }
   ]
 }
