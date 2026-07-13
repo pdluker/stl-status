@@ -1,15 +1,15 @@
 {
   "meta": {
     "lastUpdated": "2026-07-13",
-    "version": "3.4"
+    "version": "3.3"
   },
   "stats": {
-    "totalSites": 16,
-    "liveSites": 16,
+    "totalSites": 14,
+    "liveSites": 14,
     "plannedSites": 0,
     "inactiveSites": 0,
     "automatedSites": 6,
-    "openTasks": 6
+    "openTasks": 9
   },
   "sites": [
     {
@@ -47,7 +47,7 @@
       "status": "live",
       "category": "Public Sites",
       "stack": "CF Worker: family",
-      "repo": "GitHub: pdluker/familyplate",
+      "repo": "Manual upload (not git-connected) — familyplate.pages.dev confirmed fully dead Jul 13, 2026; family Worker runs independently and was never really tied to that repo",
       "lastDeploy": "2026-06-30",
       "description": "Kids/family edition — 123 parks, family restaurants, activities, decision engine.",
       "features": [
@@ -163,7 +163,8 @@
         "C5: Scenario Simulator (Taiwan/Iran/AI/Ukraine/crash)",
         "E2: Goals (529 Dawson $135K + Chip $87K, mortgage $307K)",
         "Portfolio CSV upload + 401k entry",
-        "D2: Portfolio Exposure (DISABLED Jun 21 — re-wiring)"
+        "D2: Portfolio Exposure (DISABLED Jun 21 — re-wiring)",
+        "HSTS fixed Jul 13, 2026 via public/_headers file"
       ],
       "automation": "Daily noon UTC cron via fire-api",
       "openTasks": [
@@ -271,11 +272,12 @@
       "category": "Personal Tools",
       "stack": "CF Pages: memory-lattice (GitHub CI/CD) + Worker",
       "repo": "GitHub: pdluker/memory-lattice",
-      "lastDeploy": "2026-06-12",
+      "lastDeploy": "2026-07-13",
       "description": "Knowledge/memory tool. Supabase persistence wiring pending.",
       "features": [
         "Pages + Worker deployed",
-        "Supabase keepalive covered"
+        "Supabase keepalive covered",
+        "HSTS fixed Jul 13, 2026 via public/_headers (required a Vite dependency rollback first — npm audit fix --force had jumped 5.4.21→8.1.4 and broken manualChunks config)"
       ],
       "automation": "Static",
       "openTasks": [
@@ -307,23 +309,6 @@
           "detail": "send.stluker.com domain is fully verified — replace the Web3Forms email leg with a Resend send on RSVP submit."
         }
       ]
-    },
-    {
-      "key": "PTO-1",
-      "name": "PTO Tracker",
-      "subdomain": "pto.stluker.com",
-      "url": "https://pto.stluker.com",
-      "status": "live",
-      "category": "Personal Tools",
-      "stack": "CF Worker: barrettspto",
-      "repo": "Unknown",
-      "lastDeploy": "Unknown",
-      "description": "PTO tracking dashboard. Also at ptodashboard.stluker.com.",
-      "features": [
-        "Dual domain routing"
-      ],
-      "automation": "None",
-      "openTasks": []
     },
     {
       "key": "POKE-1",
@@ -366,30 +351,6 @@
       ]
     },
     {
-      "key": "TRIP-1",
-      "name": "Trip Companion",
-      "subdomain": "trip.stluker.com",
-      "url": "https://trip.stluker.com",
-      "status": "live",
-      "category": "Personal Tools",
-      "stack": "CF Pages: tripcompanion",
-      "repo": "GitHub: tripcompanion",
-      "lastDeploy": "Unknown",
-      "description": "Trip planning companion app.",
-      "features": [],
-      "automation": "None",
-      "openTasks": [
-        {
-          "title": "Export photos from Trip Companion app",
-          "detail": "Manual export needed before any migration or backup work — no automated extraction path yet."
-        },
-        {
-          "title": "Confirm CNAME in CF",
-          "detail": "tripcompanion.stluker.com custom domain CNAME hasn't been confirmed as added in Cloudflare DNS."
-        }
-      ]
-    },
-    {
       "key": "STAT-1",
       "name": "Status Board",
       "subdomain": "status.stluker.com",
@@ -398,7 +359,7 @@
       "category": "Infrastructure",
       "stack": "CF Pages: stl-status (GitHub CI/CD)",
       "repo": "GitHub: pdluker/stl-status",
-      "lastDeploy": "2026-06-30",
+      "lastDeploy": "2026-07-13",
       "description": "Ecosystem command center. data.json is the source of truth.",
       "features": [
         "Live health probes",
@@ -426,11 +387,32 @@
       "detail": "Add stl.stluker.com to top-banner on stluker.com, family, sports, music"
     },
     {
-      "id": "T-4",
-      "title": "Trip Companion photo export + CNAME",
+      "id": "T-14",
+      "title": "Archive resolved/stale Security Insights findings",
+      "priority": "medium",
+      "site": "Cloudflare (account-wide)",
+      "detail": "familyplate (4 findings), tripcompanion (6), pdluker.workers.dev (4), fire-intel + memory-lattice zone-only findings (8) — all reviewed and confirmed resolved/stale, just needs the dashboard archive action to clear \"Active\" status."
+    },
+    {
+      "id": "T-15",
+      "title": "Delete surfflow-scoring Worker",
+      "priority": "medium",
+      "site": "surfflow-scoring (Worker)",
+      "detail": "surfcam project itself is already gone, but the surfflow-scoring Worker, its */15 * * * * cron trigger, and SURF_KV binding are still live — this cleanup was supposed to happen alongside surfcam and didn't. Frees a 5th cron slot."
+    },
+    {
+      "id": "T-16",
+      "title": "Decide family.stluker.com Git connection",
       "priority": "low",
-      "site": "trip.stluker.com",
-      "detail": "Export photos from app; confirm tripcompanion.stluker.com CNAME"
+      "site": "family.stluker.com",
+      "detail": "Confirmed Jul 13 that the familyplate GitHub repo was never accurately linked to the family Worker (direct-upload deploy only). Either wire real CI/CD from an appropriate repo or permanently document manual-deploy as the intended state."
+    },
+    {
+      "id": "T-17",
+      "title": "Connect pokelab + iron-rails repos to CF Workers",
+      "priority": "low",
+      "site": "pokelab.stluker.com / trains.stluker.com",
+      "detail": "Both repos are recovered and pushed to GitHub but still deployed manually via wrangler — wire GitHub Actions for auto-deploy on push."
     },
     {
       "id": "T-5",
@@ -455,6 +437,42 @@
     }
   ],
   "recentActivity": [
+    {
+      "date": "2026-07-13",
+      "event": "Security Insights review completed (30 findings, down from 33 Jul 12) — confirmed barrettspto/PTO tracker fully decommissioned (Worker + DNS gone), confirmed familyplate.pages.dev fully decommissioned, confirmed tripcompanion.pages.dev fully decommissioned. All three removed from this dashboard's site list."
+    },
+    {
+      "date": "2026-07-13",
+      "event": "HSTS fixed on fire-intel + memory-lattice Pages projects via public/_headers file (zone-wide HSTS toggle doesn't cover *.pages.dev hostnames). memory-lattice required a Vite dependency rollback first — npm audit fix --force had jumped 5.4.21→8.1.4 and broken vite.config.ts's manualChunks syntax; rolled back package.json/package-lock.json, confirmed clean build, then shipped the fix. Both verified live via curl -I."
+    },
+    {
+      "date": "2026-07-13",
+      "event": "Deleted legacy _domainconnect.stluker.com DNS record — unused Squarespace Domain Connect CNAME, flagged as a \"Domains without HSTS\" finding. DNS is fully delegated to Cloudflare so Domain Connect was never in use; removed rather than fixed."
+    },
+    {
+      "date": "2026-07-13",
+      "event": "Verified zone-level Bot Fight Mode, AI Labyrinth, AI bot policies, and Security.txt all active on the stluker.com zone — confirmed adequate coverage for real custom domains, so the corresponding .pages.dev-specific findings are safe to archive as reviewed/accepted."
+    },
+    {
+      "date": "2026-07-13",
+      "event": "DNS record count down to 20 (from 22) after removing the dead PTO records and the legacy _domainconnect record."
+    },
+    {
+      "date": "2026-07-12",
+      "event": "HSTS enabled zone-wide on stluker.com — cleared 10 of 18 original Security Insights findings in one toggle, covering all *.stluker.com custom domains."
+    },
+    {
+      "date": "2026-07-12",
+      "event": "cron-job.org fully decommissioned — both jobs (stl-bucket refresh + keepalive) deleted; stl-dispatcher now handles both internally on its single daily cron."
+    },
+    {
+      "date": "2026-07-12",
+      "event": "Auth pattern standardized across all Workers — Authorization: Bearer <secret> header auth via shared src/auth.js, with query-string ?secret= explicitly rejected. Applies to any new Worker with a protected endpoint going forward."
+    },
+    {
+      "date": "2026-07-12",
+      "event": "Cron trigger inventory confirmed — 5/5 free-tier slots in use. surfflow-scoring flagged for deletion: the surfcam project it served is already gone, but the Worker/cron/KV binding cleanup that was supposed to happen alongside it never did."
+    },
     {
       "date": "2026-07-06",
       "event": "stl-dispatcher fully verified end-to-end — keepalive.ok:true (real 200 from Supabase stl_issues query) and statusSync.ok:true (GitHub reconciliation committing, 5 stable findings). Chain of 4 distinct bugs found and fixed to get here: malformed Bearer header (PowerShell pipe added trailing newline — fixed by trimming both sides of the auth comparison), malformed SUPABASE_URL, placeholder text accidentally used as SUPABASE_ANON_KEY, and finally the real bug — keepalive was querying the bare /rest/v1/ schema root which requires service_role, not anon. Fixed by querying a real table (stl_issues) instead. Migration is complete; supabase-keepalive + stl-status-sync decommissioned."
@@ -554,14 +572,14 @@
   ],
   "infrastructure": {
     "cloudflare": {
-      "cronSlotsUsed": 4,
+      "cronSlotsUsed": 5,
       "cronSlotsTotal": 5,
       "crons": [
         "stluker: 0 9 */3 * * (food pulse)",
-        "stl-sports: 0 11 * * 1 (ESPN poller, weekly Monday 11:00 UTC — confirmed Jul 6)",
+        "stl-sports: weekly (ESPN poller, confirmed via CI/CD)",
         "stl-music: 0 11 * * 2 (Ticketmaster, Tue 11AM UTC)",
-        "stl-dispatcher: 0 11 * * * (daily — drives keepalive [heartbeat-gated, ~5d cadence] + status-sync)",
-        "stl-bucket: 0 14 * * 5 (Friday newsletter ingestion — restored Jul 2 after being dropped by a failed deploy sync)"
+        "stl-dispatcher: 0 11 * * * (daily — drives keepalive [heartbeat-gated, ~5d cadence] + status-sync + stl-bucket Friday refresh, now consolidated under one Worker)",
+        "surfflow-scoring: */15 * * * * (zombie trigger — surfcam project it served is already gone; pending deletion, see T-15)"
       ]
     },
     "supabase": {
@@ -581,7 +599,6 @@
       "repos": [
         "fire-intel",
         "memory-lattice",
-        "familyplate",
         "stl-status",
         "stl-music",
         "stl-sports",
@@ -591,7 +608,7 @@
     },
     "dns": {
       "registrar": "Squarespace (expires Sep 16, 2026)",
-      "provider": "Cloudflare (17 DNS records)"
+      "provider": "Cloudflare (20 DNS records, down from 22 — PTO records and legacy _domainconnect record removed Jul 13, 2026)"
     },
     "externalAPIs": [
       "Ticketmaster Discovery API",
@@ -603,88 +620,41 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-07-13T11:00:53.614Z",
-    "findingsCount": 7,
+    "ranAt": "2026-07-13T00:00:00.000Z",
+    "note": "Manual Security Insights + Workers/DNS review, not an automated stl-status-sync run. Prior Jul 7 findings (stl-music/stl-bucket cron drift, memory-lattice/supabase-keepalive/stl-status-sync phantom workers) are resolved or superseded: stl-bucket's cron now lives inside stl-dispatcher by design, and supabase-keepalive/stl-status-sync were intentionally decommissioned when stl-dispatcher replaced them.",
+    "findingsCount": 2,
     "findings": [
       {
-        "type": "cron_drift",
+        "type": "zombie_worker",
         "severity": "warning",
-        "worker": "stl-music",
-        "expected": "0 11 * * 2",
-        "live": [
-          "0 10 * * 1"
-        ],
-        "message": "Deployed cron for stl-music (0 10 * * 1) does not match declared \"0 11 * * 2\"."
+        "worker": "surfflow-scoring",
+        "message": "surfcam project is confirmed gone, but the surfflow-scoring Worker, its */15 * * * * cron, and SURF_KV binding are still live in Cloudflare. Occupies the 5th of 5 free-tier cron slots."
       },
       {
-        "type": "cron_drift",
-        "severity": "warning",
-        "worker": "stl-bucket",
-        "expected": "0 14 * * 5",
-        "live": [],
-        "message": "Deployed cron for stl-bucket (none) does not match declared \"0 14 * * 5\"."
-      },
-      {
-        "type": "phantom_worker",
-        "severity": "warning",
-        "worker": "memory-lattice",
-        "message": "data.json references Worker \"memory-lattice\" but it no longer exists in Cloudflare. Remove stale references/recommendations."
-      },
-      {
-        "type": "phantom_worker",
-        "severity": "warning",
-        "worker": "supabase-keepalive",
-        "message": "data.json references Worker \"supabase-keepalive\" but it no longer exists in Cloudflare. Remove stale references/recommendations."
-      },
-      {
-        "type": "phantom_worker",
-        "severity": "warning",
-        "worker": "stl-status-sync",
-        "message": "data.json references Worker \"stl-status-sync\" but it no longer exists in Cloudflare. Remove stale references/recommendations."
-      },
-      {
-        "type": "untracked_worker",
+        "type": "dashboard_cleanup",
         "severity": "info",
-        "worker": "retire",
-        "message": "Deployed Worker \"retire\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "status",
-        "message": "Deployed Worker \"status\" is not tracked in data.json."
+        "worker": "n/a",
+        "message": "30 Security Insights findings remain flagged as \"Active\" in the Cloudflare dashboard even though 18 are confirmed resolved/stale (familyplate, tripcompanion, pdluker.workers.dev, fire-intel/memory-lattice zone-only) — needs a manual archive action, not a config fix."
       }
     ]
   },
   "autoRecommendations": [
     {
-      "icon": "🟠",
-      "title": "Deployed cron for stl-music (0 10 * * 1) does not match declared \"0 11 * * 2\".",
-      "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
-      "cat": "DRIFT"
+      "icon": "🔴",
+      "title": "Delete surfflow-scoring Worker, cron trigger, and SURF_KV binding.",
+      "detail": "Predates this session — was supposed to be cleaned up alongside surfcam and wasn't. Frees a cron slot back to 4/5.",
+      "cat": "CLEANUP"
     },
     {
-      "icon": "🟠",
-      "title": "Deployed cron for stl-bucket (none) does not match declared \"0 14 * * 5\".",
-      "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
-      "cat": "DRIFT"
+      "icon": "🟡",
+      "title": "Archive resolved Security Insights findings in the Cloudflare dashboard.",
+      "detail": "18 of 30 active findings are confirmed resolved or reference already-decommissioned infrastructure — reviewed and accepted Jul 13, just needs the archive click.",
+      "cat": "CLEANUP"
     },
     {
-      "icon": "🟠",
-      "title": "data.json references Worker \"memory-lattice\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
-      "cat": "DRIFT"
-    },
-    {
-      "icon": "🟠",
-      "title": "data.json references Worker \"supabase-keepalive\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
-      "cat": "DRIFT"
-    },
-    {
-      "icon": "🟠",
-      "title": "data.json references Worker \"stl-status-sync\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
+      "icon": "🟡",
+      "title": "Decide family.stluker.com's Git connection.",
+      "detail": "The familyplate repo it was thought to reference is confirmed dead — either wire real CI/CD or document manual-deploy as intentional.",
       "cat": "DRIFT"
     }
   ]

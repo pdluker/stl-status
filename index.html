@@ -837,8 +837,8 @@ function buildTasks() {
   document.getElementById('eco-metrics').innerHTML = [
     ['Total subdomains', DATA.sites.length],
     ['Live sites', DATA.sites.filter(s=>s.status==='live').length],
-    ['CF Workers deployed', '11'],
-    ['CF Pages projects', '4'],
+    ['CF Workers deployed', '12'],
+    ['CF Pages projects', '3'],
     ['GitHub repos', DATA.infrastructure.github.repos.length],
     ['Scheduled cron jobs', DATA.infrastructure.cloudflare.crons.length],
     ['External APIs wired', DATA.infrastructure.externalAPIs.length],
@@ -904,17 +904,17 @@ function buildDeps() {
   document.getElementById('dep-auto').innerHTML = `
     <div class="dep-node root"><span>⚡</span><span>Automated Pipelines</span></div>
     ${[
-      'stl-bucket Worker → beehiiv RSS → Claude Haiku → KV (Fri 9AM CT)',
+      'stl-bucket Worker → beehiiv RSS → Claude Haiku → KV (Fri, via stl-dispatcher)',
       'stluker Worker cron → Supabase pg_cron → food-pulse Edge Fn (every 3d)',
       'fire-api Worker → Claude + web_search → KV + Supabase (daily noon UTC)',
-      'cron-job.org → supabase-keepalive Worker → Supabase ping (daily)',
+      'stl-dispatcher → Supabase keepalive + status-sync (daily cron, cron-job.org fully decommissioned Jul 12)',
     ].map(n=>`<div class="dep-arrow">↓</div><div class="dep-node child"><span>●</span><span style="font-size:11px">${n}</span></div>`).join('')}`;
 
   document.getElementById('eco-cross').innerHTML = `
     <div class="metric-row">
       ${[
-        ['15','Total subdomains'],['15','Live sites'],['11','CF Workers'],['4','CF Pages'],
-        ['8','GitHub repos'],['5','Cron jobs'],['6','External APIs'],['5','Automations'],
+        ['14','Total subdomains'],['14','Live sites'],['12','CF Workers'],['3','CF Pages'],
+        ['7','GitHub repos'],['5','Cron jobs'],['6','External APIs'],['6','Automations'],
         ['100%','Cron capacity'],['0','Slots free'],
       ].map(([v,l])=>`<div class="metric-chip"><span class="metric-val">${v}</span><span class="metric-label">${l}</span></div>`).join('')}
     </div>
