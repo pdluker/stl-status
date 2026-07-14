@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-07-13",
-    "version": "3.3"
+    "lastUpdated": "2026-07-14",
+    "version": "3.4"
   },
   "stats": {
     "totalSites": 14,
@@ -620,41 +620,88 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-07-13T00:00:00.000Z",
-    "note": "Manual Security Insights + Workers/DNS review, not an automated stl-status-sync run. Prior Jul 7 findings (stl-music/stl-bucket cron drift, memory-lattice/supabase-keepalive/stl-status-sync phantom workers) are resolved or superseded: stl-bucket's cron now lives inside stl-dispatcher by design, and supabase-keepalive/stl-status-sync were intentionally decommissioned when stl-dispatcher replaced them.",
-    "findingsCount": 2,
+    "ranAt": "2026-07-14T11:00:44.914Z",
+    "findingsCount": 7,
     "findings": [
       {
-        "type": "zombie_worker",
+        "type": "cron_drift",
         "severity": "warning",
-        "worker": "surfflow-scoring",
-        "message": "surfcam project is confirmed gone, but the surfflow-scoring Worker, its */15 * * * * cron, and SURF_KV binding are still live in Cloudflare. Occupies the 5th of 5 free-tier cron slots."
+        "worker": "stl-music",
+        "expected": "0 11 * * 2",
+        "live": [
+          "0 10 * * 1"
+        ],
+        "message": "Deployed cron for stl-music (0 10 * * 1) does not match declared \"0 11 * * 2\"."
       },
       {
-        "type": "dashboard_cleanup",
+        "type": "cron_drift",
+        "severity": "warning",
+        "worker": "stl-bucket",
+        "expected": "0 14 * * 5",
+        "live": [],
+        "message": "Deployed cron for stl-bucket (none) does not match declared \"0 14 * * 5\"."
+      },
+      {
+        "type": "phantom_worker",
+        "severity": "warning",
+        "worker": "memory-lattice",
+        "message": "data.json references Worker \"memory-lattice\" but it no longer exists in Cloudflare. Remove stale references/recommendations."
+      },
+      {
+        "type": "phantom_worker",
+        "severity": "warning",
+        "worker": "supabase-keepalive",
+        "message": "data.json references Worker \"supabase-keepalive\" but it no longer exists in Cloudflare. Remove stale references/recommendations."
+      },
+      {
+        "type": "phantom_worker",
+        "severity": "warning",
+        "worker": "stl-status-sync",
+        "message": "data.json references Worker \"stl-status-sync\" but it no longer exists in Cloudflare. Remove stale references/recommendations."
+      },
+      {
+        "type": "untracked_worker",
         "severity": "info",
-        "worker": "n/a",
-        "message": "30 Security Insights findings remain flagged as \"Active\" in the Cloudflare dashboard even though 18 are confirmed resolved/stale (familyplate, tripcompanion, pdluker.workers.dev, fire-intel/memory-lattice zone-only) — needs a manual archive action, not a config fix."
+        "worker": "retire",
+        "message": "Deployed Worker \"retire\" is not tracked in data.json."
+      },
+      {
+        "type": "untracked_worker",
+        "severity": "info",
+        "worker": "status",
+        "message": "Deployed Worker \"status\" is not tracked in data.json."
       }
     ]
   },
   "autoRecommendations": [
     {
-      "icon": "🔴",
-      "title": "Delete surfflow-scoring Worker, cron trigger, and SURF_KV binding.",
-      "detail": "Predates this session — was supposed to be cleaned up alongside surfcam and wasn't. Frees a cron slot back to 4/5.",
-      "cat": "CLEANUP"
+      "icon": "🟠",
+      "title": "Deployed cron for stl-music (0 10 * * 1) does not match declared \"0 11 * * 2\".",
+      "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
+      "cat": "DRIFT"
     },
     {
-      "icon": "🟡",
-      "title": "Archive resolved Security Insights findings in the Cloudflare dashboard.",
-      "detail": "18 of 30 active findings are confirmed resolved or reference already-decommissioned infrastructure — reviewed and accepted Jul 13, just needs the archive click.",
-      "cat": "CLEANUP"
+      "icon": "🟠",
+      "title": "Deployed cron for stl-bucket (none) does not match declared \"0 14 * * 5\".",
+      "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
+      "cat": "DRIFT"
     },
     {
-      "icon": "🟡",
-      "title": "Decide family.stluker.com's Git connection.",
-      "detail": "The familyplate repo it was thought to reference is confirmed dead — either wire real CI/CD or document manual-deploy as intentional.",
+      "icon": "🟠",
+      "title": "data.json references Worker \"memory-lattice\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
+      "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
+      "cat": "DRIFT"
+    },
+    {
+      "icon": "🟠",
+      "title": "data.json references Worker \"supabase-keepalive\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
+      "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
+      "cat": "DRIFT"
+    },
+    {
+      "icon": "🟠",
+      "title": "data.json references Worker \"stl-status-sync\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
+      "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
       "cat": "DRIFT"
     }
   ]
