@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastUpdated": "2026-07-14",
-    "version": "3.4"
+    "version": "3.5"
   },
   "stats": {
     "totalSites": 14,
@@ -620,19 +620,9 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-07-14T11:00:44.914Z",
-    "findingsCount": 7,
+    "ranAt": "2026-07-14T18:55:31.923Z",
+    "findingsCount": 4,
     "findings": [
-      {
-        "type": "cron_drift",
-        "severity": "warning",
-        "worker": "stl-music",
-        "expected": "0 11 * * 2",
-        "live": [
-          "0 10 * * 1"
-        ],
-        "message": "Deployed cron for stl-music (0 10 * * 1) does not match declared \"0 11 * * 2\"."
-      },
       {
         "type": "cron_drift",
         "severity": "warning",
@@ -646,18 +636,6 @@
         "severity": "warning",
         "worker": "memory-lattice",
         "message": "data.json references Worker \"memory-lattice\" but it no longer exists in Cloudflare. Remove stale references/recommendations."
-      },
-      {
-        "type": "phantom_worker",
-        "severity": "warning",
-        "worker": "supabase-keepalive",
-        "message": "data.json references Worker \"supabase-keepalive\" but it no longer exists in Cloudflare. Remove stale references/recommendations."
-      },
-      {
-        "type": "phantom_worker",
-        "severity": "warning",
-        "worker": "stl-status-sync",
-        "message": "data.json references Worker \"stl-status-sync\" but it no longer exists in Cloudflare. Remove stale references/recommendations."
       },
       {
         "type": "untracked_worker",
@@ -676,12 +654,6 @@
   "autoRecommendations": [
     {
       "icon": "🟠",
-      "title": "Deployed cron for stl-music (0 10 * * 1) does not match declared \"0 11 * * 2\".",
-      "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
-      "cat": "DRIFT"
-    },
-    {
-      "icon": "🟠",
       "title": "Deployed cron for stl-bucket (none) does not match declared \"0 14 * * 5\".",
       "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
       "cat": "DRIFT"
@@ -689,18 +661,6 @@
     {
       "icon": "🟠",
       "title": "data.json references Worker \"memory-lattice\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
-      "cat": "DRIFT"
-    },
-    {
-      "icon": "🟠",
-      "title": "data.json references Worker \"supabase-keepalive\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
-      "cat": "DRIFT"
-    },
-    {
-      "icon": "🟠",
-      "title": "data.json references Worker \"stl-status-sync\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
       "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
       "cat": "DRIFT"
     }
