@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastUpdated": "2026-07-24",
-    "version": "3.7"
+    "version": "3.8"
   },
   "stats": {
     "totalSites": 14,
@@ -620,8 +620,8 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-07-24T11:01:04.795Z",
-    "findingsCount": 6,
+    "ranAt": "2026-07-24T16:15:59.304Z",
+    "findingsCount": 4,
     "findings": [
       {
         "type": "cron_drift",
@@ -636,18 +636,6 @@
         "severity": "warning",
         "worker": "memory-lattice",
         "message": "data.json references Worker \"memory-lattice\" but it no longer exists in Cloudflare. Remove stale references/recommendations."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "earth",
-        "message": "Deployed Worker \"earth\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "intel",
-        "message": "Deployed Worker \"intel\" is not tracked in data.json."
       },
       {
         "type": "untracked_worker",
