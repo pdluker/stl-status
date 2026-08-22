@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-08-18",
-    "version": "3.64"
+    "lastUpdated": "2026-08-22",
+    "version": "3.69"
   },
   "stats": {
     "totalSites": 14,
@@ -620,8 +620,8 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-08-18T11:01:02.832Z",
-    "findingsCount": 10,
+    "ranAt": "2026-08-22T11:01:11.729Z",
+    "findingsCount": 6,
     "findings": [
       {
         "type": "cron_drift",
@@ -660,32 +660,8 @@
       {
         "type": "untracked_worker",
         "severity": "info",
-        "worker": "pod",
-        "message": "Deployed Worker \"pod\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
         "worker": "podcast",
         "message": "Deployed Worker \"podcast\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "retire",
-        "message": "Deployed Worker \"retire\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "schools",
-        "message": "Deployed Worker \"schools\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "status",
-        "message": "Deployed Worker \"status\" is not tracked in data.json."
       }
     ]
   },
