@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-08-23",
-    "version": "3.70"
+    "lastUpdated": "2026-08-24",
+    "version": "3.71"
   },
   "stats": {
     "totalSites": 14,
@@ -620,7 +620,7 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-08-23T11:00:48.940Z",
+    "ranAt": "2026-08-24T11:00:49.003Z",
     "findingsCount": 11,
     "findings": [
       {
@@ -682,18 +682,18 @@
       {
         "type": "heartbeat_stale",
         "severity": "critical",
-        "job": "stl-dispatcher:space-ingest",
-        "lastSuccess": "2026-08-21T11:03:19.409Z",
-        "ageHours": 48,
-        "message": "stl-dispatcher:space-ingest last succeeded 48h ago (expected within 30h)."
+        "job": "stl-dispatcher:podcast-ingest",
+        "lastSuccess": "2026-08-22T11:31:20.607Z",
+        "ageHours": 47,
+        "message": "stl-dispatcher:podcast-ingest last succeeded 47h ago (expected within 30h)."
       },
       {
         "type": "heartbeat_stale",
         "severity": "critical",
-        "job": "stl-dispatcher:earth-ingest",
-        "lastSuccess": "2026-08-21T11:03:32.725Z",
-        "ageHours": 48,
-        "message": "stl-dispatcher:earth-ingest last succeeded 48h ago (expected within 30h)."
+        "job": "stl-dispatcher:space-ingest",
+        "lastSuccess": "2026-08-21T11:03:19.409Z",
+        "ageHours": 72,
+        "message": "stl-dispatcher:space-ingest last succeeded 72h ago (expected within 30h)."
       }
     ]
   },
@@ -712,13 +712,13 @@
     },
     {
       "icon": "🔴",
-      "title": "stl-dispatcher:space-ingest last succeeded 48h ago (expected within 30h).",
+      "title": "stl-dispatcher:podcast-ingest last succeeded 47h ago (expected within 30h).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
       "cat": "CRITICAL"
     },
     {
       "icon": "🔴",
-      "title": "stl-dispatcher:earth-ingest last succeeded 48h ago (expected within 30h).",
+      "title": "stl-dispatcher:space-ingest last succeeded 72h ago (expected within 30h).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
       "cat": "CRITICAL"
     }
