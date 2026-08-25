@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-08-24",
-    "version": "3.71"
+    "lastUpdated": "2026-08-25",
+    "version": "3.72"
   },
   "stats": {
     "totalSites": 14,
@@ -620,7 +620,7 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-08-24T11:00:49.003Z",
+    "ranAt": "2026-08-25T11:00:45.651Z",
     "findingsCount": 11,
     "findings": [
       {
@@ -684,16 +684,16 @@
         "severity": "critical",
         "job": "stl-dispatcher:podcast-ingest",
         "lastSuccess": "2026-08-22T11:31:20.607Z",
-        "ageHours": 47,
-        "message": "stl-dispatcher:podcast-ingest last succeeded 47h ago (expected within 30h)."
+        "ageHours": 71,
+        "message": "stl-dispatcher:podcast-ingest last succeeded 71h ago (expected within 30h)."
       },
       {
         "type": "heartbeat_stale",
         "severity": "critical",
         "job": "stl-dispatcher:space-ingest",
         "lastSuccess": "2026-08-21T11:03:19.409Z",
-        "ageHours": 72,
-        "message": "stl-dispatcher:space-ingest last succeeded 72h ago (expected within 30h)."
+        "ageHours": 96,
+        "message": "stl-dispatcher:space-ingest last succeeded 96h ago (expected within 30h)."
       }
     ]
   },
@@ -712,13 +712,13 @@
     },
     {
       "icon": "🔴",
-      "title": "stl-dispatcher:podcast-ingest last succeeded 47h ago (expected within 30h).",
+      "title": "stl-dispatcher:podcast-ingest last succeeded 71h ago (expected within 30h).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
       "cat": "CRITICAL"
     },
     {
       "icon": "🔴",
-      "title": "stl-dispatcher:space-ingest last succeeded 72h ago (expected within 30h).",
+      "title": "stl-dispatcher:space-ingest last succeeded 96h ago (expected within 30h).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
       "cat": "CRITICAL"
     }
