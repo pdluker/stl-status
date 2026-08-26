@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-08-25",
-    "version": "3.72"
+    "lastUpdated": "2026-08-26",
+    "version": "3.73"
   },
   "stats": {
     "totalSites": 14,
@@ -620,8 +620,8 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-08-25T11:00:45.651Z",
-    "findingsCount": 11,
+    "ranAt": "2026-08-26T11:01:05.210Z",
+    "findingsCount": 9,
     "findings": [
       {
         "type": "cron_drift",
@@ -678,22 +678,6 @@
         "severity": "info",
         "worker": "status",
         "message": "Deployed Worker \"status\" is not tracked in data.json."
-      },
-      {
-        "type": "heartbeat_stale",
-        "severity": "critical",
-        "job": "stl-dispatcher:podcast-ingest",
-        "lastSuccess": "2026-08-22T11:31:20.607Z",
-        "ageHours": 71,
-        "message": "stl-dispatcher:podcast-ingest last succeeded 71h ago (expected within 30h)."
-      },
-      {
-        "type": "heartbeat_stale",
-        "severity": "critical",
-        "job": "stl-dispatcher:space-ingest",
-        "lastSuccess": "2026-08-21T11:03:19.409Z",
-        "ageHours": 96,
-        "message": "stl-dispatcher:space-ingest last succeeded 96h ago (expected within 30h)."
       }
     ]
   },
@@ -709,18 +693,6 @@
       "title": "data.json references Worker \"memory-lattice\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
       "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
       "cat": "DRIFT"
-    },
-    {
-      "icon": "🔴",
-      "title": "stl-dispatcher:podcast-ingest last succeeded 71h ago (expected within 30h).",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
-      "cat": "CRITICAL"
-    },
-    {
-      "icon": "🔴",
-      "title": "stl-dispatcher:space-ingest last succeeded 96h ago (expected within 30h).",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
-      "cat": "CRITICAL"
     }
   ]
 }
