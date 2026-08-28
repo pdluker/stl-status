@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-08-27",
-    "version": "3.74"
+    "lastUpdated": "2026-08-28",
+    "version": "3.75"
   },
   "stats": {
     "totalSites": 14,
@@ -620,8 +620,8 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-08-27T11:00:54.871Z",
-    "findingsCount": 10,
+    "ranAt": "2026-08-28T11:01:01.049Z",
+    "findingsCount": 11,
     "findings": [
       {
         "type": "cron_drift",
@@ -684,6 +684,12 @@
         "severity": "info",
         "worker": "status",
         "message": "Deployed Worker \"status\" is not tracked in data.json."
+      },
+      {
+        "type": "untracked_worker",
+        "severity": "info",
+        "worker": "stl-weekly",
+        "message": "Deployed Worker \"stl-weekly\" is not tracked in data.json."
       }
     ]
   },
