@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-08-29",
-    "version": "3.76"
+    "lastUpdated": "2026-08-30",
+    "version": "3.77"
   },
   "stats": {
     "totalSites": 14,
@@ -620,8 +620,8 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-08-29T11:01:10.245Z",
-    "findingsCount": 12,
+    "ranAt": "2026-08-30T11:01:12.545Z",
+    "findingsCount": 13,
     "findings": [
       {
         "type": "cron_drift",
@@ -672,6 +672,12 @@
         "severity": "info",
         "worker": "podcast",
         "message": "Deployed Worker \"podcast\" is not tracked in data.json."
+      },
+      {
+        "type": "untracked_worker",
+        "severity": "info",
+        "worker": "rails-beneath-us",
+        "message": "Deployed Worker \"rails-beneath-us\" is not tracked in data.json."
       },
       {
         "type": "untracked_worker",
