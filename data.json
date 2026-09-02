@@ -1,698 +1,155 @@
-{
-  "meta": {
-    "lastUpdated": "2026-09-01",
-    "version": "3.81"
-  },
-  "stats": {
-    "totalSites": 20,
-    "liveSites": 20,
-    "plannedSites": 0,
-    "inactiveSites": 0,
-    "automatedSites": 14,
-    "openTasks": 19
-  },
-  "sites": [
-    {
-      "key": "STL-1",
-      "name": "STLuker",
-      "subdomain": "stluker.com",
-      "url": "https://stluker.com",
-      "status": "live",
-      "category": "Public Sites",
-      "stack": "CF Worker: stluker",
-      "repo": "C:\\Users\\pdluk\\stluker-v3",
-      "lastDeploy": "2026-06-23",
-      "description": "Main city guide — restaurants, coffee, bars, hotels, entertainment, work visits. SEO Worker with 12 routed URLs, sitemap, GSC verified.",
-      "features": [
-        "Weekly AI food pulse (Supabase Edge Fn food-pulse v5)",
-        "Paul's Picks rotation Worker + Sentinel",
-        "Newsletter subscribe → Resend",
-        "Booking.com affiliate links",
-        "New & Now section (Robin, Esca, Noble Crown)",
-        "Paul's Pick badge component"
-      ],
-      "automation": "Weekly food pulse via Supabase pg_cron + Edge Function",
-      "openTasks": [
-        {
-          "title": "Confirm Booking.com affiliate account approved",
-          "detail": "Application submitted — waiting on Booking.com partner approval before BOOKING_AID secret goes live in links."
-        }
-      ]
-    },
-    {
-      "key": "STL-2",
-      "name": "STLuker Jr.",
-      "subdomain": "family.stluker.com",
-      "url": "https://family.stluker.com",
-      "status": "live",
-      "category": "Public Sites",
-      "stack": "CF Worker: family",
-      "repo": "Manual upload (not git-connected)",
-      "lastDeploy": "2026-06-30",
-      "description": "Kids/family edition — 123 parks, family restaurants, activities, decision engine.",
-      "features": [
-        "123 parks from Google Maps list",
-        "List/Map toggle (Leaflet.js, amenity-colored pins)",
-        "Paul's Picks: Francis Park, Castlewood, Forest Park, Shaw Park, Brentwood Park",
-        "Decision engine (What kind of day is it?)",
-        "Been Here tracker",
-        "Mobile bottom nav"
-      ],
-      "automation": "Manual",
-      "openTasks": [
-        {
-          "title": "Weather-driven activity sorting (P2)",
-          "detail": "Integrate NWS/OpenWeatherMap 7–10 day forecast to re-sort or visually prioritize indoor/outdoor cards. Toggle-on UX so default list view is unchanged."
-        }
-      ]
-    },
-    {
-      "key": "STL-3",
-      "name": "STL/7 Sports",
-      "subdomain": "sports.stluker.com",
-      "url": "https://sports.stluker.com",
-      "status": "live",
-      "category": "Public Sites",
-      "stack": "CF Worker: stl-sports (KV: SPORTS_KV)",
-      "repo": "GitHub: pdluker/stl-sports (CI/CD wired)",
-      "lastDeploy": "2026-06-29",
-      "description": "7-day STL sports slate — pro, college, minor league. Rivalry watch, filters, ICS export.",
-      "features": [
-        "ESPN API + iCal feeds for 7 STL colleges",
-        "Rivalry watch",
-        "Sport + Level filter chips",
-        "ICS calendar export",
-        "Offseason ledger"
-      ],
-      "automation": "Sunday pulse via stl-dispatcher",
-      "openTasks": [
-        {
-          "title": "Gateway Grizzlies iCal feed",
-          "detail": "Independent MiLB team — ESPN API has no coverage. Need to source a direct/third-party iCal feed and wire into SPORTS_KV manually."
-        }
-      ]
-    },
-    {
-      "key": "STL-4",
-      "name": "STL/Music",
-      "subdomain": "music.stluker.com",
-      "url": "https://music.stluker.com",
-      "status": "live",
-      "category": "Public Sites",
-      "stack": "CF Worker: stl-music (KV: MUSIC_KV)",
-      "repo": "GitHub: pdluker/stl-music (CI/CD wired)",
-      "lastDeploy": "2026-06-29",
-      "description": "7-day live music, comedy & theater tracker. Ticketmaster Discovery API.",
-      "features": [
-        "Concert / Comedy / Theater filters",
-        "Genre filter chips",
-        "Ticketmaster venue IDs",
-        "ICS calendar export",
-        "JSON-LD MusicEvent schema"
-      ],
-      "automation": "Sunday pulse via stl-dispatcher",
-      "openTasks": []
-    },
-    {
-      "key": "STL-5",
-      "name": "STL Weekend Guide",
-      "subdomain": "stl.stluker.com",
-      "url": "https://stl.stluker.com",
-      "status": "live",
-      "category": "Public Sites",
-      "stack": "CF Worker: stl-bucket (KV: STL_BUCKET_KV + Supabase)",
-      "repo": "C:\\Users\\pdluk\\stl-bucket-worker",
-      "lastDeploy": "2026-06-26",
-      "description": "Auto-curated weekend guide from STL Bucket List beehiiv newsletter. Friday cron via stl-dispatcher.",
-      "features": [
-        "beehiiv RSS → HTML → Claude Haiku extraction",
-        "Friday refresh via stl-dispatcher Task 3",
-        "Supabase stl_issues table",
-        "2-week KV TTL",
-        "Bearer-auth /refresh endpoint"
-      ],
-      "automation": "Fully automated — weekly beehiiv → Claude Haiku → KV",
-      "openTasks": []
-    },
-    {
-      "key": "FIRE-1",
-      "name": "FIRE Intel",
-      "subdomain": "fire.stluker.com",
-      "url": "https://fire.stluker.com",
-      "status": "live",
-      "category": "Personal Tools",
-      "stack": "CF Pages: fire-intel (GitHub CI/CD) — React",
-      "repo": "GitHub: pdluker/fire-intel",
-      "lastDeploy": "2026-06-18",
-      "description": "AI-powered FIRE retirement intelligence dashboard.",
-      "features": [
-        "D3: Morning Briefing (6 signal topics daily)",
-        "C1: FIRE Date Calculator (probability bands)",
-        "C2: Timeline Impact Engine",
-        "C3: GDIT Tailwind Score",
-        "C5: Scenario Simulator",
-        "E2: Goals",
-        "Portfolio CSV upload + 401k entry"
-      ],
-      "automation": "Daily noon UTC cron via fire-api",
-      "openTasks": [
-        {
-          "title": "Re-wire D2 Portfolio Exposure",
-          "detail": "Disabled — DEFAULT_ALLOCATION constant no longer matches live CSV factor weights."
-        },
-        {
-          "title": "Verify CF_AIG_TOKEN",
-          "detail": "Confirm the AI Gateway authenticated-mode token is set so fire-api isn't silently falling back to unauthenticated calls."
-        }
-      ]
-    },
-    {
-      "key": "FIRE-2",
-      "name": "FIRE API",
-      "subdomain": "fire-api.stluker.com",
-      "url": "https://fire-api.stluker.com",
-      "status": "live",
-      "category": "Personal Tools",
-      "stack": "CF Worker: fire-api — daily cron 0 12 * * *",
-      "repo": "GitHub: pdluker/fire-intel/workers/api/",
-      "lastDeploy": "2026-06-18",
-      "description": "Backend API for fire.stluker.com. Claude via CF AI Gateway.",
-      "features": [
-        "6 AI signal topics/run via Claude + web_search",
-        "Prompt caching + retry cap + search cap (Jul 22, 2026)",
-        "6-hr gateway cache on calendar calls",
-        "/api/portfolio/upload-csv",
-        "/api/goals — KV-persisted"
-      ],
-      "automation": "Daily cron 0 12 * * *",
-      "openTasks": [
-        {
-          "title": "Verify CF_AIG_TOKEN for authenticated gateway",
-          "detail": "Check fire-intel-gateway logs for non-zero requests and cache hits."
-        }
-      ]
-    },
-    {
-      "key": "FIRE-3",
-      "name": "FIRE OS (Retire)",
-      "subdomain": "retire.stluker.com",
-      "url": "https://retire.stluker.com",
-      "status": "live",
-      "category": "Personal Tools",
-      "stack": "CF Worker: retire — pure HTML/JS, Chart.js 4.4.1",
-      "repo": "C:\\Users\\pdluk\\fire-intel\\retire.html",
-      "lastDeploy": "2026-07-10",
-      "description": "Standalone retirement planning OS. 8-tab tool: Monte Carlo, Tax Engine, Strategy, AI Advisor, Accounts.",
-      "features": [
-        "Monte Carlo (10th/25th/50th/75th/90th percentile)",
-        "Tax Engine: RMD, Roth ladder, SS optimizer, IRMAA",
-        "Strategy comparison",
-        "AI Financial Advisor (Claude chat)",
-        "Accounts register",
-        "localStorage persistence (fire_os_v5)"
-      ],
-      "automation": "None — standalone",
-      "openTasks": [
-        {
-          "title": "Wire AI Advisor to fire-api backend",
-          "detail": "Chat tab may be calling Claude directly instead of routing through fire-api's AI Gateway."
-        },
-        {
-          "title": "Sync snapshots to Supabase",
-          "detail": "Snapshot history is localStorage-only today."
-        }
-      ]
-    },
-    {
-      "key": "DISPATCH-1",
-      "name": "STL Dispatcher",
-      "subdomain": "stl-dispatcher.pdluker.workers.dev",
-      "url": "https://stl-dispatcher.pdluker.workers.dev/health",
-      "status": "live",
-      "category": "Infrastructure",
-      "stack": "CF Worker: stl-dispatcher (KV: STATUS_KV, SPACE_KV, EARTH_KV, PODCAST_KV; R2: POD_BUCKET)",
-      "repo": "C:\\Users\\pdluk\\stl-dispatcher",
-      "lastDeploy": "2026-08-27",
-      "description": "Consolidated periodic-task Worker — 9 dedicated crons (Workers Paid, upgraded Aug 21) driving keepalive, statusSync, and all site ingestion/refresh tasks.",
-      "features": [
-        "9 dedicated Cron Triggers, one task each — no in-code day gating",
-        "GET /health — per-task heartbeat detail",
-        "POST /trigger — Bearer-gated manual run, per-task opt-in flags"
-      ],
-      "automation": "Fully automated — 9 independent crons",
-      "openTasks": [
-        {
-          "title": "Set WEEKLY_SECRET on both stl-dispatcher and stl-weekly",
-          "detail": "Added 2026-08-27, not yet set — runWeeklyOnly() throws 'WEEKLY_SECRET not bound' until wrangler secret put is run on both Workers."
-        }
-      ]
-    },
-    {
-      "key": "MEM-1",
-      "name": "Memory Lattice",
-      "subdomain": "memory.stluker.com",
-      "url": "https://memory.stluker.com",
-      "status": "live",
-      "category": "Personal Tools",
-      "stack": "CF Pages: memory-lattice (GitHub CI/CD) + Worker",
-      "repo": "GitHub: pdluker/memory-lattice",
-      "lastDeploy": "2026-07-13",
-      "description": "Knowledge/memory tool. Supabase persistence wiring pending.",
-      "features": [
-        "Pages + Worker deployed",
-        "Supabase keepalive covered",
-        "HSTS fixed via public/_headers"
-      ],
-      "automation": "Static",
-      "openTasks": [
-        {
-          "title": "Wire Supabase persistence + auth",
-          "detail": "App currently has no durable storage or auth."
-        }
-      ]
-    },
-    {
-      "key": "FAM-1",
-      "name": "Reunion",
-      "subdomain": "reunion.stluker.com",
-      "url": "https://reunion.stluker.com",
-      "status": "live",
-      "category": "Family / Social",
-      "stack": "CF Worker: reunion + Web3Forms",
-      "repo": "Unknown",
-      "lastDeploy": "Unknown",
-      "description": "Reunion/event RSVP. Resend confirmation emails not yet wired.",
-      "features": [
-        "Web3Forms RSVP",
-        "Resend domain verified"
-      ],
-      "automation": "None",
-      "openTasks": [
-        {
-          "title": "Wire Resend confirmation emails",
-          "detail": "send.stluker.com domain is fully verified — replace the Web3Forms email leg with a Resend send on RSVP submit."
-        }
-      ]
-    },
-    {
-      "key": "POKE-1",
-      "name": "Pokelab",
-      "subdomain": "pokelab.stluker.com",
-      "url": "https://pokelab.stluker.com",
-      "status": "live",
-      "category": "Personal Tools",
-      "stack": "CF Worker: pokelab (Git-connected Workers Builds)",
-      "repo": "GitHub: pdluker/pokelab",
-      "lastDeploy": "2026-07-14",
-      "description": "Pokelab tool.",
-      "features": [],
-      "automation": "None",
-      "openTasks": []
-    },
-    {
-      "key": "RAIL-1",
-      "name": "Iron Rails",
-      "subdomain": "trains.stluker.com",
-      "url": "https://trains.stluker.com",
-      "status": "live",
-      "category": "Personal Tools",
-      "stack": "CF Worker: ironrails (Git-connected Workers Builds)",
-      "repo": "GitHub: pdluker/iron-rails",
-      "lastDeploy": "2026-07-14",
-      "description": "Train/transit tracker.",
-      "features": [],
-      "automation": "None",
-      "openTasks": []
-    },
-    {
-      "key": "STAT-1",
-      "name": "Status Board",
-      "subdomain": "status.stluker.com",
-      "url": "https://status.stluker.com",
-      "status": "live",
-      "category": "Infrastructure",
-      "stack": "CF Worker: status (KV: STATUS_KV, read at request time) — CF Workers Builds (GitHub Git-connected, watch path narrowed to wrangler.jsonc)",
-      "repo": "GitHub: pdluker/stl-status; local working copy C:\\Users\\pdluk\\status-deploy\\",
-      "lastDeploy": "2026-07-23",
-      "description": "Ecosystem command center. /data.json served from STATUS_KV at request time, written daily by stl-dispatcher's statusSync task.",
-      "features": [
-        "Live health probes",
-        "Reconciliation findings (cron drift, phantom/untracked workers, heartbeat staleness)",
-        "Per-site expandable task details"
-      ],
-      "automation": "Daily reconciliation via stl-dispatcher; site content itself is a manual STATUS_KV push",
-      "openTasks": []
-    },
-    {
-      "key": "SPACE-1",
-      "name": "Space News",
-      "subdomain": "space.stluker.com",
-      "url": "https://space.stluker.com",
-      "status": "live",
-      "category": "Public Sites",
-      "stack": "CF Worker: space (KV: SPACE_KV)",
-      "repo": "Manual deploy — status-style pattern",
-      "lastDeploy": "2026-07-26",
-      "description": "Space-news + launch dashboard — 13 RSS feeds + Spaceflight News API + Launch Library 2, Haiku-clustered, daily citation-linked briefing + ISS visible passes.",
-      "features": [
-        "Today's Briefing (citation-linked Haiku synthesis)",
-        "ISS visible-pass predictions",
-        "Launch/Astronomy/Mission/Policy/Industry taxonomy",
-        "Source-misattribution + CDATA-link fixes shipped"
-      ],
-      "automation": "Daily spaceIngest via stl-dispatcher (10:10 UTC)",
-      "openTasks": [
-        {
-          "title": "LL2 launch tracker still empty",
-          "detail": "Anonymous-tier 429s persist even with header/retry fix. Real fix needs a Patreon-gated LL2_API_KEY; purchase deliberately deferred."
-        }
-      ]
-    },
-    {
-      "key": "EARTH-1",
-      "name": "Earth Sciences",
-      "subdomain": "earth.stluker.com",
-      "url": "https://earth.stluker.com",
-      "status": "live",
-      "category": "Public Sites",
-      "stack": "CF Worker: earth (KV: EARTH_KV)",
-      "repo": "Manual deploy — status-style pattern",
-      "lastDeploy": "2026-07-28",
-      "description": "Daily earth-sciences dashboard — earthquakes (USGS), wildfires/storms/ice (NASA EONET), volcanoes (Smithsonian/USGS GVP weekly).",
-      "features": [
-        "earthIngest built and running",
-        "KV-at-request-time pattern"
-      ],
-      "automation": "Daily earthIngest via stl-dispatcher (10:15 UTC)",
-      "openTasks": [
-        {
-          "title": "Add wildfire-coverage disclaimer",
-          "detail": "Honest 'strongest coverage for North America, not comprehensive globally' note — 15-min fix, flagged Jul 28."
-        },
-        {
-          "title": "Scope NASA FIRMS integration",
-          "detail": "3-5 hrs, needs a free MAP_KEY signup first."
-        }
-      ]
-    },
-    {
-      "key": "INTEL-1",
-      "name": "North AL Intel",
-      "subdomain": "intel.stluker.com",
-      "url": "https://intel.stluker.com",
-      "status": "live",
-      "category": "Public Sites",
-      "stack": "CF Worker: intel (KV: INTEL_KV)",
-      "repo": "Manual deploy",
-      "lastDeploy": "2026-07-24",
-      "description": "North Alabama defense/space intel news — RSS/HTML-scrape ingestion (DVIDS, Army, MDA, Space Force, NGA, war.gov contracts), no Haiku summarization pass.",
-      "features": [
-        "Wired into stl-dispatcher Mon/Wed/Thu gate",
-        "Per-source diagnostics array"
-      ],
-      "automation": "Mon/Wed/Thu intelRefresh via stl-dispatcher (10:20 UTC)",
-      "openTasks": [
-        {
-          "title": "MDA feed timing out",
-          "detail": "HTTP 524, confirmed not Workers-specific via direct home-network curl."
-        },
-        {
-          "title": "war.gov-contracts permanent dead end",
-          "detail": "403 on all fetches, no header fix helps — likely IP-range/WAF blocking."
-        }
-      ]
-    },
-    {
-      "key": "SCHOOLS-1",
-      "name": "STL Schools",
-      "subdomain": "schools.stluker.com",
-      "url": "https://schools.stluker.com",
-      "status": "live",
-      "category": "Public Sites",
-      "stack": "CF Worker: schools (KV: SCHOOLS_KV)",
-      "repo": "Manual deploy",
-      "lastDeploy": "2026-07-30",
-      "description": "St. Louis-area Missouri public school news dashboard — district news + Missouri DESE policy.",
-      "features": [
-        "Custom domain confirmed live",
-        "Advocacy-source plumbing (inert placeholder)"
-      ],
-      "automation": "Mon/Wed/Fri schoolsRefresh via stl-dispatcher (10:25 UTC)",
-      "openTasks": [
-        {
-          "title": "Build sourceType badge UI",
-          "detail": "Needed before the Show-Me Institute placeholder or any advocacy source is worth activating."
-        },
-        {
-          "title": "Confirm first unattended scheduled run",
-          "detail": "Secrets rotated + test-verified, but a real unattended scheduled firing producing real district content hasn't been separately confirmed."
-        }
-      ]
-    },
-    {
-      "key": "POD-1",
-      "name": "STLuker Podcast",
-      "subdomain": "pod.stluker.com",
-      "url": "https://pod.stluker.com",
-      "status": "live",
-      "category": "Personal Tools",
-      "stack": "CF Worker: pod (R2: POD_BUCKET/pod-audio, KV: PODCAST_KV)",
-      "repo": "Manual deploy",
-      "lastDeploy": "2026-08-04",
-      "description": "Daily automated podcast — earth + orbit (space) news. Haiku script, ElevenLabs TTS, dynamic per-episode + channel cover art, RSS feed.",
-      "features": [
-        "eleven_flash_v2_5 TTS (0.5 credits/char)",
-        "Dynamic channel-level cover art (fixed Aug 4)",
-        "5-line closeout rotation"
-      ],
-      "automation": "Daily podcastIngest via stl-dispatcher (10:30 UTC), reads SPACE_KV/EARTH_KV",
-      "openTasks": []
-    },
-    {
-      "key": "WEEKLY-1",
-      "name": "STL Weekly",
-      "subdomain": "weekly.stluker.com",
-      "url": "https://weekly.stluker.com",
-      "status": "live",
-      "category": "Personal Tools",
-      "stack": "CF Worker: stl-weekly",
-      "repo": "Manual deploy",
-      "lastDeploy": "2026-08-27",
-      "description": "Weekly refresh, added following the same dedicated-cron pattern as every other task.",
-      "features": [],
-      "automation": "Monday refresh via stl-dispatcher (10:40 UTC)",
-      "openTasks": [
-        {
-          "title": "Set WEEKLY_SECRET",
-          "detail": "Not yet set on either stl-dispatcher or stl-weekly — runWeeklyOnly() throws until wrangler secret put is run on both."
-        }
-      ]
-    }
-  ],
-  "openTasks": [
-    {
-      "id": "T-1",
-      "title": "STL/Music Ticketmaster cron poller",
-      "priority": "high",
-      "site": "music.stluker.com",
-      "detail": "Venue IDs ready — deploy cron Worker to auto-populate MUSIC_KV weekly"
-    },
-    {
-      "id": "T-2",
-      "title": "stl.stluker.com cross-link nav",
-      "priority": "medium",
-      "site": "stl.stluker.com",
-      "detail": "Add stl.stluker.com to top-banner on stluker.com, family, sports, music"
-    },
-    {
-      "id": "T-14",
-      "title": "Archive resolved/stale Security Insights findings",
-      "priority": "medium",
-      "site": "Cloudflare (account-wide)",
-      "detail": "All reviewed and confirmed resolved/stale, just needs the dashboard archive action."
-    },
-    {
-      "id": "T-16",
-      "title": "Decide family.stluker.com Git connection",
-      "priority": "low",
-      "site": "family.stluker.com",
-      "detail": "Either wire real CI/CD from an appropriate repo or permanently document manual-deploy as the intended state."
-    },
-    {
-      "id": "T-5",
-      "title": "Reunion Resend email wiring",
-      "priority": "low",
-      "site": "reunion.stluker.com",
-      "detail": "Wire Resend for RSVP confirmation emails — domain already verified"
-    },
-    {
-      "id": "T-8",
-      "title": "fire-api CF_AIG_TOKEN verification",
-      "priority": "low",
-      "site": "fire-api.stluker.com",
-      "detail": "Confirm CF_AIG_TOKEN secret is set and AI Gateway authenticated mode is active"
-    }
-  ],
-  "recentActivity": [],
-  "infrastructure": {
-    "cloudflare": {
-      "cronSlotsUsed": 9,
-      "cronSlotsTotal": 250,
-      "tier": "Workers Paid (upgraded 2026-08-21)",
-      "crons": [
-        "stluker: 0 9 */3 * * (food pulse)",
-        "stl-sports: CI/CD-managed, retired native cron (Jul 30) — now Sunday pulse via stl-dispatcher",
-        "stl-music: retired native cron (Jul 30) — now Sunday pulse via stl-dispatcher",
-        "stl-dispatcher: 0 11 * * * (keepalive + statusSync)",
-        "stl-dispatcher: 5 11 * * FRI (stlBucket)",
-        "stl-dispatcher: 10 11 * * * (spaceIngest)",
-        "stl-dispatcher: 15 11 * * * (earthIngest)",
-        "stl-dispatcher: 20 11 * * MON,WED,THU (intelRefresh)",
-        "stl-dispatcher: 25 11 * * MON,WED,FRI (schoolsRefresh)",
-        "stl-dispatcher: 30 11 * * * (podcastIngest)",
-        "stl-dispatcher: 35 11 * * SUN (music + sports pulse)",
-        "stl-dispatcher: 40 11 * * MON (stl-weekly refresh)"
-      ]
-    },
-    "supabase": {
-      "project": "baknyepgyjurarojdkhy",
-      "tier": "Free Nano",
-      "region": "us-west-2",
-      "tables": [
-        "food_pulse_signals",
-        "stl_issues"
-      ],
-      "edgeFunctions": [
-        "food-pulse v5"
-      ],
-      "keepalive": "stl-dispatcher, every ~5 days"
-    },
-    "github": {
-      "repos": [
-        "fire-intel",
-        "memory-lattice",
-        "stl-status",
-        "stl-music",
-        "stl-sports",
-        "pokelab",
-        "iron-rails"
-      ]
-    },
-    "dns": {
-      "registrar": "Squarespace (expires Sep 16, 2026)",
-      "provider": "Cloudflare"
-    },
-    "externalAPIs": [
-      "Ticketmaster Discovery API",
-      "ESPN API",
-      "Launch Library 2 API",
-      "Spaceflight News API",
-      "iss-api.polluxlabs.io",
-      "YouTube Data API v3",
-      "Cloudinary",
-      "beehiiv RSS",
-      "ElevenLabs (eleven_flash_v2_5)",
-      "Claude AI Gateway"
-    ]
-  },
-  "verification": {
-    "ranAt": "2026-09-01T20:00:58.520Z",
-    "findingsCount": 13,
-    "findings": [
+[
+  {
+    "key": "RAILS-2",
+    "name": "Rails Beneath Us",
+    "subdomain": "rails.stluker.com",
+    "url": "https://rails.stluker.com",
+    "status": "live",
+    "category": "Personal Tools",
+    "stack": "CF Worker: rails-beneath-us (R2: BUCKET/rails-beneath-us)",
+    "repo": "Unknown — confirm local path",
+    "lastDeploy": "2026-08-31",
+    "description": "Automated train/transit podcast — Haiku/Sonnet-generated narrated episodes, RSS feed, transcript + cover art delivery. Distinct from ironrails (trains.stluker.com), which is a separate transit-tracker tool.",
+    "features": [
+      "Own native Cron Trigger: 0 11 * * 1,3,5 (Mon/Wed/Fri 06:00 CT) — not wired into stl-dispatcher",
+      "claude-sonnet-5 script generation",
+      "Narrator speed/word-budget tuned against real episode output (189 wpm, 0.86x)",
+      "RSS + transcript + cover-art endpoints (/rss.xml, /transcript/*, /cover/*)"
+    ],
+    "automation": "Fully automated — own dedicated Mon/Wed/Fri cron, independent of stl-dispatcher",
+    "openTasks": [
       {
-        "type": "cron_drift",
-        "severity": "warning",
-        "worker": "stl-music",
-        "expected": "0 10 * * 1",
-        "live": [],
-        "message": "Deployed cron for stl-music (none) does not match declared \"0 10 * * 1\"."
+        "title": "/refresh endpoint intentionally open (no auth)",
+        "detail": "Confirmed deliberate, not an oversight — documented here so it isn't mistaken for a security gap in a future audit."
       },
       {
-        "type": "phantom_worker",
-        "severity": "warning",
-        "worker": "memory-lattice",
-        "message": "data.json references Worker \"memory-lattice\" but it no longer exists in Cloudflare. Remove stale references/recommendations."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "bigbuilds",
-        "message": "Deployed Worker \"bigbuilds\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "civicsignal",
-        "message": "Deployed Worker \"civicsignal\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "innovation-daily",
-        "message": "Deployed Worker \"innovation-daily\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "mech-match",
-        "message": "Deployed Worker \"mech-match\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "pod",
-        "message": "Deployed Worker \"pod\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "podcast",
-        "message": "Deployed Worker \"podcast\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "rails-beneath-us",
-        "message": "Deployed Worker \"rails-beneath-us\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "retire",
-        "message": "Deployed Worker \"retire\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "schools",
-        "message": "Deployed Worker \"schools\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "status",
-        "message": "Deployed Worker \"status\" is not tracked in data.json."
-      },
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "stl-weekly",
-        "message": "Deployed Worker \"stl-weekly\" is not tracked in data.json."
+        "title": "Decide: keep native cron or consolidate into stl-dispatcher",
+        "detail": "Currently self-contained like stl-sports/stl-music were pre-Jul-30. No capacity pressure on Workers Paid either way — purely an operational-visibility choice (unified /health vs. standalone)."
       }
     ]
   },
-  "autoRecommendations": [
-    {
-      "icon": "🟠",
-      "title": "Deployed cron for stl-music (none) does not match declared \"0 10 * * 1\".",
-      "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
-      "cat": "DRIFT"
-    },
-    {
-      "icon": "🟠",
-      "title": "data.json references Worker \"memory-lattice\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
-      "cat": "DRIFT"
-    }
-  ]
-}
+  {
+    "key": "CIVIC-1",
+    "name": "CivicSignal",
+    "subdomain": "civicsignal.stluker.com",
+    "url": "https://civicsignal.stluker.com",
+    "status": "live",
+    "category": "Personal Tools",
+    "stack": "CF Worker: civicsignal (R2: SNAPSHOTS/civicsignal, KV: RUN_LOCK) + Supabase backend",
+    "repo": "Unknown — confirm local path",
+    "lastDeploy": "2026-08-31",
+    "description": "Local commerce intelligence. Supabase-backed (service role key), Resend email delivery, health-check ping monitoring, planned CivicWeb/CivicPlus email-ingestion source.",
+    "features": [
+      "Own native Cron Trigger: 0 11 * * MON-FRI (weekday mornings, ~06:00 CT) — not wired into stl-dispatcher",
+      "R2 snapshot storage + KV run-lock (prevents overlapping runs)",
+      "Supabase backend (SUPABASE_SERVICE_ROLE_KEY, SUPABASE_URL)",
+      "Resend email delivery + external healthcheck ping",
+      "CivicWeb/CivicPlus email-ingestion source planned (Phase 1, not yet configured — needs a zone-level Cloudflare Email Routing rule, cannot be set via wrangler.jsonc)"
+    ],
+    "automation": "Automated — own dedicated weekday cron, independent of stl-dispatcher",
+    "openTasks": [
+      {
+        "title": "Resolve auth discrepancy on /refresh",
+        "detail": "wrangler.jsonc declares CIVICSIGNAL_BEARER_SECRET as a secret to be set, but this was separately described as intentionally open right now. Confirm whether the secret is set-but-unenforced in code, or genuinely not yet wired into an auth check — don't assume either way."
+      },
+      {
+        "title": "Configure CivicWeb/CivicPlus email ingestion (Phase 1)",
+        "detail": "Requires a zone-level Cloudflare Email Routing rule (MX-routed address, e.g. notifications@civicsignal.stluker.com) pointed at this Worker — cannot be done via wrangler.jsonc, must be set up in the dashboard/API per the code's own README reference."
+      }
+    ]
+  },
+  {
+    "key": "INNOV-1",
+    "name": "Innovation Daily",
+    "subdomain": "innovation.stluker.com",
+    "url": "https://innovation.stluker.com",
+    "status": "live",
+    "category": "Personal Tools",
+    "stack": "CF Worker: innovation-daily (R2: PODCAST_BUCKET/innovation-daily)",
+    "repo": "Unknown — confirm local path",
+    "lastDeploy": "2026-08-30",
+    "description": "AI-driven company/venture generator, delivered as a narrated podcast. Haiku/Sonnet script generation + ElevenLabs TTS, RSS feed, transcript/cover art delivery.",
+    "features": [
+      "Own native Cron Trigger: 0 11 * * 2,4 (Tue/Thu 06:00 CT) — not wired into stl-dispatcher",
+      "ElevenLabs TTS, narrator speed 1.06 (confirmed working range 0.7-1.2)",
+      "RSS/feed + transcript + cover-art endpoints",
+      "Bearer-auth /refresh via REFRESH_SECRET (not open, unlike rails-beneath-us/civicsignal)"
+    ],
+    "automation": "Fully automated — own dedicated Tue/Thu cron, independent of stl-dispatcher",
+    "openTasks": [
+      {
+        "title": "Recalibrate WORDS_PER_MINUTE from seed value",
+        "detail": "Currently 140 (seed placeholder per the code's own comment) — needs to be measured against episode one's real word count and timing, the same way rails-beneath-us's 189wpm/0.86x was measured rather than guessed."
+      },
+      {
+        "title": "Decide: keep native cron or consolidate into stl-dispatcher",
+        "detail": "Same open question as rails-beneath-us — self-contained today, no capacity pressure either way on Workers Paid."
+      }
+    ]
+  },
+  {
+    "key": "MECH-1",
+    "name": "Mech Match",
+    "subdomain": "mechmatch.stluker.com",
+    "url": "https://mechmatch.stluker.com",
+    "status": "live",
+    "category": "Personal Tools",
+    "stack": "CF Worker: mech-match",
+    "repo": "Unknown — confirm local path",
+    "lastDeploy": "2026-08-30",
+    "description": "Podcast covering Gundam-style mech combat.",
+    "features": [],
+    "automation": "Unconfirmed — wrangler.jsonc not yet pulled",
+    "openTasks": [
+      {
+        "title": "Pull wrangler.jsonc to confirm storage, cron cadence, auth pattern, and endpoint shape",
+        "detail": "Not yet documented."
+      }
+    ]
+  },
+  {
+    "key": "BUILDS-1",
+    "name": "Builds",
+    "subdomain": "builds.stluker.com",
+    "url": "https://builds.stluker.com",
+    "status": "live",
+    "category": "Personal Tools",
+    "stack": "CF Worker: bigbuilds (R2: PODCAST_BUCKET/big-builds-podcast, Workers AI: AI)",
+    "repo": "Unknown — confirm local path",
+    "lastDeploy": "2026-08-25",
+    "description": "\"Big Builds\" — podcast covering great engineering feats of humanity. Haiku/Sonnet script + ElevenLabs TTS (voice: Oxley), optional Workers AI-generated cover art.",
+    "features": [
+      "Own native Cron Trigger: 0 13 */2 * * (every other day, ~08:00 CT) — not wired into stl-dispatcher",
+      "ElevenLabs voice 'Oxley — Rich and Deep'",
+      "Workers AI binding for cover art — poster.js no-ops cleanly if the binding is ever removed",
+      "Bearer-auth /refresh via REFRESH_SECRET"
+    ],
+    "automation": "Fully automated — own dedicated every-other-day cron, independent of stl-dispatcher",
+    "openTasks": [
+      {
+        "title": "Cosmetic cron drift risk at month boundaries",
+        "detail": "\"*/2\" on day-of-month resets each month rather than running a true period-2 cycle — odd-length months (31 days) can produce one back-to-back pair of episode days at a month boundary. Documented as cosmetic/non-urgent by the code's own comment; a KV-tracked \"days since last episode\" check would be the precise fix if it ever actually matters."
+      }
+    ]
+  },
+  {
+    "key": "PODCAST-2",
+    "name": "Pokemon Podcast",
+    "subdomain": "podcast.stluker.com",
+    "url": "https://podcast.stluker.com",
+    "status": "live",
+    "category": "Personal Tools",
+    "stack": "CF Worker: podcast",
+    "repo": "Unknown — confirm local path",
+    "lastDeploy": "2026-08-30",
+    "description": "Podcast covering Pokemon. Distinct from pod.stluker.com (STLuker Podcast, earth/orbit news) — separate show, separate Worker.",
+    "features": [],
+    "automation": "Unconfirmed — wrangler.jsonc not yet pulled",
+    "openTasks": [
+      {
+        "title": "Pull wrangler.jsonc to confirm storage, cron cadence, auth pattern, and endpoint shape",
+        "detail": "Not yet documented."
+      }
+    ]
+  }
+]
