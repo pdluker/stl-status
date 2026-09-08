@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastUpdated": "2026-09-08",
-    "version": "3.88"
+    "version": "3.89"
   },
   "stats": {
     "totalSites": 26,
@@ -749,8 +749,8 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-09-08T16:03:20.570Z",
-    "findingsCount": 3,
+    "ranAt": "2026-09-08T18:03:24.823Z",
+    "findingsCount": 4,
     "findings": [
       {
         "type": "cron_drift",
@@ -759,6 +759,23 @@
         "expected": "0 10 * * 1",
         "live": [],
         "message": "Deployed cron for stl-music (none) does not match declared \"0 10 * * 1\"."
+      },
+      {
+        "type": "cron_drift",
+        "severity": "warning",
+        "worker": "stl-dispatcher",
+        "expected": "40 11 * * MON",
+        "live": [
+          "0 11 * * *",
+          "10 11 * * *",
+          "15 11 * * *",
+          "20 11 * * MON,WED,THU",
+          "25 11 * * MON,WED,FRI",
+          "30 11 * * *",
+          "35 11 * * SUN",
+          "5 11 * * FRI"
+        ],
+        "message": "Deployed cron for stl-dispatcher (0 11 * * *, 10 11 * * *, 15 11 * * *, 20 11 * * MON,WED,THU, 25 11 * * MON,WED,FRI, 30 11 * * *, 35 11 * * SUN, 5 11 * * FRI) does not match declared \"40 11 * * MON\"."
       },
       {
         "type": "phantom_worker",
@@ -771,8 +788,8 @@
         "severity": "critical",
         "job": "stl-sports:pulse",
         "lastSuccess": "2026-08-30T11:36:02.276Z",
-        "ageHours": 220,
-        "message": "stl-sports:pulse last succeeded 220h ago (expected within 192h)."
+        "ageHours": 222,
+        "message": "stl-sports:pulse last succeeded 222h ago (expected within 192h)."
       }
     ]
   },
@@ -785,13 +802,19 @@
     },
     {
       "icon": "🟠",
+      "title": "Deployed cron for stl-dispatcher (0 11 * * *, 10 11 * * *, 15 11 * * *, 20 11 * * MON,WED,THU, 25 11 * * MON,WED,FRI, 30 11 * * *, 35 11 * * SUN, 5 11 * * FRI) does not match declared \"40 11 * * MON\".",
+      "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
+      "cat": "DRIFT"
+    },
+    {
+      "icon": "🟠",
       "title": "data.json references Worker \"memory-lattice\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
       "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
       "cat": "DRIFT"
     },
     {
       "icon": "🔴",
-      "title": "stl-sports:pulse last succeeded 220h ago (expected within 192h).",
+      "title": "stl-sports:pulse last succeeded 222h ago (expected within 192h).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
       "cat": "CRITICAL"
     }
