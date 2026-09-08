@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastUpdated": "2026-09-08",
-    "version": "3.89"
+    "version": "3.90"
   },
   "stats": {
     "totalSites": 26,
@@ -749,7 +749,7 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-09-08T18:03:24.823Z",
+    "ranAt": "2026-09-08T18:54:55.208Z",
     "findingsCount": 4,
     "findings": [
       {
@@ -788,8 +788,8 @@
         "severity": "critical",
         "job": "stl-sports:pulse",
         "lastSuccess": "2026-08-30T11:36:02.276Z",
-        "ageHours": 222,
-        "message": "stl-sports:pulse last succeeded 222h ago (expected within 192h)."
+        "ageHours": 223,
+        "message": "stl-sports:pulse last succeeded 223h ago (expected within 192h)."
       }
     ]
   },
@@ -814,7 +814,7 @@
     },
     {
       "icon": "🔴",
-      "title": "stl-sports:pulse last succeeded 222h ago (expected within 192h).",
+      "title": "stl-sports:pulse last succeeded 223h ago (expected within 192h).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
       "cat": "CRITICAL"
     }
