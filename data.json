@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-09-08",
-    "version": "3.94"
+    "lastUpdated": "2026-09-09",
+    "version": "3.95"
   },
   "stats": {
     "totalSites": 26,
@@ -749,9 +749,23 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-09-08T19:46:56.364Z",
-    "findingsCount": 0,
-    "findings": []
+    "ranAt": "2026-09-09T11:00:54.772Z",
+    "findingsCount": 1,
+    "findings": [
+      {
+        "type": "phantom_worker",
+        "severity": "warning",
+        "worker": "reunion",
+        "message": "data.json references Worker \"reunion\" but it no longer exists in Cloudflare. Remove stale references/recommendations."
+      }
+    ]
   },
-  "autoRecommendations": []
+  "autoRecommendations": [
+    {
+      "icon": "🟠",
+      "title": "data.json references Worker \"reunion\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
+      "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
+      "cat": "DRIFT"
+    }
+  ]
 }
