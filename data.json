@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-09-25",
-    "version": "3.111"
+    "lastUpdated": "2026-09-26",
+    "version": "3.112"
   },
   "stats": {
     "totalSites": 25,
@@ -714,8 +714,8 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-09-25T11:01:00.764Z",
-    "findingsCount": 3,
+    "ranAt": "2026-09-26T11:00:39.893Z",
+    "findingsCount": 1,
     "findings": [
       {
         "type": "cron_drift",
@@ -726,22 +726,6 @@
           "0 11 * * 3"
         ],
         "message": "Deployed cron for innovation-daily (0 11 * * 3) does not match declared \"0 11 * * 2,4\"."
-      },
-      {
-        "type": "cron_drift",
-        "severity": "warning",
-        "worker": "bigbuilds",
-        "expected": "0 13 */2 * *",
-        "live": [
-          "0 13 */7 * *"
-        ],
-        "message": "Deployed cron for bigbuilds (0 13 */7 * *) does not match declared \"0 13 */2 * *\"."
-      },
-      {
-        "type": "phantom_worker",
-        "severity": "warning",
-        "worker": "reunion",
-        "message": "data.json references Worker \"reunion\" but it no longer exists in Cloudflare. Remove stale references/recommendations."
       }
     ]
   },
@@ -750,18 +734,6 @@
       "icon": "🟠",
       "title": "Deployed cron for innovation-daily (0 11 * * 3) does not match declared \"0 11 * * 2,4\".",
       "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
-      "cat": "DRIFT"
-    },
-    {
-      "icon": "🟠",
-      "title": "Deployed cron for bigbuilds (0 13 */7 * *) does not match declared \"0 13 */2 * *\".",
-      "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
-      "cat": "DRIFT"
-    },
-    {
-      "icon": "🟠",
-      "title": "data.json references Worker \"reunion\" but it no longer exists in Cloudflare. Remove stale references/recommendations.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (phantom_worker).",
       "cat": "DRIFT"
     }
   ]
