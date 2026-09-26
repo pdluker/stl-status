@@ -4,12 +4,12 @@
     "version": "3.111"
   },
   "stats": {
-    "totalSites": 26,
-    "liveSites": 26,
+    "totalSites": 25,
+    "liveSites": 25,
     "plannedSites": 0,
     "inactiveSites": 0,
     "automatedSites": 18,
-    "openTasks": 28
+    "openTasks": 26
   },
   "sites": [
     {
@@ -226,8 +226,8 @@
     {
       "key": "DISPATCH-1",
       "name": "STL Dispatcher",
-      "subdomain": "stl-dispatcher.pdluker.workers.dev",
-      "url": "https://stl-dispatcher.pdluker.workers.dev/health",
+      "subdomain": "dispatch.stluker.com",
+      "url": "https://dispatch.stluker.com/health",
       "status": "live",
       "category": "Infrastructure",
       "stack": "CF Worker: stl-dispatcher (KV: STATUS_KV, SPACE_KV, EARTH_KV, PODCAST_KV; R2: POD_BUCKET)",
@@ -268,29 +268,6 @@
         {
           "title": "Wire Supabase persistence + auth",
           "detail": "App currently has no durable storage or auth."
-        }
-      ]
-    },
-    {
-      "key": "FAM-1",
-      "name": "Reunion",
-      "subdomain": "reunion.stluker.com",
-      "url": "https://reunion.stluker.com",
-      "status": "live",
-      "category": "Family / Social",
-      "stack": "CF Worker: reunion + Web3Forms",
-      "repo": "Unknown",
-      "lastDeploy": "Unknown",
-      "description": "Reunion/event RSVP. Resend confirmation emails not yet wired.",
-      "features": [
-        "Web3Forms RSVP",
-        "Resend domain verified"
-      ],
-      "automation": "None",
-      "openTasks": [
-        {
-          "title": "Wire Resend confirmation emails",
-          "detail": "send.stluker.com domain is fully verified — replace the Web3Forms email leg with a Resend send on RSVP submit."
         }
       ]
     },
@@ -623,23 +600,18 @@
     },
     {
       "key": "PODCAST-2",
-      "name": "Pokemon Podcast",
-      "subdomain": "podcast.stluker.com",
-      "url": "https://podcast.stluker.com",
+      "name": "Pokemon Podcast (Daily Creature Clash)",
+      "subdomain": "pokepod.stluker.com",
+      "url": "https://pokepod.stluker.com",
       "status": "live",
       "category": "Personal Tools",
-      "stack": "CF Worker: podcast",
-      "repo": "Unknown — confirm local path",
+      "stack": "CF Worker: podcast (R2: creature-clash-podcast, Workers AI)",
+      "repo": "C:\\Users\\pdluk\\pokepod",
       "lastDeploy": "2026-08-30",
-      "description": "Podcast covering Pokemon. Distinct from pod.stluker.com (STLuker Podcast, earth/orbit news) — separate show, separate Worker.",
+      "description": "Kids' Pokemon battle podcast (Daily Creature Clash) — AI-scripted battles, ElevenLabs two-voice play-by-play, RSS feed at /feed.xml. Distinct from pod.stluker.com (STLuker Podcast). Reduced to monthly in Sep 2026.",
       "features": [],
-      "automation": "Unconfirmed — wrangler.jsonc not yet pulled",
-      "openTasks": [
-        {
-          "title": "Pull wrangler.jsonc to confirm storage, cron cadence, auth pattern, and endpoint shape",
-          "detail": "Not yet documented."
-        }
-      ]
+      "automation": "Monthly — own cron 0 9 1 * * (1st of month, 09:00 UTC)",
+      "openTasks": []
     }
   ],
   "openTasks": [
@@ -670,13 +642,6 @@
       "priority": "low",
       "site": "family.stluker.com",
       "detail": "Either wire real CI/CD from an appropriate repo or permanently document manual-deploy as the intended state."
-    },
-    {
-      "id": "T-5",
-      "title": "Reunion Resend email wiring",
-      "priority": "low",
-      "site": "reunion.stluker.com",
-      "detail": "Wire Resend for RSVP confirmation emails — domain already verified"
     },
     {
       "id": "T-8",
@@ -732,7 +697,7 @@
       ]
     },
     "dns": {
-      "registrar": "Squarespace (expires Sep 16, 2026)",
+      "registrar": "Squarespace (expires Sep 16, 2027)",
       "provider": "Cloudflare"
     },
     "externalAPIs": [
