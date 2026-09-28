@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-09-26",
-    "version": "3.112"
+    "lastUpdated": "2026-09-28",
+    "version": "3.114"
   },
   "stats": {
     "totalSites": 25,
@@ -714,7 +714,7 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-09-26T11:00:39.893Z",
+    "ranAt": "2026-09-28T11:00:53.583Z",
     "findingsCount": 1,
     "findings": [
       {
@@ -723,16 +723,16 @@
         "worker": "innovation-daily",
         "expected": "0 11 * * 2,4",
         "live": [
-          "0 11 * * 3"
+          "0 11 * * TUE,THU"
         ],
-        "message": "Deployed cron for innovation-daily (0 11 * * 3) does not match declared \"0 11 * * 2,4\"."
+        "message": "Deployed cron for innovation-daily (0 11 * * TUE,THU) does not match declared \"0 11 * * 2,4\"."
       }
     ]
   },
   "autoRecommendations": [
     {
       "icon": "🟠",
-      "title": "Deployed cron for innovation-daily (0 11 * * 3) does not match declared \"0 11 * * 2,4\".",
+      "title": "Deployed cron for innovation-daily (0 11 * * TUE,THU) does not match declared \"0 11 * * 2,4\".",
       "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
       "cat": "DRIFT"
     }
