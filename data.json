@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-09-28",
-    "version": "3.114"
+    "lastUpdated": "2026-10-01",
+    "version": "3.117"
   },
   "stats": {
     "totalSites": 25,
@@ -714,8 +714,8 @@
     ]
   },
   "verification": {
-    "ranAt": "2026-09-28T11:00:53.583Z",
-    "findingsCount": 1,
+    "ranAt": "2026-10-01T11:55:37.734Z",
+    "findingsCount": 2,
     "findings": [
       {
         "type": "cron_drift",
@@ -726,6 +726,13 @@
           "0 11 * * TUE,THU"
         ],
         "message": "Deployed cron for innovation-daily (0 11 * * TUE,THU) does not match declared \"0 11 * * 2,4\"."
+      },
+      {
+        "type": "heartbeat_degraded",
+        "severity": "warning",
+        "job": "stl-dispatcher:space-ingest",
+        "lastSuccess": "2026-10-01T11:12:36.644Z",
+        "message": "stl-dispatcher:space-ingest ran but output was degraded: empty 3+ runs in a row: Space.com (3)."
       }
     ]
   },
@@ -734,6 +741,12 @@
       "icon": "🟠",
       "title": "Deployed cron for innovation-daily (0 11 * * TUE,THU) does not match declared \"0 11 * * 2,4\".",
       "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
+      "cat": "DRIFT"
+    },
+    {
+      "icon": "🟠",
+      "title": "stl-dispatcher:space-ingest ran but output was degraded: empty 3+ runs in a row: Space.com (3).",
+      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
       "cat": "DRIFT"
     }
   ]
