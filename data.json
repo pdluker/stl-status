@@ -131,7 +131,7 @@
         "2-week KV TTL",
         "Bearer-auth /refresh endpoint"
       ],
-      "automation": "Fully automated — weekly beehiiv → Claude Haiku → KV",
+      "automation": "Weekly stlBucket via stl-dispatcher (Fri 11:05 UTC) — beehiiv → Claude Haiku → KV",
       "openTasks": []
     },
     {
@@ -838,7 +838,471 @@
       "beehiiv RSS",
       "ElevenLabs (eleven_flash_v2_5)",
       "Claude AI Gateway"
-    ]
+    ],
+    "workers": {
+      "generatedAt": "2026-10-05T18:32:16.255Z",
+      "source": "local-wrangler",
+      "scripts": {
+        "ai-daily": {
+          "modifiedOn": "2026-10-05T16:03:51.481616Z",
+          "crons": [],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "PODCAST_KV",
+              "resource": "d0d7565915314f7d85ced9caf04d21bf"
+            },
+            {
+              "kind": "r2",
+              "binding": "POD_BUCKET",
+              "resource": "pod-audio"
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
+        },
+        "bigbuilds": {
+          "modifiedOn": "2026-10-05T01:13:21.753051Z",
+          "crons": [
+            "0 13 */2 * *"
+          ],
+          "bindings": [
+            {
+              "kind": "r2",
+              "binding": "PODCAST_BUCKET",
+              "resource": "big-builds-podcast"
+            },
+            {
+              "kind": "ai",
+              "binding": "AI",
+              "resource": null
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
+        },
+        "civicsignal": {
+          "modifiedOn": "2026-09-30T18:14:11.087744Z",
+          "crons": [
+            "0 11 * * MON-FRI"
+          ],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "RUN_LOCK",
+              "resource": "844bf20de19e4ccf90143dfe8c8c5bae"
+            },
+            {
+              "kind": "r2",
+              "binding": "SNAPSHOTS",
+              "resource": "civicsignal"
+            }
+          ]
+        },
+        "innovation-daily": {
+          "modifiedOn": "2026-09-27T12:24:27.365017Z",
+          "crons": [
+            "0 11 * * TUE,THU"
+          ],
+          "bindings": [
+            {
+              "kind": "r2",
+              "binding": "PODCAST_BUCKET",
+              "resource": "innovation-daily"
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
+        },
+        "insights": {
+          "modifiedOn": "2026-10-04T19:26:59.982183Z",
+          "crons": [
+            "40 */3 * * *"
+          ],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "TRACKERS_KV",
+              "resource": "0b335bc045404cc29457872d21508f64"
+            },
+            {
+              "kind": "r2",
+              "binding": "ARCHIVE",
+              "resource": "trackers-archive"
+            },
+            {
+              "kind": "d1",
+              "binding": "DB",
+              "resource": "10abb5f9-b894-4d89-906c-0c4b44c0c0f3"
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
+        },
+        "mech-match": {
+          "modifiedOn": "2026-08-30T18:59:16.25031Z",
+          "crons": [
+            "0 12 * * 1"
+          ],
+          "bindings": [
+            {
+              "kind": "ai",
+              "binding": "AI",
+              "resource": null
+            },
+            {
+              "kind": "r2",
+              "binding": "MECH_BUCKET",
+              "resource": "mech-match-podcast"
+            }
+          ]
+        },
+        "pokelab": {
+          "modifiedOn": "2026-05-19T19:11:35.16801Z",
+          "crons": [],
+          "bindings": []
+        },
+        "podcast": {
+          "modifiedOn": "2026-09-25T01:49:22.315422Z",
+          "crons": [
+            "0 9 1 * *"
+          ],
+          "bindings": [
+            {
+              "kind": "r2",
+              "binding": "PODCAST_BUCKET",
+              "resource": "creature-clash-podcast"
+            },
+            {
+              "kind": "ai",
+              "binding": "AI",
+              "resource": null
+            }
+          ]
+        },
+        "rails-beneath-us": {
+          "modifiedOn": "2026-09-28T14:21:48.148708Z",
+          "crons": [
+            "0 11 * * 1,3,5"
+          ],
+          "bindings": [
+            {
+              "kind": "r2",
+              "binding": "BUCKET",
+              "resource": "rails-beneath-us"
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
+        },
+        "retire": {
+          "modifiedOn": "2026-09-01T18:52:05.837077Z",
+          "crons": [],
+          "bindings": []
+        },
+        "space": {
+          "modifiedOn": "2026-09-28T17:27:45.519196Z",
+          "crons": [],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "SPACE_KV",
+              "resource": "6ceb0fea2ef3468c9709e9335455f4cd"
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
+        },
+        "status": {
+          "modifiedOn": "2026-09-26T01:42:12.162246Z",
+          "crons": [
+            "*/5 * * * *"
+          ],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "STATUS_KV",
+              "resource": "208b3be26f2741b9988350d83fc77036"
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
+        },
+        "stl-bucket": {
+          "modifiedOn": "2026-07-22T15:22:17.420846Z",
+          "crons": [],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "STL_BUCKET_KV",
+              "resource": "0d8464abdb2e4175903eaf72d9a8c02c"
+            }
+          ]
+        },
+        "stl-dispatcher": {
+          "modifiedOn": "2026-10-05T17:31:31.145983Z",
+          "crons": [
+            "0 11 * * *",
+            "5 11 * * FRI",
+            "10 11 * * *",
+            "15 11 * * *",
+            "20 11 * * MON,WED,THU",
+            "25 11 * * MON,WED,FRI",
+            "30 11 * * *",
+            "35 11 * * SUN",
+            "40 11 * * MON",
+            "45 11 * * *",
+            "50 11 * * MON,THU",
+            "55 11 * * *"
+          ],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "STATUS_KV",
+              "resource": "208b3be26f2741b9988350d83fc77036"
+            },
+            {
+              "kind": "kv",
+              "binding": "SPACE_KV",
+              "resource": "6ceb0fea2ef3468c9709e9335455f4cd"
+            },
+            {
+              "kind": "kv",
+              "binding": "EARTH_KV",
+              "resource": "cc679a87f521416c9b3d985ffe5f4b78"
+            },
+            {
+              "kind": "kv",
+              "binding": "PODCAST_KV",
+              "resource": "d0d7565915314f7d85ced9caf04d21bf"
+            },
+            {
+              "kind": "r2",
+              "binding": "POD_BUCKET",
+              "resource": "pod-audio"
+            },
+            {
+              "kind": "ai",
+              "binding": "AI",
+              "resource": null
+            }
+          ]
+        },
+        "earth": {
+          "modifiedOn": "2026-09-28T17:35:45.055152Z",
+          "crons": [],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "EARTH_KV",
+              "resource": "cc679a87f521416c9b3d985ffe5f4b78"
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
+        },
+        "intel": {
+          "modifiedOn": "2026-07-24T16:31:50.642074Z",
+          "crons": [],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "INTEL_KV",
+              "resource": "0db6aa4c358a494ea7c501daefac93c9"
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
+        },
+        "stl-music": {
+          "modifiedOn": "2026-08-06T18:34:04.709368Z",
+          "crons": [],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "MUSIC_KV",
+              "resource": "029e3ba66a3743bbaf4a2fef5992aae9"
+            }
+          ]
+        },
+        "pod": {
+          "modifiedOn": "2026-08-01T19:00:13.737423Z",
+          "crons": [],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "PODCAST_KV",
+              "resource": "d0d7565915314f7d85ced9caf04d21bf"
+            },
+            {
+              "kind": "r2",
+              "binding": "POD_BUCKET",
+              "resource": "pod-audio"
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
+        },
+        "schools": {
+          "modifiedOn": "2026-10-05T02:00:16.237227Z",
+          "crons": [],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "SCHOOLS_KV",
+              "resource": "969c7ee173a64ab3a0ed0f51982d120f"
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
+        },
+        "stl-sports": {
+          "modifiedOn": "2026-08-30T19:14:05.53349Z",
+          "crons": [],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "SPORTS_KV",
+              "resource": "1f289f1ef8ab46629319ebf3346567cd"
+            }
+          ]
+        },
+        "stickers": {
+          "modifiedOn": "2026-09-28T19:16:28.267429Z",
+          "crons": [
+            "50 11 * * *"
+          ],
+          "bindings": [
+            {
+              "kind": "r2",
+              "binding": "ART",
+              "resource": "stl-stickers"
+            },
+            {
+              "kind": "d1",
+              "binding": "DB",
+              "resource": "44d0ff70-874f-4c56-a828-9a08f5f245c2"
+            },
+            {
+              "kind": "ai",
+              "binding": "AI",
+              "resource": null
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
+        },
+        "stl-weekly": {
+          "modifiedOn": "2026-09-08T18:15:48.670056Z",
+          "crons": [],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "WEEKLY_KV",
+              "resource": "95536b2c440c474690879dd7dfd887e2"
+            },
+            {
+              "kind": "r2",
+              "binding": "WEEKLY_AUDIO",
+              "resource": "stl-weekly-audio"
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
+        },
+        "stluker": {
+          "modifiedOn": "2026-09-25T01:12:15.712433Z",
+          "crons": [],
+          "bindings": []
+        },
+        "trackers": {
+          "modifiedOn": "2026-10-04T19:28:25.511882Z",
+          "crons": [
+            "*/15 * * * *",
+            "20 6 * * *"
+          ],
+          "bindings": [
+            {
+              "kind": "kv",
+              "binding": "TRACKERS_KV",
+              "resource": "0b335bc045404cc29457872d21508f64"
+            },
+            {
+              "kind": "r2",
+              "binding": "ARCHIVE",
+              "resource": "trackers-archive"
+            },
+            {
+              "kind": "d1",
+              "binding": "DB",
+              "resource": "10abb5f9-b894-4d89-906c-0c4b44c0c0f3"
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
+        },
+        "fire-api": {
+          "modifiedOn": "2026-09-17T16:20:29.339989Z",
+          "crons": [],
+          "bindings": [],
+          "error": "no local wrangler config found for bootstrap"
+        },
+        "family": {
+          "modifiedOn": "2026-07-12T19:51:13.925658Z",
+          "crons": [],
+          "bindings": [],
+          "error": "no local wrangler config found for bootstrap"
+        },
+        "ironrails": {
+          "modifiedOn": "2026-06-27T20:26:57.950122Z",
+          "crons": [],
+          "bindings": [],
+          "error": "no local wrangler config found for bootstrap"
+        }
+      }
+    }
   },
   "verification": {
     "ranAt": "2026-10-05T16:05:53.077Z",
