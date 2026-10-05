@@ -4,12 +4,12 @@
     "version": "3.123"
   },
   "stats": {
-    "totalSites": 25,
-    "liveSites": 25,
+    "totalSites": 29,
+    "liveSites": 29,
     "plannedSites": 0,
     "inactiveSites": 0,
     "automatedSites": 18,
-    "openTasks": 26
+    "openTasks": 33
   },
   "sites": [
     {
@@ -612,6 +612,119 @@
       "features": [],
       "automation": "Monthly — own cron 0 9 1 * * (1st of month, 09:00 UTC)",
       "openTasks": []
+    },
+    {
+      "key": "AI-1",
+      "name": "AI Daily",
+      "subdomain": "ai.stluker.com",
+      "url": "https://ai.stluker.com",
+      "status": "live",
+      "category": "Public Sites",
+      "stack": "CF Worker: ai-daily (read-only; KV: PODCAST_KV ai:*, R2: pod-audio ai/*) — content written by stl-dispatcher aiIngest/aiPodcast",
+      "repo": "GitHub: pdluker/ai-daily; local C:\\Users\\pdluk\\ai-daily",
+      "lastDeploy": "2026-10-05",
+      "description": "Daily AI news edition (Claude-edited from 10 AI feeds + Hacker News; every story must cite a real feed item, links never model-written) plus \"AI Daily Recap\", a ~5-min Mon/Thu podcast read in Paul's cloned voice. First recap episode published 2026-10-05.",
+      "features": [
+        "Daily edition: /day/:date, /archive, /rss.xml",
+        "AI Daily Recap podcast: /feed.xml, /episode/:date, transcripts",
+        "Source-id audit: stories without a valid feed source are dropped",
+        "Live ElevenLabs balance gate protects Earth and Orbit credits",
+        "Synthetic-voice disclosure in show description"
+      ],
+      "automation": "Daily aiIngest (11:45 UTC) + Mon/Thu aiPodcast (11:50 UTC) via stl-dispatcher; heartbeats monitored by reconcile",
+      "openTasks": [
+        {
+          "title": "ElevenLabs credit headroom",
+          "detail": "Earth and Orbit (~84k) + AI Recap (~19k) exceed the Creator plan's 100k/month, so the balance gate will skip the last 1-2 recaps of each cycle. Decide: ElevenLabs Pro, or trim Earth and Orbit's MONTHLY_CREDIT_BUDGET."
+        }
+      ]
+    },
+    {
+      "key": "TRACK-1",
+      "name": "Trackers",
+      "subdomain": "trackers.stluker.com",
+      "url": "https://trackers.stluker.com",
+      "status": "live",
+      "category": "Public Sites",
+      "stack": "CF Worker: trackers (D1: trackers-db, KV: TRACKERS_KV, R2: trackers-archive)",
+      "repo": "GitHub: pdluker/stl-trackers (Actions deploy on push); local C:\\Users\\pdluk\\trackers",
+      "lastDeploy": "2026-10-04",
+      "description": "Public-data live trackers: Mississippi at St. Louis (NOAA NWPS stages/forecasts, USGS, USDA barge rates), Grid Stress Watch for TVA/MISO (EIA hourly + NWS), and Refinery & Port Fire Watch (NASA FIRMS VIIRS vs 90-day baseline at 261 facilities).",
+      "features": [
+        "River: 3 gauges + 14-day forecast, NWS-sourced thresholds",
+        "Grid: demand vs forecast and monthly records",
+        "Fires: 261 OSM facilities, 2x/3x heat-anomaly flags",
+        "JSON API /api/{river|grid|fires}/latest.json with stale/pipelineStale flags"
+      ],
+      "automation": "Own crons: */15 * * * * fan-out + 20 6 * * * daily thresholds/archive; freshness monitored by stl-dispatcher checkTrackersHealth()",
+      "openTasks": [
+        {
+          "title": "Enable AIS tow positions",
+          "detail": "River tracker has no AIS source yet — set AISSTREAM_API_KEY (free at aisstream.io) to show tows on the schematic."
+        },
+        {
+          "title": "Lock queue data source",
+          "detail": "corpslocks.usace.army.mil is dead; ask LPMS@usace.army.mil whether a supported feed exists before writing an APEX session scraper."
+        },
+        {
+          "title": "Validate Fire Watch thresholds",
+          "detail": "Check the 2x/3x anomaly thresholds against 3-5 known past refinery fires before announcing."
+        },
+        {
+          "title": "Real-payload parser tests",
+          "detail": "Grid, fires and AIS tests use synthetic payloads; capture one real EIA response, FIRMS CSV and AIS message into test/fixtures/."
+        }
+      ]
+    },
+    {
+      "key": "INSIGHT-1",
+      "name": "Insights",
+      "subdomain": "insights.stluker.com",
+      "url": "https://insights.stluker.com",
+      "status": "live",
+      "category": "Public Sites",
+      "stack": "CF Worker: insights (shares trackers-db, TRACKERS_KV, trackers-archive; writes insights_* only)",
+      "repo": "GitHub: pdluker/stl-insights (Actions deploy on push); local C:\\Users\\pdluk\\insights",
+      "lastDeploy": "2026-10-04",
+      "description": "Standing analyses over the trackers data: river freight-risk index, grid load-growth ledger with weather-adjusted demand and next-day peak outlook, St. Louis pulse, NWS forecast report cards, and a Monday brief (web, RSS, email).",
+      "features": [
+        "River freight-risk index across 7 USDA barge locations",
+        "Grid record ledger + weather-adjusted demand (Open-Meteo)",
+        "Forecast report cards grading every archived NWS river forecast",
+        "Monday brief: /brief/, /brief.xml, email via Resend",
+        "/api/insights/summary feeds stl-dispatcher signal alerts"
+      ],
+      "automation": "Own cron 40 */3 * * * (3-hourly forecasts; full refresh 12:40 UTC; brief Mondays); freshness monitored via /api/insights/health",
+      "openTasks": []
+    },
+    {
+      "key": "STICK-1",
+      "name": "Stickers",
+      "subdomain": "stickers.stluker.com",
+      "url": "https://stickers.stluker.com",
+      "status": "live",
+      "category": "Public Sites",
+      "stack": "CF Worker: stickers (D1: stickers-db, R2: stl-stickers, Workers AI, Claude Haiku)",
+      "repo": "Local only: C:\\Users\\pdluk\\stl-stickers (no git repository)",
+      "lastDeploy": "2026-09-28",
+      "description": "One AI-generated IT meme sticker per day, archived forever. Claude Haiku writes the joke, Workers AI FLUX.2 paints the scene, and all lettering is set in SVG. Seventeen rotating styles; visitors browse, download and +1 but can never trigger generation.",
+      "features": [
+        "17-style shuffled bag, 10 rotating topics",
+        "Model chain flux-2-dev -> lucid-origin -> flux-1-schnell; text never drawn by the image model",
+        "Print-ready SVG + die-cut outlines",
+        "Bearer-only admin, hashed voter ids, no-store 404s"
+      ],
+      "automation": "Own daily cron 50 11 * * *; freshness monitored by stl-dispatcher checkStickersHealth() (Bearer /health)",
+      "openTasks": [
+        {
+          "title": "Put stl-stickers under version control",
+          "detail": "The folder has no git repository and no remote — the only copy of the source is on this PC. git init, add a GitHub remote, push."
+        },
+        {
+          "title": "Check Workers AI cost after first weeks",
+          "detail": "flux-2-dev went live Sep 28; confirm daily image cost on the Workers AI usage page."
+        }
+      ]
     }
   ],
   "openTasks": [
@@ -649,6 +762,20 @@
       "priority": "low",
       "site": "fire-api.stluker.com",
       "detail": "Confirm CF_AIG_TOKEN secret is set and AI Gateway authenticated mode is active"
+    },
+    {
+      "id": "T-17",
+      "title": "Put stl-stickers under version control",
+      "priority": "medium",
+      "site": "stickers.stluker.com",
+      "detail": "No git repository or remote exists for stickers.stluker.com — a disk failure loses the source. git init + GitHub remote."
+    },
+    {
+      "id": "T-18",
+      "title": "ElevenLabs credits: Earth and Orbit + AI Recap exceed Creator plan",
+      "priority": "low",
+      "site": "ai.stluker.com",
+      "detail": "~103k/month needed vs 100k; the balance gate skips the last 1-2 recaps per cycle. Upgrade to Pro or trim Earth and Orbit."
     }
   ],
   "recentActivity": [],
