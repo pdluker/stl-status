@@ -9,7 +9,7 @@
     "plannedSites": 0,
     "inactiveSites": 0,
     "automatedSites": 18,
-    "openTasks": 32
+    "openTasks": 31
   },
   "sites": [
     {
@@ -485,10 +485,6 @@
       ],
       "automation": "Fully automated — own dedicated Mon/Wed/Fri cron, independent of stl-dispatcher",
       "openTasks": [
-        {
-          "title": "/refresh endpoint intentionally open (no auth)",
-          "detail": "Confirmed deliberate, not an oversight — documented here so it isn't mistaken for a security gap in a future audit."
-        },
         {
           "title": "Decide: keep native cron or consolidate into stl-dispatcher",
           "detail": "Currently self-contained like stl-sports/stl-music were pre-Jul-30. No capacity pressure on Workers Paid either way — purely an operational-visibility choice (unified /health vs. standalone)."
