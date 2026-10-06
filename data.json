@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-10-05",
-    "version": "3.123"
+    "lastUpdated": "2026-10-06",
+    "version": "3.128"
   },
   "stats": {
     "totalSites": 29,
@@ -840,17 +840,17 @@
       "Claude AI Gateway"
     ],
     "workers": {
-      "generatedAt": "2026-10-05T18:32:16.255Z",
-      "source": "local-wrangler",
+      "generatedAt": "2026-10-06T11:57:10.765Z",
+      "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
           "modifiedOn": "2026-10-05T16:03:51.481616Z",
           "crons": [],
           "bindings": [
             {
-              "kind": "kv",
-              "binding": "PODCAST_KV",
-              "resource": "d0d7565915314f7d85ced9caf04d21bf"
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
             },
             {
               "kind": "r2",
@@ -858,9 +858,9 @@
               "resource": "pod-audio"
             },
             {
-              "kind": "assets",
-              "binding": "ASSETS",
-              "resource": null
+              "kind": "kv",
+              "binding": "PODCAST_KV",
+              "resource": "d0d7565915314f7d85ced9caf04d21bf"
             }
           ]
         },
@@ -871,11 +871,6 @@
           ],
           "bindings": [
             {
-              "kind": "r2",
-              "binding": "PODCAST_BUCKET",
-              "resource": "big-builds-podcast"
-            },
-            {
               "kind": "ai",
               "binding": "AI",
               "resource": null
@@ -884,6 +879,11 @@
               "kind": "assets",
               "binding": "ASSETS",
               "resource": null
+            },
+            {
+              "kind": "r2",
+              "binding": "PODCAST_BUCKET",
+              "resource": "big-builds-podcast"
             }
           ]
         },
@@ -905,6 +905,51 @@
             }
           ]
         },
+        "earth": {
+          "modifiedOn": "2026-09-28T17:35:45.055152Z",
+          "crons": [],
+          "bindings": [
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            },
+            {
+              "kind": "kv",
+              "binding": "EARTH_KV",
+              "resource": "cc679a87f521416c9b3d985ffe5f4b78"
+            }
+          ]
+        },
+        "family": {
+          "modifiedOn": "2026-07-12T19:51:13.925658Z",
+          "crons": [],
+          "bindings": []
+        },
+        "fire-api": {
+          "modifiedOn": "2026-09-17T16:20:29.339989Z",
+          "crons": [
+            "0 10 * * sat",
+            "0 10 * * tue,thu"
+          ],
+          "bindings": [
+            {
+              "kind": "ai",
+              "binding": "AI",
+              "resource": null
+            },
+            {
+              "kind": "r2",
+              "binding": "AUDIO_BUCKET",
+              "resource": "fire-audio"
+            },
+            {
+              "kind": "kv",
+              "binding": "FIRE_INTEL_KV",
+              "resource": "76eb56b0861a400486b39f581889917f"
+            }
+          ]
+        },
         "innovation-daily": {
           "modifiedOn": "2026-09-27T12:24:27.365017Z",
           "crons": [
@@ -912,14 +957,14 @@
           ],
           "bindings": [
             {
-              "kind": "r2",
-              "binding": "PODCAST_BUCKET",
-              "resource": "innovation-daily"
-            },
-            {
               "kind": "assets",
               "binding": "ASSETS",
               "resource": null
+            },
+            {
+              "kind": "r2",
+              "binding": "PODCAST_BUCKET",
+              "resource": "innovation-daily"
             }
           ]
         },
@@ -930,14 +975,14 @@
           ],
           "bindings": [
             {
-              "kind": "kv",
-              "binding": "TRACKERS_KV",
-              "resource": "0b335bc045404cc29457872d21508f64"
-            },
-            {
               "kind": "r2",
               "binding": "ARCHIVE",
               "resource": "trackers-archive"
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
             },
             {
               "kind": "d1",
@@ -945,17 +990,36 @@
               "resource": "10abb5f9-b894-4d89-906c-0c4b44c0c0f3"
             },
             {
-              "kind": "assets",
-              "binding": "ASSETS",
-              "resource": null
+              "kind": "kv",
+              "binding": "TRACKERS_KV",
+              "resource": "0b335bc045404cc29457872d21508f64"
             }
           ]
         },
+        "intel": {
+          "modifiedOn": "2026-07-24T16:31:50.642074Z",
+          "crons": [],
+          "bindings": [
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            },
+            {
+              "kind": "kv",
+              "binding": "INTEL_KV",
+              "resource": "0db6aa4c358a494ea7c501daefac93c9"
+            }
+          ]
+        },
+        "ironrails": {
+          "modifiedOn": "2026-06-27T20:26:57.950122Z",
+          "crons": [],
+          "bindings": []
+        },
         "mech-match": {
           "modifiedOn": "2026-08-30T18:59:16.25031Z",
-          "crons": [
-            "0 12 * * 1"
-          ],
+          "crons": [],
           "bindings": [
             {
               "kind": "ai",
@@ -969,10 +1033,26 @@
             }
           ]
         },
-        "pokelab": {
-          "modifiedOn": "2026-05-19T19:11:35.16801Z",
+        "pod": {
+          "modifiedOn": "2026-10-05T19:14:57.550868Z",
           "crons": [],
-          "bindings": []
+          "bindings": [
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            },
+            {
+              "kind": "r2",
+              "binding": "POD_BUCKET",
+              "resource": "pod-audio"
+            },
+            {
+              "kind": "kv",
+              "binding": "PODCAST_KV",
+              "resource": "d0d7565915314f7d85ced9caf04d21bf"
+            }
+          ]
         },
         "podcast": {
           "modifiedOn": "2026-09-25T01:49:22.315422Z",
@@ -981,32 +1061,37 @@
           ],
           "bindings": [
             {
-              "kind": "r2",
-              "binding": "PODCAST_BUCKET",
-              "resource": "creature-clash-podcast"
-            },
-            {
               "kind": "ai",
               "binding": "AI",
               "resource": null
+            },
+            {
+              "kind": "r2",
+              "binding": "PODCAST_BUCKET",
+              "resource": "creature-clash-podcast"
             }
           ]
         },
+        "pokelab": {
+          "modifiedOn": "2026-05-19T19:11:35.16801Z",
+          "crons": [],
+          "bindings": []
+        },
         "rails-beneath-us": {
-          "modifiedOn": "2026-09-28T14:21:48.148708Z",
+          "modifiedOn": "2026-10-05T19:32:20.084677Z",
           "crons": [
             "0 11 * * 1,3,5"
           ],
           "bindings": [
             {
-              "kind": "r2",
-              "binding": "BUCKET",
-              "resource": "rails-beneath-us"
-            },
-            {
               "kind": "assets",
               "binding": "ASSETS",
               "resource": null
+            },
+            {
+              "kind": "r2",
+              "binding": "BUCKET",
+              "resource": "rails-beneath-us"
             }
           ]
         },
@@ -1015,37 +1100,81 @@
           "crons": [],
           "bindings": []
         },
+        "schools": {
+          "modifiedOn": "2026-10-05T02:00:16.237227Z",
+          "crons": [],
+          "bindings": [
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            },
+            {
+              "kind": "kv",
+              "binding": "SCHOOLS_KV",
+              "resource": "969c7ee173a64ab3a0ed0f51982d120f"
+            }
+          ]
+        },
         "space": {
           "modifiedOn": "2026-09-28T17:27:45.519196Z",
           "crons": [],
           "bindings": [
             {
-              "kind": "kv",
-              "binding": "SPACE_KV",
-              "resource": "6ceb0fea2ef3468c9709e9335455f4cd"
-            },
-            {
               "kind": "assets",
               "binding": "ASSETS",
               "resource": null
+            },
+            {
+              "kind": "kv",
+              "binding": "SPACE_KV",
+              "resource": "6ceb0fea2ef3468c9709e9335455f4cd"
             }
           ]
         },
         "status": {
-          "modifiedOn": "2026-09-26T01:42:12.162246Z",
+          "modifiedOn": "2026-10-05T18:35:51.983404Z",
           "crons": [
             "*/5 * * * *"
           ],
           "bindings": [
             {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            },
+            {
               "kind": "kv",
               "binding": "STATUS_KV",
               "resource": "208b3be26f2741b9988350d83fc77036"
+            }
+          ]
+        },
+        "stickers": {
+          "modifiedOn": "2026-09-28T19:16:28.267429Z",
+          "crons": [
+            "50 11 * * *"
+          ],
+          "bindings": [
+            {
+              "kind": "ai",
+              "binding": "AI",
+              "resource": null
+            },
+            {
+              "kind": "r2",
+              "binding": "ART",
+              "resource": "stl-stickers"
             },
             {
               "kind": "assets",
               "binding": "ASSETS",
               "resource": null
+            },
+            {
+              "kind": "d1",
+              "binding": "DB",
+              "resource": "44d0ff70-874f-4c56-a828-9a08f5f245c2"
             }
           ]
         },
@@ -1061,10 +1190,9 @@
           ]
         },
         "stl-dispatcher": {
-          "modifiedOn": "2026-10-05T17:31:31.145983Z",
+          "modifiedOn": "2026-10-05T19:08:45.523375Z",
           "crons": [
             "0 11 * * *",
-            "5 11 * * FRI",
             "10 11 * * *",
             "15 11 * * *",
             "20 11 * * MON,WED,THU",
@@ -1074,13 +1202,29 @@
             "40 11 * * MON",
             "45 11 * * *",
             "50 11 * * MON,THU",
+            "5 11 * * FRI",
             "55 11 * * *"
           ],
           "bindings": [
             {
+              "kind": "ai",
+              "binding": "AI",
+              "resource": null
+            },
+            {
               "kind": "kv",
-              "binding": "STATUS_KV",
-              "resource": "208b3be26f2741b9988350d83fc77036"
+              "binding": "EARTH_KV",
+              "resource": "cc679a87f521416c9b3d985ffe5f4b78"
+            },
+            {
+              "kind": "r2",
+              "binding": "POD_BUCKET",
+              "resource": "pod-audio"
+            },
+            {
+              "kind": "kv",
+              "binding": "PODCAST_KV",
+              "resource": "d0d7565915314f7d85ced9caf04d21bf"
             },
             {
               "kind": "kv",
@@ -1089,55 +1233,8 @@
             },
             {
               "kind": "kv",
-              "binding": "EARTH_KV",
-              "resource": "cc679a87f521416c9b3d985ffe5f4b78"
-            },
-            {
-              "kind": "kv",
-              "binding": "PODCAST_KV",
-              "resource": "d0d7565915314f7d85ced9caf04d21bf"
-            },
-            {
-              "kind": "r2",
-              "binding": "POD_BUCKET",
-              "resource": "pod-audio"
-            },
-            {
-              "kind": "ai",
-              "binding": "AI",
-              "resource": null
-            }
-          ]
-        },
-        "earth": {
-          "modifiedOn": "2026-09-28T17:35:45.055152Z",
-          "crons": [],
-          "bindings": [
-            {
-              "kind": "kv",
-              "binding": "EARTH_KV",
-              "resource": "cc679a87f521416c9b3d985ffe5f4b78"
-            },
-            {
-              "kind": "assets",
-              "binding": "ASSETS",
-              "resource": null
-            }
-          ]
-        },
-        "intel": {
-          "modifiedOn": "2026-07-24T16:31:50.642074Z",
-          "crons": [],
-          "bindings": [
-            {
-              "kind": "kv",
-              "binding": "INTEL_KV",
-              "resource": "0db6aa4c358a494ea7c501daefac93c9"
-            },
-            {
-              "kind": "assets",
-              "binding": "ASSETS",
-              "resource": null
+              "binding": "STATUS_KV",
+              "resource": "208b3be26f2741b9988350d83fc77036"
             }
           ]
         },
@@ -1152,47 +1249,15 @@
             }
           ]
         },
-        "pod": {
-          "modifiedOn": "2026-08-01T19:00:13.737423Z",
-          "crons": [],
-          "bindings": [
-            {
-              "kind": "kv",
-              "binding": "PODCAST_KV",
-              "resource": "d0d7565915314f7d85ced9caf04d21bf"
-            },
-            {
-              "kind": "r2",
-              "binding": "POD_BUCKET",
-              "resource": "pod-audio"
-            },
-            {
-              "kind": "assets",
-              "binding": "ASSETS",
-              "resource": null
-            }
-          ]
-        },
-        "schools": {
-          "modifiedOn": "2026-10-05T02:00:16.237227Z",
-          "crons": [],
-          "bindings": [
-            {
-              "kind": "kv",
-              "binding": "SCHOOLS_KV",
-              "resource": "969c7ee173a64ab3a0ed0f51982d120f"
-            },
-            {
-              "kind": "assets",
-              "binding": "ASSETS",
-              "resource": null
-            }
-          ]
-        },
         "stl-sports": {
           "modifiedOn": "2026-08-30T19:14:05.53349Z",
           "crons": [],
           "bindings": [
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            },
             {
               "kind": "kv",
               "binding": "SPORTS_KV",
@@ -1200,42 +1265,16 @@
             }
           ]
         },
-        "stickers": {
-          "modifiedOn": "2026-09-28T19:16:28.267429Z",
+        "stl-weekly": {
+          "modifiedOn": "2026-09-08T18:15:48.670056Z",
           "crons": [
-            "50 11 * * *"
+            "0 0 * * mon"
           ],
           "bindings": [
-            {
-              "kind": "r2",
-              "binding": "ART",
-              "resource": "stl-stickers"
-            },
-            {
-              "kind": "d1",
-              "binding": "DB",
-              "resource": "44d0ff70-874f-4c56-a828-9a08f5f245c2"
-            },
-            {
-              "kind": "ai",
-              "binding": "AI",
-              "resource": null
-            },
             {
               "kind": "assets",
               "binding": "ASSETS",
               "resource": null
-            }
-          ]
-        },
-        "stl-weekly": {
-          "modifiedOn": "2026-09-08T18:15:48.670056Z",
-          "crons": [],
-          "bindings": [
-            {
-              "kind": "kv",
-              "binding": "WEEKLY_KV",
-              "resource": "95536b2c440c474690879dd7dfd887e2"
             },
             {
               "kind": "r2",
@@ -1243,16 +1282,24 @@
               "resource": "stl-weekly-audio"
             },
             {
-              "kind": "assets",
-              "binding": "ASSETS",
-              "resource": null
+              "kind": "kv",
+              "binding": "WEEKLY_KV",
+              "resource": "95536b2c440c474690879dd7dfd887e2"
             }
           ]
         },
         "stluker": {
           "modifiedOn": "2026-09-25T01:12:15.712433Z",
-          "crons": [],
-          "bindings": []
+          "crons": [
+            "0 9 */3 * *"
+          ],
+          "bindings": [
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
+            }
+          ]
         },
         "trackers": {
           "modifiedOn": "2026-10-04T19:28:25.511882Z",
@@ -1262,14 +1309,14 @@
           ],
           "bindings": [
             {
-              "kind": "kv",
-              "binding": "TRACKERS_KV",
-              "resource": "0b335bc045404cc29457872d21508f64"
-            },
-            {
               "kind": "r2",
               "binding": "ARCHIVE",
               "resource": "trackers-archive"
+            },
+            {
+              "kind": "assets",
+              "binding": "ASSETS",
+              "resource": null
             },
             {
               "kind": "d1",
@@ -1277,64 +1324,47 @@
               "resource": "10abb5f9-b894-4d89-906c-0c4b44c0c0f3"
             },
             {
-              "kind": "assets",
-              "binding": "ASSETS",
-              "resource": null
+              "kind": "kv",
+              "binding": "TRACKERS_KV",
+              "resource": "0b335bc045404cc29457872d21508f64"
             }
           ]
-        },
-        "fire-api": {
-          "modifiedOn": "2026-09-17T16:20:29.339989Z",
-          "crons": [],
-          "bindings": [],
-          "error": "no local wrangler config found for bootstrap"
-        },
-        "family": {
-          "modifiedOn": "2026-07-12T19:51:13.925658Z",
-          "crons": [],
-          "bindings": [],
-          "error": "no local wrangler config found for bootstrap"
-        },
-        "ironrails": {
-          "modifiedOn": "2026-06-27T20:26:57.950122Z",
-          "crons": [],
-          "bindings": [],
-          "error": "no local wrangler config found for bootstrap"
         }
       }
     }
   },
   "verification": {
-    "ranAt": "2026-10-05T16:05:53.077Z",
+    "ranAt": "2026-10-06T11:57:10.765Z",
     "findingsCount": 2,
     "findings": [
       {
         "type": "heartbeat_degraded",
         "severity": "warning",
-        "job": "stl-dispatcher:earth-ingest",
-        "lastSuccess": "2026-10-05T11:16:05.620Z",
-        "message": "stl-dispatcher:earth-ingest ran but output was degraded: GVP RSS fetch failed (carrying forward previous data): GVP RSS returned 403."
+        "job": "stl-dispatcher:space-ingest",
+        "lastSuccess": "2026-10-06T11:12:09.153Z",
+        "message": "stl-dispatcher:space-ingest ran but output was degraded: launches carried forward from 2026-10-05T11:10:56.907Z."
       },
       {
-        "type": "heartbeat_missing",
-        "severity": "critical",
-        "job": "stl-dispatcher:ai-podcast",
-        "message": "No successful run ever recorded for stl-dispatcher:ai-podcast (or last success aged out of KV). Job may be dead."
+        "type": "heartbeat_degraded",
+        "severity": "warning",
+        "job": "stl-dispatcher:earth-ingest",
+        "lastSuccess": "2026-10-06T11:16:11.188Z",
+        "message": "stl-dispatcher:earth-ingest ran but output was degraded: GVP RSS fetch failed (carrying forward previous data): GVP RSS returned 403."
       }
     ]
   },
   "autoRecommendations": [
     {
       "icon": "🟠",
-      "title": "stl-dispatcher:earth-ingest ran but output was degraded: GVP RSS fetch failed (carrying forward previous data): GVP RSS returned 403.",
+      "title": "stl-dispatcher:space-ingest ran but output was degraded: launches carried forward from 2026-10-05T11:10:56.907Z.",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
       "cat": "DRIFT"
     },
     {
-      "icon": "🔴",
-      "title": "No successful run ever recorded for stl-dispatcher:ai-podcast (or last success aged out of KV). Job may be dead.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_missing).",
-      "cat": "CRITICAL"
+      "icon": "🟠",
+      "title": "stl-dispatcher:earth-ingest ran but output was degraded: GVP RSS fetch failed (carrying forward previous data): GVP RSS returned 403.",
+      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
+      "cat": "DRIFT"
     }
   ]
 }
