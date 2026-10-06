@@ -9,7 +9,7 @@
     "plannedSites": 0,
     "inactiveSites": 0,
     "automatedSites": 18,
-    "openTasks": 33
+    "openTasks": 32
   },
   "sites": [
     {
@@ -705,7 +705,7 @@
       "status": "live",
       "category": "Public Sites",
       "stack": "CF Worker: stickers (D1: stickers-db, R2: stl-stickers, Workers AI, Claude Haiku)",
-      "repo": "Local only: C:\\Users\\pdluk\\stl-stickers (no git repository)",
+      "repo": "GitHub: pdluker/stl-stickers (public); local C:\\Users\\pdluk\\stl-stickers",
       "lastDeploy": "2026-09-28",
       "description": "One AI-generated IT meme sticker per day, archived forever. Claude Haiku writes the joke, Workers AI FLUX.2 paints the scene, and all lettering is set in SVG. Seventeen rotating styles; visitors browse, download and +1 but can never trigger generation.",
       "features": [
@@ -716,10 +716,6 @@
       ],
       "automation": "Own daily cron 50 11 * * *; freshness monitored by stl-dispatcher checkStickersHealth() (Bearer /health)",
       "openTasks": [
-        {
-          "title": "Put stl-stickers under version control",
-          "detail": "The folder has no git repository and no remote — the only copy of the source is on this PC. git init, add a GitHub remote, push."
-        },
         {
           "title": "Check Workers AI cost after first weeks",
           "detail": "flux-2-dev went live Sep 28; confirm daily image cost on the Workers AI usage page."
@@ -762,13 +758,6 @@
       "priority": "low",
       "site": "fire-api.stluker.com",
       "detail": "Confirm CF_AIG_TOKEN secret is set and AI Gateway authenticated mode is active"
-    },
-    {
-      "id": "T-17",
-      "title": "Put stl-stickers under version control",
-      "priority": "medium",
-      "site": "stickers.stluker.com",
-      "detail": "No git repository or remote exists for stickers.stluker.com — a disk failure loses the source. git init + GitHub remote."
     },
     {
       "id": "T-18",
