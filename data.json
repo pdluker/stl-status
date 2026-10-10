@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-10-09",
-    "version": "3.131"
+    "lastUpdated": "2026-10-10",
+    "version": "3.132"
   },
   "stats": {
     "totalSites": 29,
@@ -826,11 +826,11 @@
       "Claude AI Gateway"
     ],
     "workers": {
-      "generatedAt": "2026-10-09T11:57:10.665Z",
+      "generatedAt": "2026-10-10T11:56:18.559Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
-          "modifiedOn": "2026-10-05T16:03:51.481616Z",
+          "modifiedOn": "2026-10-09T20:42:44.775083Z",
           "crons": [],
           "bindings": [
             {
@@ -851,9 +851,9 @@
           ]
         },
         "bigbuilds": {
-          "modifiedOn": "2026-10-08T18:42:37.950719Z",
+          "modifiedOn": "2026-10-09T20:57:13.575712Z",
           "crons": [
-            "0 13 */2 * *"
+            "0 13 * * THU"
           ],
           "bindings": [
             {
@@ -874,7 +874,7 @@
           ]
         },
         "civicsignal": {
-          "modifiedOn": "2026-10-06T19:43:20.919223Z",
+          "modifiedOn": "2026-10-09T13:04:25.107365Z",
           "crons": [
             "0 11 * * MON-FRI"
           ],
@@ -888,6 +888,11 @@
               "kind": "r2",
               "binding": "SNAPSHOTS",
               "resource": "civicsignal"
+            },
+            {
+              "kind": "kv",
+              "binding": "STATUS_KV",
+              "resource": "208b3be26f2741b9988350d83fc77036"
             }
           ]
         },
@@ -913,7 +918,7 @@
           "bindings": []
         },
         "fire-api": {
-          "modifiedOn": "2026-10-08T18:28:02.534841Z",
+          "modifiedOn": "2026-10-10T00:59:28.19271Z",
           "crons": [
             "0 10 * * sat",
             "0 10 * * tue,thu"
@@ -937,15 +942,20 @@
           ]
         },
         "innovation-daily": {
-          "modifiedOn": "2026-10-08T20:19:58.354773Z",
+          "modifiedOn": "2026-10-09T20:54:04.233665Z",
           "crons": [
-            "0 11 * * TUE,THU"
+            "0 11 * * TUE"
           ],
           "bindings": [
             {
               "kind": "assets",
               "binding": "ASSETS",
               "resource": null
+            },
+            {
+              "kind": "d1",
+              "binding": "DB",
+              "resource": "4c1308d2-3460-48d6-a598-da31a8da4e33"
             },
             {
               "kind": "r2",
@@ -1004,9 +1014,9 @@
           "bindings": []
         },
         "mech-match": {
-          "modifiedOn": "2026-10-08T20:30:21.669332Z",
+          "modifiedOn": "2026-10-09T13:11:41.296237Z",
           "crons": [
-            "0 12 * * 1"
+            "0 12 * * MON"
           ],
           "bindings": [
             {
@@ -1066,9 +1076,9 @@
           "bindings": []
         },
         "rails-beneath-us": {
-          "modifiedOn": "2026-10-08T20:25:21.99688Z",
+          "modifiedOn": "2026-10-10T00:39:01.159717Z",
           "crons": [
-            "0 11 * * 1,3,5"
+            "0 11 * * WED"
           ],
           "bindings": [
             {
@@ -1167,7 +1177,7 @@
           ]
         },
         "stl-bucket": {
-          "modifiedOn": "2026-10-08T17:47:51.91875Z",
+          "modifiedOn": "2026-10-09T13:31:55.447573Z",
           "crons": [],
           "bindings": [
             {
@@ -1178,7 +1188,7 @@
           ]
         },
         "stl-dispatcher": {
-          "modifiedOn": "2026-10-08T20:38:37.023023Z",
+          "modifiedOn": "2026-10-10T00:54:53.151472Z",
           "crons": [
             "0 11 * * *",
             "10 11 * * *",
@@ -1186,8 +1196,8 @@
             "20 11 * * MON,WED,THU",
             "25 11 * * MON,WED,FRI",
             "30 11 * * *",
-            "35 11 * * SUN",
-            "40 11 * * MON",
+            "35 11 * * THU",
+            "40 11 * * FRI",
             "45 11 * * *",
             "50 11 * * MON,THU",
             "5 11 * * FRI",
@@ -1320,23 +1330,35 @@
     }
   },
   "verification": {
-    "ranAt": "2026-10-09T11:57:10.665Z",
-    "findingsCount": 3,
+    "ranAt": "2026-10-10T11:56:18.559Z",
+    "findingsCount": 5,
     "findings": [
       {
-        "type": "cron_drift",
-        "severity": "warning",
-        "worker": "stluker",
-        "expected": "0 9 */3 * *",
-        "live": [],
-        "message": "Deployed cron for stluker (none) does not match declared \"0 9 */3 * *\"."
+        "type": "heartbeat_stale",
+        "severity": "critical",
+        "job": "bigbuilds:feed",
+        "lastSuccess": "2026-10-07T13:03:29.000Z",
+        "message": "bigbuilds:feed has nothing for its 2026-10-08 13:00 UTC slot (latest: 2026-10-07 13:03 UTC)."
       },
       {
-        "type": "heartbeat_degraded",
+        "type": "feed_unreachable",
         "severity": "warning",
-        "job": "stl-dispatcher:earth-ingest",
-        "lastSuccess": "2026-10-09T11:16:09.322Z",
-        "message": "stl-dispatcher:earth-ingest ran but output was degraded: GVP RSS fetch failed (carrying forward previous data): GVP RSS returned 403."
+        "job": "mech-match:feed",
+        "message": "https://mech-match.pdluker.workers.dev/feed.xml returned HTTP 404."
+      },
+      {
+        "type": "heartbeat_stale",
+        "severity": "critical",
+        "job": "rails-beneath-us:feed",
+        "lastSuccess": "2026-10-05T19:24:53.000Z",
+        "message": "rails-beneath-us:feed has nothing for its 2026-10-07 11:00 UTC slot (latest: 2026-10-05 19:24 UTC)."
+      },
+      {
+        "type": "heartbeat_stale",
+        "severity": "critical",
+        "job": "civicsignal:brief",
+        "lastSuccess": null,
+        "message": "civicsignal:brief has nothing for its 2026-10-09 11:00 UTC slot (latest: none)."
       },
       {
         "type": "elevenlabs_check_skipped",
@@ -1348,16 +1370,28 @@
   },
   "autoRecommendations": [
     {
-      "icon": "🟠",
-      "title": "Deployed cron for stluker (none) does not match declared \"0 9 */3 * *\".",
-      "detail": "Auto-detected by stl-status-sync reconciliation (cron_drift).",
-      "cat": "DRIFT"
+      "icon": "🔴",
+      "title": "bigbuilds:feed has nothing for its 2026-10-08 13:00 UTC slot (latest: 2026-10-07 13:03 UTC).",
+      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
+      "cat": "CRITICAL"
     },
     {
       "icon": "🟠",
-      "title": "stl-dispatcher:earth-ingest ran but output was degraded: GVP RSS fetch failed (carrying forward previous data): GVP RSS returned 403.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
+      "title": "https://mech-match.pdluker.workers.dev/feed.xml returned HTTP 404.",
+      "detail": "Auto-detected by stl-status-sync reconciliation (feed_unreachable).",
       "cat": "DRIFT"
+    },
+    {
+      "icon": "🔴",
+      "title": "rails-beneath-us:feed has nothing for its 2026-10-07 11:00 UTC slot (latest: 2026-10-05 19:24 UTC).",
+      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
+      "cat": "CRITICAL"
+    },
+    {
+      "icon": "🔴",
+      "title": "civicsignal:brief has nothing for its 2026-10-09 11:00 UTC slot (latest: none).",
+      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
+      "cat": "CRITICAL"
     }
   ]
 }
