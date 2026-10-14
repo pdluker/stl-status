@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-10-13",
-    "version": "3.135"
+    "lastUpdated": "2026-10-14",
+    "version": "3.136"
   },
   "stats": {
     "totalSites": 29,
@@ -833,7 +833,7 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-10-13T11:57:21.690Z",
+      "generatedAt": "2026-10-14T11:57:26.577Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
@@ -881,7 +881,7 @@
           ]
         },
         "civicsignal": {
-          "modifiedOn": "2026-10-09T13:04:25.107365Z",
+          "modifiedOn": "2026-10-13T14:58:33.390141Z",
           "crons": [
             "0 11 * * MON-FRI"
           ],
@@ -949,7 +949,7 @@
           ]
         },
         "innovation-daily": {
-          "modifiedOn": "2026-10-09T20:54:04.233665Z",
+          "modifiedOn": "2026-10-13T16:20:33.209041Z",
           "crons": [
             "0 11 * * TUE"
           ],
@@ -1195,7 +1195,7 @@
           ]
         },
         "stl-dispatcher": {
-          "modifiedOn": "2026-10-11T15:43:03.426615Z",
+          "modifiedOn": "2026-10-13T14:59:13.514827Z",
           "crons": [
             "0 11 * * *",
             "10 11 * * *",
@@ -1334,17 +1334,17 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-10-13T11:56:28.271Z",
+      "fetchedAt": "2026-10-14T11:56:36.593Z",
       "tier": "creator",
       "limit": 125785,
-      "used": 50193,
-      "remaining": 75592,
+      "used": 52782,
+      "remaining": 73003,
       "resetAt": "2026-10-22T00:15:38.000Z",
-      "daysLeft": 8.5,
-      "burnPerDay": 2336,
-      "burnBasis": "cycle average",
-      "projectedAtReset": 55705,
-      "projectedMonthly": 70080,
+      "daysLeft": 7.5,
+      "burnPerDay": 1883,
+      "burnBasis": "last 2 days",
+      "projectedAtReset": 58856,
+      "projectedMonthly": 56490,
       "runOutAt": null,
       "history": [
         {
@@ -1354,51 +1354,48 @@
         {
           "date": "2026-10-13",
           "used": 50193
+        },
+        {
+          "date": "2026-10-14",
+          "used": 52782
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-10-13T11:57:21.690Z",
-    "findingsCount": 11,
+    "ranAt": "2026-10-14T11:57:26.577Z",
+    "findingsCount": 8,
     "findings": [
       {
         "type": "heartbeat_degraded",
         "severity": "warning",
         "job": "stl-dispatcher:earth-ingest",
-        "lastSuccess": "2026-10-13T11:16:20.650Z",
-        "message": "stl-dispatcher:earth-ingest ran but output was degraded: NMSZ bbox fetch failed (carrying forward previous data): The operation was aborted; Yellowstone bbox fetch failed (carrying forward previous data): The operation was aborted; EONET fetch failed (degrading to empty): EONET returned 429."
+        "lastSuccess": "2026-10-14T11:16:21.306Z",
+        "message": "stl-dispatcher:earth-ingest ran but output was degraded: EONET fetch failed (degrading to empty): EONET returned 429."
       },
       {
         "type": "heartbeat_stale",
         "severity": "critical",
         "job": "stl-music:pulse",
         "lastSuccess": "2026-10-04T11:35:40.835Z",
-        "ageHours": 216,
-        "message": "stl-music:pulse last succeeded 216h ago (expected within 192h)."
+        "ageHours": 240,
+        "message": "stl-music:pulse last succeeded 240h ago (expected within 192h)."
       },
       {
         "type": "heartbeat_stale",
         "severity": "critical",
         "job": "stl-sports:pulse",
         "lastSuccess": "2026-10-04T11:35:44.830Z",
-        "ageHours": 216,
-        "message": "stl-sports:pulse last succeeded 216h ago (expected within 192h)."
+        "ageHours": 240,
+        "message": "stl-sports:pulse last succeeded 240h ago (expected within 192h)."
       },
       {
         "type": "heartbeat_stale",
         "severity": "critical",
         "job": "stl-weekly:refresh",
         "lastSuccess": "2026-10-05T11:41:27.685Z",
-        "ageHours": 192,
-        "message": "stl-weekly:refresh last succeeded 192h ago (expected within 192h)."
-      },
-      {
-        "type": "heartbeat_stale",
-        "severity": "critical",
-        "job": "innovation-daily:feed",
-        "lastSuccess": "2026-10-08T11:00:00.000Z",
-        "message": "innovation-daily:feed has nothing for its 2026-10-13 11:00 UTC slot (latest: 2026-10-08 11:00 UTC)."
+        "ageHours": 216,
+        "message": "stl-weekly:refresh last succeeded 216h ago (expected within 192h)."
       },
       {
         "type": "heartbeat_stale",
@@ -1408,72 +1405,52 @@
         "message": "bigbuilds:feed has nothing for its 2026-10-08 13:00 UTC slot (latest: 2026-10-07 13:03 UTC)."
       },
       {
-        "type": "heartbeat_stale",
-        "severity": "critical",
-        "job": "rails-beneath-us:feed",
-        "lastSuccess": "2026-10-05T19:24:53.000Z",
-        "message": "rails-beneath-us:feed has nothing for its 2026-10-07 11:00 UTC slot (latest: 2026-10-05 19:24 UTC)."
-      },
-      {
         "type": "heartbeat_degraded",
         "severity": "warning",
         "job": "civicsignal:brief",
-        "lastSuccess": "2026-10-13T11:02:45.962Z",
-        "message": "civicsignal:brief ran but was unhealthy: Brentwood/Redevelopment Corporation: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Brentwood/Public Hearing Notices: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Brentwood/Board of Adjustment: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Brentwood/CID 8750 Manchester Road: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Brentwood/Economic Development Sales Tax Board: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Brentwood/Architectural Review Board: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Manchester/Board of Aldermen: HTTP 522 for https://www.manchestermo.gov/AgendaCenter; Brentwood/Planning & Zoning Commission: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Brentwood/Brentwood/Eager Transportation Development District: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Brentwood/Board of Aldermen: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Creve Coeur/Current Planning Projects: HTTP 522 for https://www.crevecoeurmo.gov/447/Current-Planning-Projects; Manchester/Board of Adjustment: HTTP 522 for https://www.manchestermo.gov/AgendaCenter; Manchester/Planning & Zoning Commission: HTTP 522 for https://www.manchestermo.gov/AgendaCenter."
+        "lastSuccess": "2026-10-14T11:01:41.408Z",
+        "message": "civicsignal:brief ran but was unhealthy: Des Peres/Board of Adjustment: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Planning and Zoning Commission: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Board of Aldermen: HTTP 500 for https://www.desperesmo.org/AgendaCenter."
       },
       {
-        "type": "heartbeat_degraded",
-        "severity": "warning",
-        "job": "insights:daily",
-        "expected": "barge,harvest",
-        "message": "insights' daily refresh ran but these jobs failed: barge, harvest."
-      },
-      {
-        "type": "signal_river_risk",
-        "severity": "warning",
-        "signal": true,
-        "job": "insights:river-risk",
-        "expected": "elevated",
-        "message": "River freight risk is ELEVATED (34/100). St. Louis 12.1 ft; barges $28.86/ton (1.75x normal). https://insights.stluker.com/#river"
-      },
-      {
-        "type": "signal_grid_record",
+        "type": "signal_grid_near_record",
         "severity": "warning",
         "signal": true,
         "job": "insights:grid-MISO",
-        "expected": "2026-10:record",
-        "message": "MISO set a new monthly demand record: 98.6 GW (2026-10-12T22 UTC). https://insights.stluker.com/#grid"
+        "expected": "2026-10:95",
+        "message": "MISO demand reached 99.3% of its monthly record (97.9 GW at 2026-10-13T22 UTC). https://insights.stluker.com/#grid"
+      },
+      {
+        "type": "signal_grid_outlook",
+        "severity": "warning",
+        "signal": true,
+        "job": "insights:outlook-TVA",
+        "expected": "2026-10-15",
+        "message": "TVA demand for 2026-10-15 is forecast near its monthly record: about 28.4 GW (99.5% of record, upper range 106.6%), forecast high 91F. https://insights.stluker.com/#grid"
       }
     ]
   },
   "autoRecommendations": [
     {
       "icon": "🟠",
-      "title": "stl-dispatcher:earth-ingest ran but output was degraded: NMSZ bbox fetch failed (carrying forward previous data): The operation was aborted; Yellowstone bbox fetch failed (carrying forward previous data): The operation was aborted; EONET fetch failed (degrading to empty): EONET returned 429.",
+      "title": "stl-dispatcher:earth-ingest ran but output was degraded: EONET fetch failed (degrading to empty): EONET returned 429.",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
       "cat": "DRIFT"
     },
     {
       "icon": "🔴",
-      "title": "stl-music:pulse last succeeded 216h ago (expected within 192h).",
+      "title": "stl-music:pulse last succeeded 240h ago (expected within 192h).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
       "cat": "CRITICAL"
     },
     {
       "icon": "🔴",
-      "title": "stl-sports:pulse last succeeded 216h ago (expected within 192h).",
+      "title": "stl-sports:pulse last succeeded 240h ago (expected within 192h).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
       "cat": "CRITICAL"
     },
     {
       "icon": "🔴",
-      "title": "stl-weekly:refresh last succeeded 192h ago (expected within 192h).",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
-      "cat": "CRITICAL"
-    },
-    {
-      "icon": "🔴",
-      "title": "innovation-daily:feed has nothing for its 2026-10-13 11:00 UTC slot (latest: 2026-10-08 11:00 UTC).",
+      "title": "stl-weekly:refresh last succeeded 216h ago (expected within 192h).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
       "cat": "CRITICAL"
     },
@@ -1484,33 +1461,21 @@
       "cat": "CRITICAL"
     },
     {
-      "icon": "🔴",
-      "title": "rails-beneath-us:feed has nothing for its 2026-10-07 11:00 UTC slot (latest: 2026-10-05 19:24 UTC).",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
-      "cat": "CRITICAL"
-    },
-    {
       "icon": "🟠",
-      "title": "civicsignal:brief ran but was unhealthy: Brentwood/Redevelopment Corporation: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Brentwood/Public Hearing Notices: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Brentwood/Board of Adjustment: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Brentwood/CID 8750 Manchester Road: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Brentwood/Economic Development Sales Tax Board: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Brentwood/Architectural Review Board: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Manchester/Board of Aldermen: HTTP 522 for https://www.manchestermo.gov/AgendaCenter; Brentwood/Planning & Zoning Commission: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Brentwood/Brentwood/Eager Transportation Development District: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Brentwood/Board of Aldermen: HTTP 522 for https://www.brentwoodmo.org/AgendaCenter; Creve Coeur/Current Planning Projects: HTTP 522 for https://www.crevecoeurmo.gov/447/Current-Planning-Projects; Manchester/Board of Adjustment: HTTP 522 for https://www.manchestermo.gov/AgendaCenter; Manchester/Planning & Zoning Commission: HTTP 522 for https://www.manchestermo.gov/AgendaCenter.",
+      "title": "civicsignal:brief ran but was unhealthy: Des Peres/Board of Adjustment: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Planning and Zoning Commission: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Board of Aldermen: HTTP 500 for https://www.desperesmo.org/AgendaCenter.",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
       "cat": "DRIFT"
     },
     {
       "icon": "🟠",
-      "title": "insights' daily refresh ran but these jobs failed: barge, harvest.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
-      "cat": "DRIFT"
-    },
-    {
-      "icon": "🟠",
-      "title": "River freight risk is ELEVATED (34/100). St. Louis 12.1 ft; barges $28.86/ton (1.75x normal). https://insights.stluker.com/#river",
-      "detail": "Auto-detected by stl-status-sync reconciliation (signal_river_risk).",
+      "title": "MISO demand reached 99.3% of its monthly record (97.9 GW at 2026-10-13T22 UTC). https://insights.stluker.com/#grid",
+      "detail": "Auto-detected by stl-status-sync reconciliation (signal_grid_near_record).",
       "cat": "SIGNAL"
     },
     {
       "icon": "🟠",
-      "title": "MISO set a new monthly demand record: 98.6 GW (2026-10-12T22 UTC). https://insights.stluker.com/#grid",
-      "detail": "Auto-detected by stl-status-sync reconciliation (signal_grid_record).",
+      "title": "TVA demand for 2026-10-15 is forecast near its monthly record: about 28.4 GW (99.5% of record, upper range 106.6%), forecast high 91F. https://insights.stluker.com/#grid",
+      "detail": "Auto-detected by stl-status-sync reconciliation (signal_grid_outlook).",
       "cat": "SIGNAL"
     }
   ]
