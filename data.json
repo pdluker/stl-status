@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-10-14",
-    "version": "3.136"
+    "lastUpdated": "2026-10-15",
+    "version": "3.137"
   },
   "stats": {
     "totalSites": 29,
@@ -833,7 +833,7 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-10-14T11:57:26.577Z",
+      "generatedAt": "2026-10-15T11:56:21.631Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
@@ -1334,17 +1334,17 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-10-14T11:56:36.593Z",
+      "fetchedAt": "2026-10-15T11:56:01.322Z",
       "tier": "creator",
       "limit": 125785,
-      "used": 52782,
-      "remaining": 73003,
+      "used": 54296,
+      "remaining": 71489,
       "resetAt": "2026-10-22T00:15:38.000Z",
-      "daysLeft": 7.5,
-      "burnPerDay": 1883,
-      "burnBasis": "last 2 days",
-      "projectedAtReset": 58856,
-      "projectedMonthly": 56490,
+      "daysLeft": 6.5,
+      "burnPerDay": 1760,
+      "burnBasis": "last 3 days",
+      "projectedAtReset": 60025,
+      "projectedMonthly": 52800,
       "runOutAt": null,
       "history": [
         {
@@ -1358,44 +1358,25 @@
         {
           "date": "2026-10-14",
           "used": 52782
+        },
+        {
+          "date": "2026-10-15",
+          "used": 54296
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-10-14T11:57:26.577Z",
-    "findingsCount": 8,
+    "ranAt": "2026-10-15T11:56:21.631Z",
+    "findingsCount": 4,
     "findings": [
-      {
-        "type": "heartbeat_degraded",
-        "severity": "warning",
-        "job": "stl-dispatcher:earth-ingest",
-        "lastSuccess": "2026-10-14T11:16:21.306Z",
-        "message": "stl-dispatcher:earth-ingest ran but output was degraded: EONET fetch failed (degrading to empty): EONET returned 429."
-      },
-      {
-        "type": "heartbeat_stale",
-        "severity": "critical",
-        "job": "stl-music:pulse",
-        "lastSuccess": "2026-10-04T11:35:40.835Z",
-        "ageHours": 240,
-        "message": "stl-music:pulse last succeeded 240h ago (expected within 192h)."
-      },
-      {
-        "type": "heartbeat_stale",
-        "severity": "critical",
-        "job": "stl-sports:pulse",
-        "lastSuccess": "2026-10-04T11:35:44.830Z",
-        "ageHours": 240,
-        "message": "stl-sports:pulse last succeeded 240h ago (expected within 192h)."
-      },
       {
         "type": "heartbeat_stale",
         "severity": "critical",
         "job": "stl-weekly:refresh",
         "lastSuccess": "2026-10-05T11:41:27.685Z",
-        "ageHours": 216,
-        "message": "stl-weekly:refresh last succeeded 216h ago (expected within 192h)."
+        "ageHours": 240,
+        "message": "stl-weekly:refresh last succeeded 240h ago (expected within 192h)."
       },
       {
         "type": "heartbeat_stale",
@@ -1407,9 +1388,9 @@
       {
         "type": "heartbeat_degraded",
         "severity": "warning",
-        "job": "civicsignal:brief",
-        "lastSuccess": "2026-10-14T11:01:41.408Z",
-        "message": "civicsignal:brief ran but was unhealthy: Des Peres/Board of Adjustment: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Planning and Zoning Commission: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Board of Aldermen: HTTP 500 for https://www.desperesmo.org/AgendaCenter."
+        "job": "insights:daily",
+        "expected": "harvest",
+        "message": "insights' daily refresh ran but these jobs failed: harvest."
       },
       {
         "type": "signal_grid_near_record",
@@ -1417,40 +1398,14 @@
         "signal": true,
         "job": "insights:grid-MISO",
         "expected": "2026-10:95",
-        "message": "MISO demand reached 99.3% of its monthly record (97.9 GW at 2026-10-13T22 UTC). https://insights.stluker.com/#grid"
-      },
-      {
-        "type": "signal_grid_outlook",
-        "severity": "warning",
-        "signal": true,
-        "job": "insights:outlook-TVA",
-        "expected": "2026-10-15",
-        "message": "TVA demand for 2026-10-15 is forecast near its monthly record: about 28.4 GW (99.5% of record, upper range 106.6%), forecast high 91F. https://insights.stluker.com/#grid"
+        "message": "MISO demand reached 96.5% of its monthly record (95.2 GW at 2026-10-12T22 UTC). https://insights.stluker.com/#grid"
       }
     ]
   },
   "autoRecommendations": [
     {
-      "icon": "🟠",
-      "title": "stl-dispatcher:earth-ingest ran but output was degraded: EONET fetch failed (degrading to empty): EONET returned 429.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
-      "cat": "DRIFT"
-    },
-    {
       "icon": "🔴",
-      "title": "stl-music:pulse last succeeded 240h ago (expected within 192h).",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
-      "cat": "CRITICAL"
-    },
-    {
-      "icon": "🔴",
-      "title": "stl-sports:pulse last succeeded 240h ago (expected within 192h).",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
-      "cat": "CRITICAL"
-    },
-    {
-      "icon": "🔴",
-      "title": "stl-weekly:refresh last succeeded 216h ago (expected within 192h).",
+      "title": "stl-weekly:refresh last succeeded 240h ago (expected within 192h).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
       "cat": "CRITICAL"
     },
@@ -1462,20 +1417,14 @@
     },
     {
       "icon": "🟠",
-      "title": "civicsignal:brief ran but was unhealthy: Des Peres/Board of Adjustment: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Planning and Zoning Commission: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Board of Aldermen: HTTP 500 for https://www.desperesmo.org/AgendaCenter.",
+      "title": "insights' daily refresh ran but these jobs failed: harvest.",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
       "cat": "DRIFT"
     },
     {
       "icon": "🟠",
-      "title": "MISO demand reached 99.3% of its monthly record (97.9 GW at 2026-10-13T22 UTC). https://insights.stluker.com/#grid",
+      "title": "MISO demand reached 96.5% of its monthly record (95.2 GW at 2026-10-12T22 UTC). https://insights.stluker.com/#grid",
       "detail": "Auto-detected by stl-status-sync reconciliation (signal_grid_near_record).",
-      "cat": "SIGNAL"
-    },
-    {
-      "icon": "🟠",
-      "title": "TVA demand for 2026-10-15 is forecast near its monthly record: about 28.4 GW (99.5% of record, upper range 106.6%), forecast high 91F. https://insights.stluker.com/#grid",
-      "detail": "Auto-detected by stl-status-sync reconciliation (signal_grid_outlook).",
       "cat": "SIGNAL"
     }
   ]
