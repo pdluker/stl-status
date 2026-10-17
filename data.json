@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-10-16",
-    "version": "3.138"
+    "lastUpdated": "2026-10-17",
+    "version": "3.139"
   },
   "stats": {
     "totalSites": 29,
@@ -833,11 +833,11 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-10-16T11:57:03.927Z",
+      "generatedAt": "2026-10-17T11:56:56.775Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
-          "modifiedOn": "2026-10-10T19:27:52.0185Z",
+          "modifiedOn": "2026-10-16T15:54:32.551284Z",
           "crons": [],
           "bindings": [
             {
@@ -1195,7 +1195,7 @@
           ]
         },
         "stl-dispatcher": {
-          "modifiedOn": "2026-10-13T14:59:13.514827Z",
+          "modifiedOn": "2026-10-16T16:23:32.868986Z",
           "crons": [
             "0 11 * * *",
             "10 11 * * *",
@@ -1206,7 +1206,7 @@
             "35 11 * * THU",
             "40 11 * * FRI",
             "45 11 * * *",
-            "50 11 * * MON,THU",
+            "50 11 * * MON,WED,FRI",
             "5 11 * * FRI",
             "55 11 * * *"
           ],
@@ -1334,17 +1334,17 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-10-16T11:56:13.671Z",
+      "fetchedAt": "2026-10-17T11:56:07.098Z",
       "tier": "creator",
       "limit": 125785,
-      "used": 56308,
-      "remaining": 69477,
+      "used": 56823,
+      "remaining": 68962,
       "resetAt": "2026-10-22T00:15:38.000Z",
-      "daysLeft": 5.5,
-      "burnPerDay": 1823,
-      "burnBasis": "last 4 days",
-      "projectedAtReset": 59426,
-      "projectedMonthly": 54690,
+      "daysLeft": 4.5,
+      "burnPerDay": 1561,
+      "burnBasis": "last 5 days",
+      "projectedAtReset": 61915,
+      "projectedMonthly": 46842,
       "runOutAt": null,
       "history": [
         {
@@ -1366,14 +1366,25 @@
         {
           "date": "2026-10-16",
           "used": 56308
+        },
+        {
+          "date": "2026-10-17",
+          "used": 56823
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-10-16T11:57:03.927Z",
-    "findingsCount": 1,
+    "ranAt": "2026-10-17T11:56:56.775Z",
+    "findingsCount": 2,
     "findings": [
+      {
+        "type": "heartbeat_stale",
+        "severity": "critical",
+        "job": "trackers:grid",
+        "lastSuccess": "2026-10-17T10:46:07.670Z",
+        "message": "The grid tracker's pipeline has stopped (last verified 2026-10-17T10:46:07.670Z); the page is showing old data."
+      },
       {
         "type": "signal_grid_near_record",
         "severity": "warning",
@@ -1385,6 +1396,12 @@
     ]
   },
   "autoRecommendations": [
+    {
+      "icon": "🔴",
+      "title": "The grid tracker's pipeline has stopped (last verified 2026-10-17T10:46:07.670Z); the page is showing old data.",
+      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
+      "cat": "CRITICAL"
+    },
     {
       "icon": "🟠",
       "title": "MISO demand reached 96.5% of its monthly record (95.2 GW at 2026-10-12T22 UTC). https://insights.stluker.com/#grid",
