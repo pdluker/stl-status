@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-10-19",
-    "version": "3.141"
+    "lastUpdated": "2026-10-20",
+    "version": "3.142"
   },
   "stats": {
     "totalSites": 29,
@@ -833,7 +833,7 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-10-19T11:56:57.103Z",
+      "generatedAt": "2026-10-20T11:56:59.154Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
@@ -1334,17 +1334,17 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-10-19T11:56:07.598Z",
+      "fetchedAt": "2026-10-20T11:56:08.686Z",
       "tier": "creator",
       "limit": 125785,
-      "used": 58130,
-      "remaining": 67655,
+      "used": 59842,
+      "remaining": 65943,
       "resetAt": "2026-10-22T00:15:38.000Z",
-      "daysLeft": 2.5,
-      "burnPerDay": 1323,
+      "daysLeft": 1.5,
+      "burnPerDay": 1177,
       "burnBasis": "last 6 days",
-      "projectedAtReset": 64330,
-      "projectedMonthly": 39685,
+      "projectedAtReset": 64162,
+      "projectedMonthly": 35300,
       "runOutAt": null,
       "history": [
         {
@@ -1378,20 +1378,24 @@
         {
           "date": "2026-10-19",
           "used": 58130
+        },
+        {
+          "date": "2026-10-20",
+          "used": 59842
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-10-19T11:56:57.103Z",
+    "ranAt": "2026-10-20T11:56:59.154Z",
     "findingsCount": 4,
     "findings": [
       {
-        "type": "heartbeat_stale",
-        "severity": "critical",
-        "job": "trackers:grid",
-        "lastSuccess": "2026-10-19T11:01:07.741Z",
-        "message": "The grid tracker's pipeline has stopped (last verified 2026-10-19T11:01:07.741Z); the page is showing old data."
+        "type": "heartbeat_degraded",
+        "severity": "warning",
+        "job": "stl-dispatcher:earth-ingest",
+        "lastSuccess": "2026-10-20T11:16:38.605Z",
+        "message": "stl-dispatcher:earth-ingest ran but output was degraded: Yellowstone bbox fetch failed (carrying forward previous data): The operation was aborted."
       },
       {
         "type": "heartbeat_degraded",
@@ -1406,7 +1410,7 @@
         "signal": true,
         "job": "insights:river-risk",
         "expected": "elevated",
-        "message": "River freight risk is ELEVATED (34/100). St. Louis 9.9 ft; barges $26.87/ton (1.68x normal). https://insights.stluker.com/#river"
+        "message": "River freight risk is ELEVATED (38/100). St. Louis 8.1 ft; barges $26.87/ton (1.68x normal). https://insights.stluker.com/#river"
       },
       {
         "type": "signal_grid_near_record",
@@ -1420,10 +1424,10 @@
   },
   "autoRecommendations": [
     {
-      "icon": "🔴",
-      "title": "The grid tracker's pipeline has stopped (last verified 2026-10-19T11:01:07.741Z); the page is showing old data.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
-      "cat": "CRITICAL"
+      "icon": "🟠",
+      "title": "stl-dispatcher:earth-ingest ran but output was degraded: Yellowstone bbox fetch failed (carrying forward previous data): The operation was aborted.",
+      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
+      "cat": "DRIFT"
     },
     {
       "icon": "🟠",
@@ -1433,7 +1437,7 @@
     },
     {
       "icon": "🟠",
-      "title": "River freight risk is ELEVATED (34/100). St. Louis 9.9 ft; barges $26.87/ton (1.68x normal). https://insights.stluker.com/#river",
+      "title": "River freight risk is ELEVATED (38/100). St. Louis 8.1 ft; barges $26.87/ton (1.68x normal). https://insights.stluker.com/#river",
       "detail": "Auto-detected by stl-status-sync reconciliation (signal_river_risk).",
       "cat": "SIGNAL"
     },
