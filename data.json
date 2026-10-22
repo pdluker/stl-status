@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-10-21",
-    "version": "3.143"
+    "lastUpdated": "2026-10-22",
+    "version": "3.144"
   },
   "stats": {
     "totalSites": 29,
@@ -833,7 +833,7 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-10-21T11:56:06.581Z",
+      "generatedAt": "2026-10-22T11:56:08.924Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
@@ -1334,78 +1334,43 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-10-21T11:55:55.189Z",
+      "fetchedAt": "2026-10-22T11:55:53.829Z",
       "tier": "creator",
-      "limit": 125785,
-      "used": 62149,
-      "remaining": 63636,
-      "resetAt": "2026-10-22T00:15:38.000Z",
-      "daysLeft": 0.5,
-      "burnPerDay": 1309,
-      "burnBasis": "last 6 days",
-      "projectedAtReset": 62964,
-      "projectedMonthly": 39265,
+      "limit": 184636,
+      "used": 522,
+      "remaining": 184114,
+      "resetAt": "2026-11-22T00:15:38.000Z",
+      "daysLeft": 30.5,
+      "burnPerDay": 1044,
+      "burnBasis": "cycle average",
+      "projectedAtReset": 152258,
+      "projectedMonthly": 31320,
       "runOutAt": null,
       "history": [
         {
-          "date": "2026-10-12",
-          "used": 49016
-        },
-        {
-          "date": "2026-10-13",
-          "used": 50193
-        },
-        {
-          "date": "2026-10-14",
-          "used": 52782
-        },
-        {
-          "date": "2026-10-15",
-          "used": 54296
-        },
-        {
-          "date": "2026-10-16",
-          "used": 56308
-        },
-        {
-          "date": "2026-10-17",
-          "used": 56823
-        },
-        {
-          "date": "2026-10-18",
-          "used": 57348
-        },
-        {
-          "date": "2026-10-19",
-          "used": 58130
-        },
-        {
-          "date": "2026-10-20",
-          "used": 59842
-        },
-        {
-          "date": "2026-10-21",
-          "used": 62149
+          "date": "2026-10-22",
+          "used": 522
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-10-21T11:56:06.581Z",
+    "ranAt": "2026-10-22T11:56:08.924Z",
     "findingsCount": 4,
     "findings": [
       {
-        "type": "stickers_no_art",
-        "severity": "info",
-        "job": "stickers:daily",
-        "message": "stickers.stluker.com 2026-10-21 published without AI art (every image model failed that day)."
+        "type": "heartbeat_degraded",
+        "severity": "warning",
+        "job": "civicsignal:brief",
+        "lastSuccess": "2026-10-22T11:01:21.134Z",
+        "message": "civicsignal:brief ran but was unhealthy: Des Peres/Board of Adjustment: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Planning and Zoning Commission: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Board of Aldermen: HTTP 500 for https://www.desperesmo.org/AgendaCenter."
       },
       {
-        "type": "heartbeat_stale",
-        "severity": "critical",
-        "job": "trackers:grid",
-        "lastSuccess": "2026-10-21T11:00:57.496Z",
-        "message": "The grid tracker's pipeline has stopped (last verified 2026-10-21T11:00:57.496Z); the page is showing old data."
+        "type": "heartbeat_degraded",
+        "severity": "warning",
+        "job": "insights:daily",
+        "expected": "grid",
+        "message": "insights' daily refresh ran but these jobs failed: grid."
       },
       {
         "type": "signal_river_risk",
@@ -1413,7 +1378,7 @@
         "signal": true,
         "job": "insights:river-risk",
         "expected": "elevated",
-        "message": "River freight risk is ELEVATED (41/100). St. Louis 7.5 ft; barges $26.87/ton (1.68x normal). https://insights.stluker.com/#river"
+        "message": "River freight risk is ELEVATED (40/100). St. Louis 8.2 ft; barges $26.87/ton (1.68x normal). https://insights.stluker.com/#river"
       },
       {
         "type": "signal_grid_near_record",
@@ -1427,14 +1392,20 @@
   },
   "autoRecommendations": [
     {
-      "icon": "🔴",
-      "title": "The grid tracker's pipeline has stopped (last verified 2026-10-21T11:00:57.496Z); the page is showing old data.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
-      "cat": "CRITICAL"
+      "icon": "🟠",
+      "title": "civicsignal:brief ran but was unhealthy: Des Peres/Board of Adjustment: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Planning and Zoning Commission: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Board of Aldermen: HTTP 500 for https://www.desperesmo.org/AgendaCenter.",
+      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
+      "cat": "DRIFT"
     },
     {
       "icon": "🟠",
-      "title": "River freight risk is ELEVATED (41/100). St. Louis 7.5 ft; barges $26.87/ton (1.68x normal). https://insights.stluker.com/#river",
+      "title": "insights' daily refresh ran but these jobs failed: grid.",
+      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
+      "cat": "DRIFT"
+    },
+    {
+      "icon": "🟠",
+      "title": "River freight risk is ELEVATED (40/100). St. Louis 8.2 ft; barges $26.87/ton (1.68x normal). https://insights.stluker.com/#river",
       "detail": "Auto-detected by stl-status-sync reconciliation (signal_river_risk).",
       "cat": "SIGNAL"
     },
