@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-10-23",
-    "version": "3.145"
+    "lastUpdated": "2026-10-25",
+    "version": "3.147"
   },
   "stats": {
     "totalSites": 29,
@@ -833,7 +833,7 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-10-23T11:56:48.710Z",
+      "generatedAt": "2026-10-25T11:57:09.067Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
@@ -1334,17 +1334,17 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-10-23T11:56:28.352Z",
+      "fetchedAt": "2026-10-25T11:56:21.831Z",
       "tier": "creator",
       "limit": 184636,
-      "used": 3179,
-      "remaining": 181457,
+      "used": 4252,
+      "remaining": 180384,
       "resetAt": "2026-11-22T00:15:38.000Z",
-      "daysLeft": 29.5,
-      "burnPerDay": 2138,
-      "burnBasis": "cycle average",
-      "projectedAtReset": 118349,
-      "projectedMonthly": 64149,
+      "daysLeft": 27.5,
+      "burnPerDay": 1243,
+      "burnBasis": "last 3 days",
+      "projectedAtReset": 146176,
+      "projectedMonthly": 37300,
       "runOutAt": null,
       "history": [
         {
@@ -1354,13 +1354,21 @@
         {
           "date": "2026-10-23",
           "used": 3179
+        },
+        {
+          "date": "2026-10-24",
+          "used": 3675
+        },
+        {
+          "date": "2026-10-25",
+          "used": 4252
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-10-23T11:56:48.710Z",
-    "findingsCount": 2,
+    "ranAt": "2026-10-25T11:57:09.067Z",
+    "findingsCount": 3,
     "findings": [
       {
         "type": "heartbeat_degraded",
@@ -1368,6 +1376,14 @@
         "job": "civicsignal:brief",
         "lastSuccess": "2026-10-23T11:01:48.549Z",
         "message": "civicsignal:brief ran but was unhealthy: Des Peres/Board of Adjustment: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Planning and Zoning Commission: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Board of Aldermen: HTTP 500 for https://www.desperesmo.org/AgendaCenter."
+      },
+      {
+        "type": "signal_river_risk",
+        "severity": "warning",
+        "signal": true,
+        "job": "insights:river-risk",
+        "expected": "elevated",
+        "message": "River freight risk is ELEVATED (37/100). St. Louis 6.5 ft; barges $23.63/ton (1.48x normal). https://insights.stluker.com/#river"
       },
       {
         "type": "signal_grid_near_record",
@@ -1385,6 +1401,12 @@
       "title": "civicsignal:brief ran but was unhealthy: Des Peres/Board of Adjustment: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Planning and Zoning Commission: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Board of Aldermen: HTTP 500 for https://www.desperesmo.org/AgendaCenter.",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
       "cat": "DRIFT"
+    },
+    {
+      "icon": "🟠",
+      "title": "River freight risk is ELEVATED (37/100). St. Louis 6.5 ft; barges $23.63/ton (1.48x normal). https://insights.stluker.com/#river",
+      "detail": "Auto-detected by stl-status-sync reconciliation (signal_river_risk).",
+      "cat": "SIGNAL"
     },
     {
       "icon": "🟠",
