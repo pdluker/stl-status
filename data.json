@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-10-25",
-    "version": "3.147"
+    "lastUpdated": "2026-10-26",
+    "version": "3.148"
   },
   "stats": {
     "totalSites": 29,
@@ -833,7 +833,7 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-10-25T11:57:09.067Z",
+      "generatedAt": "2026-10-26T11:56:07.745Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
@@ -1334,17 +1334,17 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-10-25T11:56:21.831Z",
+      "fetchedAt": "2026-10-26T11:55:53.814Z",
       "tier": "creator",
       "limit": 184636,
-      "used": 4252,
-      "remaining": 180384,
+      "used": 5479,
+      "remaining": 179157,
       "resetAt": "2026-11-22T00:15:38.000Z",
-      "daysLeft": 27.5,
-      "burnPerDay": 1243,
-      "burnBasis": "last 3 days",
-      "projectedAtReset": 146176,
-      "projectedMonthly": 37300,
+      "daysLeft": 26.5,
+      "burnPerDay": 1239,
+      "burnBasis": "last 4 days",
+      "projectedAtReset": 146300,
+      "projectedMonthly": 37178,
       "runOutAt": null,
       "history": [
         {
@@ -1362,20 +1362,32 @@
         {
           "date": "2026-10-25",
           "used": 4252
+        },
+        {
+          "date": "2026-10-26",
+          "used": 5479
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-10-25T11:57:09.067Z",
-    "findingsCount": 3,
+    "ranAt": "2026-10-26T11:56:07.745Z",
+    "findingsCount": 4,
     "findings": [
+      {
+        "type": "heartbeat_stale",
+        "severity": "critical",
+        "job": "stl-dispatcher:space-ingest",
+        "lastSuccess": "2026-10-25T11:11:34.979Z",
+        "ageHours": 25,
+        "message": "stl-dispatcher:space-ingest last succeeded 25h ago (expected within 20h)."
+      },
       {
         "type": "heartbeat_degraded",
         "severity": "warning",
         "job": "civicsignal:brief",
-        "lastSuccess": "2026-10-23T11:01:48.549Z",
-        "message": "civicsignal:brief ran but was unhealthy: Des Peres/Board of Adjustment: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Planning and Zoning Commission: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Board of Aldermen: HTTP 500 for https://www.desperesmo.org/AgendaCenter."
+        "lastSuccess": "2026-10-26T11:01:42.727Z",
+        "message": "civicsignal:brief ran but was unhealthy: stale=24."
       },
       {
         "type": "signal_river_risk",
@@ -1383,7 +1395,7 @@
         "signal": true,
         "job": "insights:river-risk",
         "expected": "elevated",
-        "message": "River freight risk is ELEVATED (37/100). St. Louis 6.5 ft; barges $23.63/ton (1.48x normal). https://insights.stluker.com/#river"
+        "message": "River freight risk is ELEVATED (37/100). St. Louis 6.8 ft; barges $23.63/ton (1.48x normal). https://insights.stluker.com/#river"
       },
       {
         "type": "signal_grid_near_record",
@@ -1397,14 +1409,20 @@
   },
   "autoRecommendations": [
     {
+      "icon": "🔴",
+      "title": "stl-dispatcher:space-ingest last succeeded 25h ago (expected within 20h).",
+      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
+      "cat": "CRITICAL"
+    },
+    {
       "icon": "🟠",
-      "title": "civicsignal:brief ran but was unhealthy: Des Peres/Board of Adjustment: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Planning and Zoning Commission: HTTP 500 for https://www.desperesmo.org/AgendaCenter; Des Peres/Board of Aldermen: HTTP 500 for https://www.desperesmo.org/AgendaCenter.",
+      "title": "civicsignal:brief ran but was unhealthy: stale=24.",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
       "cat": "DRIFT"
     },
     {
       "icon": "🟠",
-      "title": "River freight risk is ELEVATED (37/100). St. Louis 6.5 ft; barges $23.63/ton (1.48x normal). https://insights.stluker.com/#river",
+      "title": "River freight risk is ELEVATED (37/100). St. Louis 6.8 ft; barges $23.63/ton (1.48x normal). https://insights.stluker.com/#river",
       "detail": "Auto-detected by stl-status-sync reconciliation (signal_river_risk).",
       "cat": "SIGNAL"
     },
