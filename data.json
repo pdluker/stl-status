@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-10-26",
-    "version": "3.148"
+    "lastUpdated": "2026-10-27",
+    "version": "3.149"
   },
   "stats": {
     "totalSites": 29,
@@ -833,7 +833,7 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-10-26T11:56:07.745Z",
+      "generatedAt": "2026-10-27T11:56:03.332Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
@@ -1195,7 +1195,7 @@
           ]
         },
         "stl-dispatcher": {
-          "modifiedOn": "2026-10-21T02:10:59.220619Z",
+          "modifiedOn": "2026-10-26T20:39:22.147071Z",
           "crons": [
             "0 11 * * *",
             "10 11 * * *",
@@ -1334,17 +1334,17 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-10-26T11:55:53.814Z",
+      "fetchedAt": "2026-10-27T11:55:52.783Z",
       "tier": "creator",
       "limit": 184636,
-      "used": 5479,
-      "remaining": 179157,
+      "used": 7256,
+      "remaining": 177380,
       "resetAt": "2026-11-22T00:15:38.000Z",
-      "daysLeft": 26.5,
-      "burnPerDay": 1239,
-      "burnBasis": "last 4 days",
-      "projectedAtReset": 146300,
-      "projectedMonthly": 37178,
+      "daysLeft": 25.5,
+      "burnPerDay": 1347,
+      "burnBasis": "last 5 days",
+      "projectedAtReset": 143018,
+      "projectedMonthly": 40404,
       "runOutAt": null,
       "history": [
         {
@@ -1366,28 +1366,39 @@
         {
           "date": "2026-10-26",
           "used": 5479
+        },
+        {
+          "date": "2026-10-27",
+          "used": 7256
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-10-26T11:56:07.745Z",
-    "findingsCount": 4,
+    "ranAt": "2026-10-27T11:56:03.332Z",
+    "findingsCount": 5,
     "findings": [
       {
         "type": "heartbeat_stale",
         "severity": "critical",
-        "job": "stl-dispatcher:space-ingest",
-        "lastSuccess": "2026-10-25T11:11:34.979Z",
-        "ageHours": 25,
-        "message": "stl-dispatcher:space-ingest last succeeded 25h ago (expected within 20h)."
+        "job": "stl-dispatcher:podcast-ingest",
+        "lastSuccess": "2026-10-26T11:30:32.158Z",
+        "ageHours": 24,
+        "message": "stl-dispatcher:podcast-ingest last succeeded 24h ago (expected within 20h)."
+      },
+      {
+        "type": "heartbeat_stale",
+        "severity": "critical",
+        "job": "pod:feed",
+        "lastSuccess": "2026-10-26T11:30:31.000Z",
+        "message": "pod:feed has nothing for its 2026-10-27 11:00 UTC slot (latest: 2026-10-26 11:30 UTC)."
       },
       {
         "type": "heartbeat_degraded",
         "severity": "warning",
         "job": "civicsignal:brief",
-        "lastSuccess": "2026-10-26T11:01:42.727Z",
-        "message": "civicsignal:brief ran but was unhealthy: stale=24."
+        "lastSuccess": "2026-10-27T11:01:29.073Z",
+        "message": "civicsignal:brief ran but was unhealthy: Town & Country/Architectural Review Board: HTTP 522 for https://www.town-and-country.org/AgendaCenter; Town & Country/Planning & Zoning Commission: HTTP 522 for https://www.town-and-country.org/AgendaCenter; Town & Country/Board of Aldermen: HTTP 522 for https://www.town-and-country.org/AgendaCenter; Des Peres/Board of Adjustment: HTTP 522 for https://www.desperesmo.org/AgendaCenter; Des Peres/Planning and Zoning Commission: HTTP 522 for https://www.desperesmo.org/AgendaCenter; Des Peres/Board of Aldermen: HTTP 522 for https://www.desperesmo.org/AgendaCenter; Town & Country/Board of Adjustment: HTTP 522 for https://www.town-and-country.org/AgendaCenter."
       },
       {
         "type": "signal_river_risk",
@@ -1395,7 +1406,7 @@
         "signal": true,
         "job": "insights:river-risk",
         "expected": "elevated",
-        "message": "River freight risk is ELEVATED (37/100). St. Louis 6.8 ft; barges $23.63/ton (1.48x normal). https://insights.stluker.com/#river"
+        "message": "River freight risk is ELEVATED (43/100). St. Louis 4.8 ft; barges $23.63/ton (1.48x normal). https://insights.stluker.com/#river"
       },
       {
         "type": "signal_grid_near_record",
@@ -1410,19 +1421,25 @@
   "autoRecommendations": [
     {
       "icon": "🔴",
-      "title": "stl-dispatcher:space-ingest last succeeded 25h ago (expected within 20h).",
+      "title": "stl-dispatcher:podcast-ingest last succeeded 24h ago (expected within 20h).",
+      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
+      "cat": "CRITICAL"
+    },
+    {
+      "icon": "🔴",
+      "title": "pod:feed has nothing for its 2026-10-27 11:00 UTC slot (latest: 2026-10-26 11:30 UTC).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
       "cat": "CRITICAL"
     },
     {
       "icon": "🟠",
-      "title": "civicsignal:brief ran but was unhealthy: stale=24.",
+      "title": "civicsignal:brief ran but was unhealthy: Town & Country/Architectural Review Board: HTTP 522 for https://www.town-and-country.org/AgendaCenter; Town & Country/Planning & Zoning Commission: HTTP 522 for https://www.town-and-country.org/AgendaCenter; Town & Country/Board of Aldermen: HTTP 522 for https://www.town-and-country.org/AgendaCenter; Des Peres/Board of Adjustment: HTTP 522 for https://www.desperesmo.org/AgendaCenter; Des Peres/Planning and Zoning Commission: HTTP 522 for https://www.desperesmo.org/AgendaCenter; Des Peres/Board of Aldermen: HTTP 522 for https://www.desperesmo.org/AgendaCenter; Town & Country/Board of Adjustment: HTTP 522 for https://www.town-and-country.org/AgendaCenter.",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
       "cat": "DRIFT"
     },
     {
       "icon": "🟠",
-      "title": "River freight risk is ELEVATED (37/100). St. Louis 6.8 ft; barges $23.63/ton (1.48x normal). https://insights.stluker.com/#river",
+      "title": "River freight risk is ELEVATED (43/100). St. Louis 4.8 ft; barges $23.63/ton (1.48x normal). https://insights.stluker.com/#river",
       "detail": "Auto-detected by stl-status-sync reconciliation (signal_river_risk).",
       "cat": "SIGNAL"
     },
