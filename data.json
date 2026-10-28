@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-10-27",
-    "version": "3.149"
+    "lastUpdated": "2026-10-28",
+    "version": "3.150"
   },
   "stats": {
     "totalSites": 29,
@@ -833,11 +833,11 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-10-27T11:56:03.332Z",
+      "generatedAt": "2026-10-28T11:56:06.386Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
-          "modifiedOn": "2026-10-16T15:54:32.551284Z",
+          "modifiedOn": "2026-10-27T18:29:52.027392Z",
           "crons": [],
           "bindings": [
             {
@@ -1195,7 +1195,7 @@
           ]
         },
         "stl-dispatcher": {
-          "modifiedOn": "2026-10-26T20:39:22.147071Z",
+          "modifiedOn": "2026-10-27T19:01:55.376796Z",
           "crons": [
             "0 11 * * *",
             "10 11 * * *",
@@ -1334,17 +1334,17 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-10-27T11:55:52.783Z",
+      "fetchedAt": "2026-10-28T11:55:54.111Z",
       "tier": "creator",
       "limit": 184636,
-      "used": 7256,
-      "remaining": 177380,
+      "used": 9571,
+      "remaining": 175065,
       "resetAt": "2026-11-22T00:15:38.000Z",
-      "daysLeft": 25.5,
-      "burnPerDay": 1347,
-      "burnBasis": "last 5 days",
-      "projectedAtReset": 143018,
-      "projectedMonthly": 40404,
+      "daysLeft": 24.5,
+      "burnPerDay": 1508,
+      "burnBasis": "last 6 days",
+      "projectedAtReset": 138094,
+      "projectedMonthly": 45245,
       "runOutAt": null,
       "history": [
         {
@@ -1370,43 +1370,25 @@
         {
           "date": "2026-10-27",
           "used": 7256
+        },
+        {
+          "date": "2026-10-28",
+          "used": 9571
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-10-27T11:56:03.332Z",
-    "findingsCount": 5,
+    "ranAt": "2026-10-28T11:56:06.386Z",
+    "findingsCount": 2,
     "findings": [
-      {
-        "type": "heartbeat_stale",
-        "severity": "critical",
-        "job": "stl-dispatcher:podcast-ingest",
-        "lastSuccess": "2026-10-26T11:30:32.158Z",
-        "ageHours": 24,
-        "message": "stl-dispatcher:podcast-ingest last succeeded 24h ago (expected within 20h)."
-      },
-      {
-        "type": "heartbeat_stale",
-        "severity": "critical",
-        "job": "pod:feed",
-        "lastSuccess": "2026-10-26T11:30:31.000Z",
-        "message": "pod:feed has nothing for its 2026-10-27 11:00 UTC slot (latest: 2026-10-26 11:30 UTC)."
-      },
-      {
-        "type": "heartbeat_degraded",
-        "severity": "warning",
-        "job": "civicsignal:brief",
-        "lastSuccess": "2026-10-27T11:01:29.073Z",
-        "message": "civicsignal:brief ran but was unhealthy: Town & Country/Architectural Review Board: HTTP 522 for https://www.town-and-country.org/AgendaCenter; Town & Country/Planning & Zoning Commission: HTTP 522 for https://www.town-and-country.org/AgendaCenter; Town & Country/Board of Aldermen: HTTP 522 for https://www.town-and-country.org/AgendaCenter; Des Peres/Board of Adjustment: HTTP 522 for https://www.desperesmo.org/AgendaCenter; Des Peres/Planning and Zoning Commission: HTTP 522 for https://www.desperesmo.org/AgendaCenter; Des Peres/Board of Aldermen: HTTP 522 for https://www.desperesmo.org/AgendaCenter; Town & Country/Board of Adjustment: HTTP 522 for https://www.town-and-country.org/AgendaCenter."
-      },
       {
         "type": "signal_river_risk",
         "severity": "warning",
         "signal": true,
         "job": "insights:river-risk",
         "expected": "elevated",
-        "message": "River freight risk is ELEVATED (43/100). St. Louis 4.8 ft; barges $23.63/ton (1.48x normal). https://insights.stluker.com/#river"
+        "message": "River freight risk is ELEVATED (46/100). St. Louis 3.8 ft; barges $23.63/ton (1.48x normal). https://insights.stluker.com/#river"
       },
       {
         "type": "signal_grid_near_record",
@@ -1420,26 +1402,8 @@
   },
   "autoRecommendations": [
     {
-      "icon": "🔴",
-      "title": "stl-dispatcher:podcast-ingest last succeeded 24h ago (expected within 20h).",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
-      "cat": "CRITICAL"
-    },
-    {
-      "icon": "🔴",
-      "title": "pod:feed has nothing for its 2026-10-27 11:00 UTC slot (latest: 2026-10-26 11:30 UTC).",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
-      "cat": "CRITICAL"
-    },
-    {
       "icon": "🟠",
-      "title": "civicsignal:brief ran but was unhealthy: Town & Country/Architectural Review Board: HTTP 522 for https://www.town-and-country.org/AgendaCenter; Town & Country/Planning & Zoning Commission: HTTP 522 for https://www.town-and-country.org/AgendaCenter; Town & Country/Board of Aldermen: HTTP 522 for https://www.town-and-country.org/AgendaCenter; Des Peres/Board of Adjustment: HTTP 522 for https://www.desperesmo.org/AgendaCenter; Des Peres/Planning and Zoning Commission: HTTP 522 for https://www.desperesmo.org/AgendaCenter; Des Peres/Board of Aldermen: HTTP 522 for https://www.desperesmo.org/AgendaCenter; Town & Country/Board of Adjustment: HTTP 522 for https://www.town-and-country.org/AgendaCenter.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
-      "cat": "DRIFT"
-    },
-    {
-      "icon": "🟠",
-      "title": "River freight risk is ELEVATED (43/100). St. Louis 4.8 ft; barges $23.63/ton (1.48x normal). https://insights.stluker.com/#river",
+      "title": "River freight risk is ELEVATED (46/100). St. Louis 3.8 ft; barges $23.63/ton (1.48x normal). https://insights.stluker.com/#river",
       "detail": "Auto-detected by stl-status-sync reconciliation (signal_river_risk).",
       "cat": "SIGNAL"
     },
