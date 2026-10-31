@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-10-30",
-    "version": "3.152"
+    "lastUpdated": "2026-10-31",
+    "version": "3.153"
   },
   "stats": {
     "totalSites": 29,
@@ -833,7 +833,7 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-10-30T11:56:49.604Z",
+      "generatedAt": "2026-10-31T11:56:13.657Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
@@ -1334,17 +1334,17 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-10-30T11:56:08.842Z",
+      "fetchedAt": "2026-10-31T11:56:01.289Z",
       "tier": "creator",
       "limit": 184636,
-      "used": 12377,
-      "remaining": 172259,
+      "used": 12922,
+      "remaining": 171714,
       "resetAt": "2026-11-22T00:15:38.000Z",
-      "daysLeft": 22.5,
-      "burnPerDay": 1450,
+      "daysLeft": 21.5,
+      "burnPerDay": 1445,
       "burnBasis": "last 6 days",
-      "projectedAtReset": 139607,
-      "projectedMonthly": 43510,
+      "projectedAtReset": 140627,
+      "projectedMonthly": 43350,
       "runOutAt": null,
       "history": [
         {
@@ -1382,21 +1382,18 @@
         {
           "date": "2026-10-30",
           "used": 12377
+        },
+        {
+          "date": "2026-10-31",
+          "used": 12922
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-10-30T11:56:49.604Z",
-    "findingsCount": 4,
+    "ranAt": "2026-10-31T11:56:13.657Z",
+    "findingsCount": 3,
     "findings": [
-      {
-        "type": "heartbeat_degraded",
-        "severity": "warning",
-        "job": "stl-dispatcher:earth-ingest",
-        "lastSuccess": "2026-10-30T11:15:36.924Z",
-        "message": "stl-dispatcher:earth-ingest ran but output was degraded: EONET fetch failed (degrading to empty): EONET returned 429."
-      },
       {
         "type": "heartbeat_stale",
         "severity": "critical",
@@ -1410,7 +1407,7 @@
         "signal": true,
         "job": "insights:river-risk",
         "expected": "elevated",
-        "message": "River freight risk is ELEVATED (47/100). St. Louis 4.8 ft; barges $22.51/ton (1.59x normal). https://insights.stluker.com/#river"
+        "message": "River freight risk is ELEVATED (51/100). St. Louis 3.4 ft; barges $22.51/ton (1.59x normal). https://insights.stluker.com/#river"
       },
       {
         "type": "signal_grid_near_record",
@@ -1424,12 +1421,6 @@
   },
   "autoRecommendations": [
     {
-      "icon": "🟠",
-      "title": "stl-dispatcher:earth-ingest ran but output was degraded: EONET fetch failed (degrading to empty): EONET returned 429.",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
-      "cat": "DRIFT"
-    },
-    {
       "icon": "🔴",
       "title": "bigbuilds:feed has nothing for its 2026-10-29 13:00 UTC slot (latest: 2026-10-22 13:01 UTC).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
@@ -1437,7 +1428,7 @@
     },
     {
       "icon": "🟠",
-      "title": "River freight risk is ELEVATED (47/100). St. Louis 4.8 ft; barges $22.51/ton (1.59x normal). https://insights.stluker.com/#river",
+      "title": "River freight risk is ELEVATED (51/100). St. Louis 3.4 ft; barges $22.51/ton (1.59x normal). https://insights.stluker.com/#river",
       "detail": "Auto-detected by stl-status-sync reconciliation (signal_river_risk).",
       "cat": "SIGNAL"
     },
