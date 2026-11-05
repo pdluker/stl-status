@@ -9,7 +9,7 @@
     "plannedSites": 0,
     "inactiveSites": 0,
     "automatedSites": 18,
-    "openTasks": 21
+    "openTasks": 18
   },
   "sites": [
     {
@@ -180,13 +180,8 @@
         "/api/portfolio/upload-csv",
         "/api/goals — KV-persisted"
       ],
-      "automation": "Crons 0 10 * * tue,thu (briefs) + 0 10 * * sat (weekly rollup). Still running and spending (Claude, web search, ElevenLabs) while on hold.",
-      "openTasks": [
-        {
-          "title": "Decide: pause crons while on hold?",
-          "detail": "Unused since the user stopped listening/visiting; pausing the 3 weekly runs stops its API spend."
-        }
-      ]
+      "automation": "None — crons paused 2026-11-05 while FIRE is on hold",
+      "openTasks": []
     },
     {
       "key": "FIRE-3",
@@ -558,13 +553,8 @@
       "lastDeploy": "2026-10-08",
       "description": "Kids' creature battle podcast (Daily Creature Clash): template-scripted battles (no LLM), ElevenLabs two-voice play-by-play, flux-2-klein-4b posters, RSS at /feed.xml. Monthly.",
       "features": [],
-      "automation": "Monthly — own cron 0 9 1 * * (1st of month, 09:00 UTC)",
-      "openTasks": [
-        {
-          "title": "Decide keep / rework / retire",
-          "detail": "Built on 500 official Pokémon species, which conflicts with the no-trademarked-look-alikes decision. Next run Nov 1 09:00 UTC."
-        }
-      ]
+      "automation": "None — monthly schedule retired 2026-11-05; existing episodes and feed stay online",
+      "openTasks": []
     },
     {
       "key": "AI-1",
@@ -678,13 +668,6 @@
       "priority": "low",
       "site": "fire-api.stluker.com",
       "detail": "Confirm CF_AIG_TOKEN secret is set and AI Gateway authenticated mode is active (FIRE-Intel on hold, Oct 11)"
-    },
-    {
-      "id": "T-21",
-      "title": "Creature Clash decision",
-      "priority": "medium",
-      "site": "pokepod.stluker.com",
-      "detail": "Keep as a personal show, swap to original creatures, or retire before Nov 1."
     }
   ],
   "recentActivity": [
@@ -764,9 +747,10 @@
         "reunion",
         "space",
         "stl-dispatcher",
+        "stl-earth",
         "stl-music",
-        "stl-status",
         "stl-sports",
+        "stl-status",
         "stl-stickers",
         "surfcam",
         "trackers"
