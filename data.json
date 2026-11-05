@@ -805,13 +805,31 @@
     },
     "github": {
       "repos": [
+        "ai-daily",
+        "bigbuilds",
+        "civicsignal",
+        "earth",
         "fire-intel",
+        "geoq",
+        "innovation",
+        "insights",
+        "iron-rails",
+        "mechmatch",
         "memory-lattice",
-        "stl-status",
-        "stl-music",
-        "stl-sports",
+        "pod",
         "pokelab",
-        "iron-rails"
+        "pokepod",
+        "rails",
+        "retire",
+        "reunion",
+        "space",
+        "stl-dispatcher",
+        "stl-music",
+        "stl-status",
+        "stl-sports",
+        "stl-stickers",
+        "surfcam",
+        "trackers"
       ]
     },
     "dns": {
