@@ -154,7 +154,7 @@
         "E2: Goals",
         "Portfolio CSV upload + 401k entry"
       ],
-      "automation": "Via fire-api: Tue/Thu briefs (0 10 * * tue,thu) + Saturday rollup (0 10 * * sat)",
+      "automation": "None — fire-api crons paused 2026-11-05 while FIRE is on hold",
       "openTasks": [
         {
           "title": "Redesign or retire (on hold)",
@@ -551,7 +551,7 @@
       "stack": "CF Worker: podcast (R2: creature-clash-podcast, Workers AI)",
       "repo": "GitHub: pdluker/pokepod; local C:\\Users\\pdluk\\pokepod",
       "lastDeploy": "2026-10-08",
-      "description": "Kids' creature battle podcast (Daily Creature Clash): template-scripted battles (no LLM), ElevenLabs two-voice play-by-play, flux-2-klein-4b posters, RSS at /feed.xml. Monthly.",
+      "description": "Kids' creature battle podcast (Daily Creature Clash): template-scripted battles (no LLM), ElevenLabs two-voice play-by-play, flux-2-klein-4b posters, RSS at /feed.xml. Schedule retired Nov 2026.",
       "features": [],
       "automation": "None — monthly schedule retired 2026-11-05; existing episodes and feed stay online",
       "openTasks": []
