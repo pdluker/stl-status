@@ -9,7 +9,7 @@
     "plannedSites": 0,
     "inactiveSites": 0,
     "automatedSites": 18,
-    "openTasks": 33
+    "openTasks": 21
   },
   "sites": [
     {
@@ -89,10 +89,6 @@
         {
           "title": "Gateway Grizzlies iCal feed",
           "detail": "Independent MiLB team — ESPN API has no coverage. Need to source a direct/third-party iCal feed and wire into SPORTS_KV manually."
-        },
-        {
-          "title": "Delete orphaned PULSE_KEY secret",
-          "detail": "Live bundle reads only SPORTS_SECRET (Oct 11). npx wrangler secret delete PULSE_KEY --name stl-sports"
         }
       ]
     },
@@ -200,7 +196,7 @@
       "status": "live",
       "category": "Personal Tools",
       "stack": "CF Worker: retire — pure HTML/JS, Chart.js 4.4.1",
-      "repo": "C:\\Users\\pdluk\\fire-intel\\retire.html",
+      "repo": "GitHub: pdluker/retire; local C:\\Users\\pdluk\\retire",
       "lastDeploy": "2026-09-01",
       "description": "Standalone retirement planning OS. 8-tab tool: Monte Carlo, Tax Engine, Strategy, AI Advisor, Accounts.",
       "features": [
@@ -231,7 +227,7 @@
       "status": "live",
       "category": "Infrastructure",
       "stack": "CF Worker: stl-dispatcher (KV: STATUS_KV, SPACE_KV, EARTH_KV, PODCAST_KV; R2: POD_BUCKET)",
-      "repo": "C:\\Users\\pdluk\\stl-dispatcher",
+      "repo": "GitHub: pdluker/stl-dispatcher; local C:\\Users\\pdluk\\stl-dispatcher",
       "lastDeploy": "2026-10-10",
       "description": "Consolidated periodic-task Worker — 12 crons driving keepalive, status sync/reconcile/alerts, all site ingestion, the Earth and Orbit and AI Daily podcasts.",
       "features": [
@@ -242,16 +238,7 @@
         "POST /trigger — Bearer-gated manual run"
       ],
       "automation": "Fully automated — 12 dedicated crons",
-      "openTasks": [
-        {
-          "title": "Deploy staged Oct 11 fixes",
-          "detail": "mech-match feed check → mechmatch.stluker.com; earth briefing strips U+FFFD and retries once (local commit 9f41401)."
-        },
-        {
-          "title": "Give the ElevenLabs key User: Read",
-          "detail": "checkElevenLabsCredits gets 401, so the credits-low alert is blind."
-        }
-      ]
+      "openTasks": []
     },
     {
       "key": "MEM-1",
@@ -334,7 +321,7 @@
       "status": "live",
       "category": "Public Sites",
       "stack": "CF Worker: space (KV: SPACE_KV)",
-      "repo": "Manual deploy — status-style pattern",
+      "repo": "GitHub: pdluker/space; local C:\\Users\\pdluk\\space",
       "lastDeploy": "2026-09-28",
       "description": "Space-news + launch dashboard — 13 RSS feeds + Spaceflight News API + Launch Library 2, Haiku-clustered, daily citation-linked briefing + ISS visible passes.",
       "features": [
@@ -344,12 +331,7 @@
         "Source-misattribution + CDATA-link fixes shipped"
       ],
       "automation": "Daily spaceIngest via stl-dispatcher (10 11 * * *)",
-      "openTasks": [
-        {
-          "title": "LL2 launch tracker still empty",
-          "detail": "Anonymous-tier 429s persist even with header/retry fix. Real fix needs a Patreon-gated LL2_API_KEY; purchase deliberately deferred."
-        }
-      ]
+      "openTasks": []
     },
     {
       "key": "EARTH-1",
@@ -359,7 +341,7 @@
       "status": "live",
       "category": "Public Sites",
       "stack": "CF Worker: earth (KV: EARTH_KV)",
-      "repo": "Manual deploy — status-style pattern",
+      "repo": "GitHub: pdluker/stl-earth; local C:\\Users\\pdluk\\stl-earth",
       "lastDeploy": "2026-09-28",
       "description": "Daily earth-sciences dashboard — earthquakes (USGS), wildfires/storms/ice (NASA EONET), volcanoes (Smithsonian GVP weekly via a Supabase-cached copy since Oct 10), US volcano alerts (USGS HANS).",
       "features": [
@@ -368,10 +350,6 @@
       ],
       "automation": "Daily earthIngest via stl-dispatcher (15 11 * * *)",
       "openTasks": [
-        {
-          "title": "Briefing 403 on Oct 11",
-          "detail": "Haiku briefing call got 403 the first day GVP text with U+FFFD reached the prompt. Fix staged in stl-dispatcher (strip + retry)."
-        },
         {
           "title": "Scope NASA FIRMS integration",
           "detail": "Reuse the trackers fires code."
@@ -436,7 +414,7 @@
       "status": "live",
       "category": "Personal Tools",
       "stack": "CF Worker: pod (R2: POD_BUCKET/pod-audio, KV: PODCAST_KV)",
-      "repo": "Manual deploy",
+      "repo": "GitHub: pdluker/pod; local C:\\Users\\pdluk\\stl-pod",
       "lastDeploy": "2026-10-05",
       "description": "Daily automated podcast — earth + orbit news (~400 words). Claude Sonnet 5.5 script, ElevenLabs flash TTS, per-episode + channel cover art (flux-2-klein-4b first), RSS feed.",
       "features": [
@@ -460,12 +438,7 @@
       "description": "Weekly St. Louis synthesis podcast over the bucket/music/sports/schools data.",
       "features": [],
       "automation": "Friday refresh via stl-dispatcher (40 11 * * FRI)",
-      "openTasks": [
-        {
-          "title": "Remove stray native cron 0 0 * * mon",
-          "detail": "No scheduled() handler. Fix staged in wrangler.jsonc (triggers.crons = []); clears on the next deploy."
-        }
-      ]
+      "openTasks": []
     },
     {
       "key": "RAILS-2",
@@ -496,7 +469,7 @@
       "status": "live",
       "category": "Personal Tools",
       "stack": "CF Worker: civicsignal (R2: SNAPSHOTS/civicsignal, KV: RUN_LOCK) + Supabase backend",
-      "repo": "C:\\Users\\pdluk\\civicsignal",
+      "repo": "GitHub: pdluker/civicsignal; local C:\\Users\\pdluk\\civicsignal",
       "lastDeploy": "2026-10-09",
       "description": "Daily civic-agenda brief: municipal boards (Clayton, Creve Coeur, Manchester, Chesterfield and others) drafted on claude-opus-5-5 and emailed from brief@civicsignal.stluker.com, with a source-failure alert. Own Supabase project.",
       "features": [
@@ -507,10 +480,6 @@
       ],
       "automation": "Own weekday cron 0 11 * * MON-FRI; writes heartbeat civicsignal:brief to STATUS_KV (since Oct 9)",
       "openTasks": [
-        {
-          "title": "Resolve auth discrepancy on /refresh",
-          "detail": "wrangler.jsonc declares CIVICSIGNAL_BEARER_SECRET as a secret to be set, but this was separately described as intentionally open right now. Confirm whether the secret is set-but-unenforced in code, or genuinely not yet wired into an auth check — don't assume either way."
-        },
         {
           "title": "Configure CivicWeb/CivicPlus email ingestion (Phase 1)",
           "detail": "Requires a zone-level Cloudflare Email Routing rule (MX-routed address, e.g. notifications@civicsignal.stluker.com) pointed at this Worker — cannot be done via wrangler.jsonc, must be set up in the dashboard/API per the code's own README reference."
@@ -525,7 +494,7 @@
       "status": "live",
       "category": "Personal Tools",
       "stack": "CF Worker: innovation-daily (R2: PODCAST_BUCKET/innovation-daily)",
-      "repo": "C:\\Users\\pdluk\\innovation-daily",
+      "repo": "GitHub: pdluker/innovation; local C:\\Users\\pdluk\\innovation-daily",
       "lastDeploy": "2026-10-09",
       "description": "AI-driven company/venture generator, delivered as a narrated podcast. Haiku/Sonnet script generation + ElevenLabs TTS, RSS feed, transcript/cover art delivery.",
       "features": [
@@ -536,12 +505,7 @@
         "Bearer-auth /refresh via REFRESH_SECRET"
       ],
       "automation": "Own weekly cron (Tue 11:00 UTC)",
-      "openTasks": [
-        {
-          "title": "Recalibrate WORDS_PER_MINUTE from seed value",
-          "detail": "Currently 140 (seed placeholder per the code's own comment) — needs to be measured against episode one's real word count and timing, the same way rails-beneath-us's 189wpm/0.86x was measured rather than guessed."
-        }
-      ]
+      "openTasks": []
     },
     {
       "key": "MECH-1",
@@ -551,7 +515,7 @@
       "status": "live",
       "category": "Personal Tools",
       "stack": "CF Worker: mech-match",
-      "repo": "C:\\Users\\pdluk\\mechamash (likely; unverified)",
+      "repo": "GitHub: pdluker/mechmatch; local C:\\Users\\pdluk\\mechamash",
       "lastDeploy": "2026-10-09",
       "description": "Mech Match — template-scripted mech battle podcast (no LLM), ElevenLabs flash TTS, Workers AI art.",
       "features": [
@@ -559,12 +523,7 @@
         "eleven_flash_v2_5 (since Oct 8)"
       ],
       "automation": "Own weekly cron 0 12 * * MON; output checked by stl-dispatcher",
-      "openTasks": [
-        {
-          "title": "No episode since Sep 6 (#28)",
-          "detail": "First slot under the new cron is Mon Oct 12 12:00 UTC; if nothing appears, read the Worker's logs."
-        }
-      ]
+      "openTasks": []
     },
     {
       "key": "BUILDS-1",
@@ -574,7 +533,7 @@
       "status": "live",
       "category": "Personal Tools",
       "stack": "CF Worker: bigbuilds (R2: PODCAST_BUCKET/big-builds-podcast, Workers AI: AI)",
-      "repo": "C:\\Users\\pdluk\\builds (likely; unverified)",
+      "repo": "GitHub: pdluker/bigbuilds; local C:\\Users\\pdluk\\builds",
       "lastDeploy": "2026-10-09",
       "description": "\"Big Builds\" — podcast covering great engineering feats of humanity. Haiku/Sonnet script + ElevenLabs TTS (voice: Oxley), optional Workers AI-generated cover art.",
       "features": [
@@ -595,7 +554,7 @@
       "status": "live",
       "category": "Personal Tools",
       "stack": "CF Worker: podcast (R2: creature-clash-podcast, Workers AI)",
-      "repo": "C:\\Users\\pdluk\\pokepod",
+      "repo": "GitHub: pdluker/pokepod; local C:\\Users\\pdluk\\pokepod",
       "lastDeploy": "2026-10-08",
       "description": "Kids' creature battle podcast (Daily Creature Clash): template-scripted battles (no LLM), ElevenLabs two-voice play-by-play, flux-2-klein-4b posters, RSS at /feed.xml. Monthly.",
       "features": [],
@@ -626,12 +585,7 @@
         "Synthetic-voice disclosure in show description"
       ],
       "automation": "Daily aiIngest (11:45 UTC) + Mon/Thu aiPodcast (11:50 UTC) via stl-dispatcher; heartbeats monitored by reconcile",
-      "openTasks": [
-        {
-          "title": "ElevenLabs credit headroom",
-          "detail": "All shows on flash since Oct 8 and Earth and Orbit cut to ~400 words; confirm with the real Credits report (needs the dispatcher key's User: Read permission)."
-        }
-      ]
+      "openTasks": []
     },
     {
       "key": "TRACK-1",
@@ -724,20 +678,6 @@
       "priority": "low",
       "site": "fire-api.stluker.com",
       "detail": "Confirm CF_AIG_TOKEN secret is set and AI Gateway authenticated mode is active (FIRE-Intel on hold, Oct 11)"
-    },
-    {
-      "id": "T-19",
-      "title": "Deploy Oct 11 staged fixes (dispatcher, stl-weekly, intel)",
-      "priority": "high",
-      "site": "dispatch / weekly / intel",
-      "detail": "Edits and backups are on disk; npx wrangler deploy from each folder."
-    },
-    {
-      "id": "T-20",
-      "title": "ElevenLabs key: enable User: Read",
-      "priority": "medium",
-      "site": "dispatch.stluker.com",
-      "detail": "Unblinds the credits-low alert."
     },
     {
       "id": "T-21",
