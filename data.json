@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-11-05",
-    "version": "3.158"
+    "lastUpdated": "2026-11-06",
+    "version": "3.159"
   },
   "stats": {
     "totalSites": 29,
@@ -775,7 +775,7 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-11-05T11:56:54.341Z",
+      "generatedAt": "2026-11-06T11:56:02.577Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
@@ -800,7 +800,7 @@
           ]
         },
         "bigbuilds": {
-          "modifiedOn": "2026-10-09T20:57:13.575712Z",
+          "modifiedOn": "2026-11-05T19:09:45.970035Z",
           "crons": [
             "0 13 * * THU"
           ],
@@ -867,11 +867,8 @@
           "bindings": []
         },
         "fire-api": {
-          "modifiedOn": "2026-10-10T00:59:28.19271Z",
-          "crons": [
-            "0 10 * * sat",
-            "0 10 * * tue,thu"
-          ],
+          "modifiedOn": "2026-11-05T21:14:56.820253Z",
+          "crons": [],
           "bindings": [
             {
               "kind": "ai",
@@ -1002,10 +999,8 @@
           ]
         },
         "podcast": {
-          "modifiedOn": "2026-10-08T20:40:22.461253Z",
-          "crons": [
-            "0 9 1 * *"
-          ],
+          "modifiedOn": "2026-11-05T21:15:39.658735Z",
+          "crons": [],
           "bindings": [
             {
               "kind": "ai",
@@ -1025,7 +1020,7 @@
           "bindings": []
         },
         "rails-beneath-us": {
-          "modifiedOn": "2026-10-10T00:39:01.159717Z",
+          "modifiedOn": "2026-11-05T18:45:14.417018Z",
           "crons": [
             "0 11 * * WED"
           ],
@@ -1080,7 +1075,7 @@
           ]
         },
         "status": {
-          "modifiedOn": "2026-10-06T20:39:26.909686Z",
+          "modifiedOn": "2026-11-05T19:19:09.844125Z",
           "crons": [
             "*/5 * * * *"
           ],
@@ -1137,7 +1132,7 @@
           ]
         },
         "stl-dispatcher": {
-          "modifiedOn": "2026-10-27T19:01:55.376796Z",
+          "modifiedOn": "2026-11-05T21:15:25.772944Z",
           "crons": [
             "0 11 * * *",
             "10 11 * * *",
@@ -1276,17 +1271,17 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-11-05T11:56:10.142Z",
+      "fetchedAt": "2026-11-06T11:55:53.120Z",
       "tier": "creator",
       "limit": 184636,
-      "used": 18611,
-      "remaining": 166025,
+      "used": 20735,
+      "remaining": 163901,
       "resetAt": "2026-11-22T00:15:38.000Z",
-      "daysLeft": 16.5,
-      "burnPerDay": 1039,
+      "daysLeft": 15.5,
+      "burnPerDay": 1302,
       "burnBasis": "last 6 days",
-      "projectedAtReset": 148867,
-      "projectedMonthly": 31170,
+      "projectedAtReset": 143700,
+      "projectedMonthly": 39065,
       "runOutAt": null,
       "history": [
         {
@@ -1348,35 +1343,24 @@
         {
           "date": "2026-11-05",
           "used": 18611
+        },
+        {
+          "date": "2026-11-06",
+          "used": 20735
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-11-05T11:56:54.341Z",
-    "findingsCount": 5,
+    "ranAt": "2026-11-06T11:56:02.577Z",
+    "findingsCount": 3,
     "findings": [
-      {
-        "type": "heartbeat_stale",
-        "severity": "critical",
-        "job": "stl-dispatcher:podcast-ingest",
-        "lastSuccess": "2026-11-04T11:30:30.022Z",
-        "ageHours": 24,
-        "message": "stl-dispatcher:podcast-ingest last succeeded 24h ago (expected within 20h)."
-      },
-      {
-        "type": "heartbeat_stale",
-        "severity": "critical",
-        "job": "pod:feed",
-        "lastSuccess": "2026-11-04T11:30:29.000Z",
-        "message": "pod:feed has nothing for its 2026-11-05 11:00 UTC slot (latest: 2026-11-04 11:30 UTC)."
-      },
       {
         "type": "heartbeat_stale",
         "severity": "critical",
         "job": "bigbuilds:feed",
         "lastSuccess": "2026-10-22T13:01:28.000Z",
-        "message": "bigbuilds:feed has nothing for its 2026-10-29 13:00 UTC slot (latest: 2026-10-22 13:01 UTC)."
+        "message": "bigbuilds:feed has nothing for its 2026-11-05 13:00 UTC slot (latest: 2026-10-22 13:01 UTC)."
       },
       {
         "type": "heartbeat_stale",
@@ -1391,26 +1375,14 @@
         "signal": true,
         "job": "insights:river-risk",
         "expected": "elevated",
-        "message": "River freight risk is ELEVATED (43/100). St. Louis 5.2 ft; barges $22.51/ton (1.59x normal). https://insights.stluker.com/#river"
+        "message": "River freight risk is ELEVATED (49/100). St. Louis 5.6 ft; barges $22.51/ton (1.79x normal). https://insights.stluker.com/#river"
       }
     ]
   },
   "autoRecommendations": [
     {
       "icon": "🔴",
-      "title": "stl-dispatcher:podcast-ingest last succeeded 24h ago (expected within 20h).",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
-      "cat": "CRITICAL"
-    },
-    {
-      "icon": "🔴",
-      "title": "pod:feed has nothing for its 2026-11-05 11:00 UTC slot (latest: 2026-11-04 11:30 UTC).",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
-      "cat": "CRITICAL"
-    },
-    {
-      "icon": "🔴",
-      "title": "bigbuilds:feed has nothing for its 2026-10-29 13:00 UTC slot (latest: 2026-10-22 13:01 UTC).",
+      "title": "bigbuilds:feed has nothing for its 2026-11-05 13:00 UTC slot (latest: 2026-10-22 13:01 UTC).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
       "cat": "CRITICAL"
     },
@@ -1422,7 +1394,7 @@
     },
     {
       "icon": "🟠",
-      "title": "River freight risk is ELEVATED (43/100). St. Louis 5.2 ft; barges $22.51/ton (1.59x normal). https://insights.stluker.com/#river",
+      "title": "River freight risk is ELEVATED (49/100). St. Louis 5.6 ft; barges $22.51/ton (1.79x normal). https://insights.stluker.com/#river",
       "detail": "Auto-detected by stl-status-sync reconciliation (signal_river_risk).",
       "cat": "SIGNAL"
     }
