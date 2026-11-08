@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-11-07",
-    "version": "3.160"
+    "lastUpdated": "2026-11-08",
+    "version": "3.161"
   },
   "stats": {
     "totalSites": 29,
@@ -775,7 +775,7 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-11-07T11:56:52.069Z",
+      "generatedAt": "2026-11-08T11:56:47.485Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
@@ -1271,17 +1271,17 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-11-07T11:56:09.281Z",
+      "fetchedAt": "2026-11-08T11:56:06.563Z",
       "tier": "creator",
       "limit": 184636,
-      "used": 21272,
-      "remaining": 163364,
+      "used": 21786,
+      "remaining": 162850,
       "resetAt": "2026-11-22T00:15:38.000Z",
-      "daysLeft": 14.5,
-      "burnPerDay": 1195,
+      "daysLeft": 13.5,
+      "burnPerDay": 1068,
       "burnBasis": "last 6 days",
-      "projectedAtReset": 146018,
-      "projectedMonthly": 35855,
+      "projectedAtReset": 148422,
+      "projectedMonthly": 32030,
       "runOutAt": null,
       "history": [
         {
@@ -1351,26 +1351,24 @@
         {
           "date": "2026-11-07",
           "used": 21272
+        },
+        {
+          "date": "2026-11-08",
+          "used": 21786
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-11-07T11:56:52.069Z",
-    "findingsCount": 5,
+    "ranAt": "2026-11-08T11:56:47.485Z",
+    "findingsCount": 3,
     "findings": [
       {
         "type": "heartbeat_degraded",
         "severity": "warning",
         "job": "stl-dispatcher:space-ingest",
-        "lastSuccess": "2026-11-07T11:11:41.539Z",
-        "message": "stl-dispatcher:space-ingest ran but output was degraded: empty 3+ runs in a row: ESA (3)."
-      },
-      {
-        "type": "stickers_no_art",
-        "severity": "info",
-        "job": "stickers:daily",
-        "message": "stickers.stluker.com 2026-11-07 published without AI art (every image model failed that day)."
+        "lastSuccess": "2026-11-08T11:11:14.920Z",
+        "message": "stl-dispatcher:space-ingest ran but output was degraded: empty 3+ runs in a row: ESA (4)."
       },
       {
         "type": "heartbeat_stale",
@@ -1385,21 +1383,13 @@
         "job": "rails-beneath-us:feed",
         "lastSuccess": "2026-10-28T11:01:31.000Z",
         "message": "rails-beneath-us:feed has nothing for its 2026-11-04 11:00 UTC slot (latest: 2026-10-28 11:01 UTC)."
-      },
-      {
-        "type": "signal_river_risk",
-        "severity": "warning",
-        "signal": true,
-        "job": "insights:river-risk",
-        "expected": "elevated",
-        "message": "River freight risk is ELEVATED (35/100). St. Louis 8.9 ft; barges $22.51/ton (1.79x normal). https://insights.stluker.com/#river"
       }
     ]
   },
   "autoRecommendations": [
     {
       "icon": "🟠",
-      "title": "stl-dispatcher:space-ingest ran but output was degraded: empty 3+ runs in a row: ESA (3).",
+      "title": "stl-dispatcher:space-ingest ran but output was degraded: empty 3+ runs in a row: ESA (4).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
       "cat": "DRIFT"
     },
@@ -1414,12 +1404,6 @@
       "title": "rails-beneath-us:feed has nothing for its 2026-11-04 11:00 UTC slot (latest: 2026-10-28 11:01 UTC).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
       "cat": "CRITICAL"
-    },
-    {
-      "icon": "🟠",
-      "title": "River freight risk is ELEVATED (35/100). St. Louis 8.9 ft; barges $22.51/ton (1.79x normal). https://insights.stluker.com/#river",
-      "detail": "Auto-detected by stl-status-sync reconciliation (signal_river_risk).",
-      "cat": "SIGNAL"
     }
   ]
 }
