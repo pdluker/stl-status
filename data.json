@@ -4,8 +4,8 @@
     "version": "3.166"
   },
   "stats": {
-    "totalSites": 29,
-    "liveSites": 29,
+    "totalSites": 30,
+    "liveSites": 30,
     "plannedSites": 0,
     "inactiveSites": 0,
     "automatedSites": 18,
@@ -659,6 +659,26 @@
           "detail": "flux-2-dev went live Sep 28; confirm daily image cost on the Workers AI usage page."
         }
       ]
+    },
+    {
+      "key": "GROW-1",
+      "name": "Grow",
+      "subdomain": "stluker.com/grow",
+      "url": "https://stluker.com/grow/health",
+      "status": "live",
+      "category": "Personal Tools",
+      "stack": "CF Worker: stl-grow (D1: grow-db), routes stluker.com/grow* set in the dashboard; Cloudflare Access + JWT check in the Worker",
+      "repo": "GitHub: pdluker/stl-grow (Actions: test, D1 migrations, deploy, smoke test on push to master)",
+      "lastDeploy": "2026-11-08",
+      "description": "Personal improvement tracker: habits scored by week, month and quarter. Private behind Cloudflare Access. The board probe only reaches the Access login, because /grow/health is behind Access too (the README says it should be public).",
+      "features": [
+        "15 starting habits (seed migration)",
+        "Week/month/quarter scoring",
+        "Access JWT verified in the Worker, deny by default",
+        "Strict CSP, no inline script or style"
+      ],
+      "automation": "None — on-demand app; deploys via GitHub Actions",
+      "openTasks": []
     }
   ],
   "openTasks": [
@@ -748,6 +768,7 @@
         "space",
         "stl-dispatcher",
         "stl-earth",
+        "stl-grow",
         "stl-music",
         "stl-sports",
         "stl-status",
