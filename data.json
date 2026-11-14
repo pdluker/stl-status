@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-11-13",
-    "version": "3.166"
+    "lastUpdated": "2026-11-14",
+    "version": "3.167"
   },
   "stats": {
     "totalSites": 30,
@@ -796,7 +796,7 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-11-13T11:56:07.670Z",
+      "generatedAt": "2026-11-14T11:56:02.963Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
@@ -821,7 +821,7 @@
           ]
         },
         "bigbuilds": {
-          "modifiedOn": "2026-11-05T19:09:45.970035Z",
+          "modifiedOn": "2026-11-13T17:52:16.46393Z",
           "crons": [
             "0 13 * * THU"
           ],
@@ -1153,7 +1153,7 @@
           ]
         },
         "stl-dispatcher": {
-          "modifiedOn": "2026-11-05T21:15:25.772944Z",
+          "modifiedOn": "2026-11-13T18:03:17.582391Z",
           "crons": [
             "0 11 * * *",
             "10 11 * * *",
@@ -1308,17 +1308,17 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-11-13T11:55:53.288Z",
+      "fetchedAt": "2026-11-14T11:55:52.898Z",
       "tier": "creator",
       "limit": 184636,
-      "used": 30619,
-      "remaining": 154017,
+      "used": 31119,
+      "remaining": 153517,
       "resetAt": "2026-11-22T00:15:38.000Z",
-      "daysLeft": 8.5,
-      "burnPerDay": 1558,
+      "daysLeft": 7.5,
+      "burnPerDay": 1556,
       "burnBasis": "last 6 days",
-      "projectedAtReset": 140754,
-      "projectedMonthly": 46735,
+      "projectedAtReset": 141829,
+      "projectedMonthly": 46665,
       "runOutAt": null,
       "history": [
         {
@@ -1412,27 +1412,18 @@
         {
           "date": "2026-11-13",
           "used": 30619
+        },
+        {
+          "date": "2026-11-14",
+          "used": 31119
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-11-13T11:56:07.670Z",
-    "findingsCount": 3,
+    "ranAt": "2026-11-14T11:56:02.963Z",
+    "findingsCount": 1,
     "findings": [
-      {
-        "type": "untracked_worker",
-        "severity": "info",
-        "worker": "stl-grow",
-        "message": "Deployed Worker \"stl-grow\" is not tracked in data.json."
-      },
-      {
-        "type": "heartbeat_degraded",
-        "severity": "warning",
-        "job": "stl-dispatcher:space-ingest",
-        "lastSuccess": "2026-11-13T11:11:43.323Z",
-        "message": "stl-dispatcher:space-ingest ran but output was degraded: empty 3+ runs in a row: ESA (9)."
-      },
       {
         "type": "heartbeat_stale",
         "severity": "critical",
@@ -1443,12 +1434,6 @@
     ]
   },
   "autoRecommendations": [
-    {
-      "icon": "🟠",
-      "title": "stl-dispatcher:space-ingest ran but output was degraded: empty 3+ runs in a row: ESA (9).",
-      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
-      "cat": "DRIFT"
-    },
     {
       "icon": "🔴",
       "title": "bigbuilds:feed has nothing for its 2026-11-12 13:00 UTC slot (latest: 2026-10-22 13:01 UTC).",
