@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-11-14",
-    "version": "3.167"
+    "lastUpdated": "2026-11-15",
+    "version": "3.168"
   },
   "stats": {
     "totalSites": 30,
@@ -796,7 +796,7 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-11-14T11:56:02.963Z",
+      "generatedAt": "2026-11-15T11:57:07.575Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
@@ -1308,17 +1308,17 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-11-14T11:55:52.898Z",
+      "fetchedAt": "2026-11-15T11:56:17.523Z",
       "tier": "creator",
       "limit": 184636,
-      "used": 31119,
-      "remaining": 153517,
+      "used": 31609,
+      "remaining": 153027,
       "resetAt": "2026-11-22T00:15:38.000Z",
-      "daysLeft": 7.5,
-      "burnPerDay": 1556,
+      "daysLeft": 6.5,
+      "burnPerDay": 1425,
       "burnBasis": "last 6 days",
-      "projectedAtReset": 141829,
-      "projectedMonthly": 46665,
+      "projectedAtReset": 143744,
+      "projectedMonthly": 42755,
       "runOutAt": null,
       "history": [
         {
@@ -1416,13 +1416,17 @@
         {
           "date": "2026-11-14",
           "used": 31119
+        },
+        {
+          "date": "2026-11-15",
+          "used": 31609
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-11-14T11:56:02.963Z",
-    "findingsCount": 1,
+    "ranAt": "2026-11-15T11:57:07.575Z",
+    "findingsCount": 3,
     "findings": [
       {
         "type": "heartbeat_stale",
@@ -1430,6 +1434,21 @@
         "job": "bigbuilds:feed",
         "lastSuccess": "2026-10-22T13:01:28.000Z",
         "message": "bigbuilds:feed has nothing for its 2026-11-12 13:00 UTC slot (latest: 2026-10-22 13:01 UTC)."
+      },
+      {
+        "type": "heartbeat_degraded",
+        "severity": "warning",
+        "job": "insights:daily",
+        "expected": "grid",
+        "message": "insights' daily refresh ran but these jobs failed: grid."
+      },
+      {
+        "type": "signal_river_risk",
+        "severity": "warning",
+        "signal": true,
+        "job": "insights:river-risk",
+        "expected": "elevated",
+        "message": "River freight risk is ELEVATED (34/100). St. Louis 10.4 ft; barges $21.87/ton (1.7x normal). https://insights.stluker.com/#river"
       }
     ]
   },
@@ -1439,6 +1458,18 @@
       "title": "bigbuilds:feed has nothing for its 2026-11-12 13:00 UTC slot (latest: 2026-10-22 13:01 UTC).",
       "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_stale).",
       "cat": "CRITICAL"
+    },
+    {
+      "icon": "🟠",
+      "title": "insights' daily refresh ran but these jobs failed: grid.",
+      "detail": "Auto-detected by stl-status-sync reconciliation (heartbeat_degraded).",
+      "cat": "DRIFT"
+    },
+    {
+      "icon": "🟠",
+      "title": "River freight risk is ELEVATED (34/100). St. Louis 10.4 ft; barges $21.87/ton (1.7x normal). https://insights.stluker.com/#river",
+      "detail": "Auto-detected by stl-status-sync reconciliation (signal_river_risk).",
+      "cat": "SIGNAL"
     }
   ]
 }
