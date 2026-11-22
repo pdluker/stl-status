@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-11-21",
-    "version": "3.174"
+    "lastUpdated": "2026-11-22",
+    "version": "3.175"
   },
   "stats": {
     "totalSites": 30,
@@ -796,7 +796,7 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-11-21T11:56:00.456Z",
+      "generatedAt": "2026-11-22T11:56:18.983Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
@@ -1308,148 +1308,28 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-11-21T11:55:53.125Z",
+      "fetchedAt": "2026-11-22T11:56:04.162Z",
       "tier": "creator",
-      "limit": 184636,
-      "used": 41664,
-      "remaining": 142972,
-      "resetAt": "2026-11-22T00:15:38.000Z",
-      "daysLeft": 0.5,
-      "burnPerDay": 1676,
-      "burnBasis": "last 6 days",
-      "projectedAtReset": 142111,
-      "projectedMonthly": 50275,
+      "limit": 263972,
+      "used": 532,
+      "remaining": 263440,
+      "resetAt": "2026-12-22T00:15:38.000Z",
+      "daysLeft": 29.5,
+      "burnPerDay": 1064,
+      "burnBasis": "cycle average",
+      "projectedAtReset": 232038,
+      "projectedMonthly": 31920,
       "runOutAt": null,
       "history": [
         {
-          "date": "2026-10-22",
-          "used": 522
-        },
-        {
-          "date": "2026-10-23",
-          "used": 3179
-        },
-        {
-          "date": "2026-10-24",
-          "used": 3675
-        },
-        {
-          "date": "2026-10-25",
-          "used": 4252
-        },
-        {
-          "date": "2026-10-26",
-          "used": 5479
-        },
-        {
-          "date": "2026-10-27",
-          "used": 7256
-        },
-        {
-          "date": "2026-10-28",
-          "used": 9571
-        },
-        {
-          "date": "2026-10-29",
-          "used": 10115
-        },
-        {
-          "date": "2026-10-30",
-          "used": 12377
-        },
-        {
-          "date": "2026-10-31",
-          "used": 12922
-        },
-        {
-          "date": "2026-11-01",
-          "used": 14101
-        },
-        {
-          "date": "2026-11-02",
-          "used": 15380
-        },
-        {
-          "date": "2026-11-03",
-          "used": 17243
-        },
-        {
-          "date": "2026-11-04",
-          "used": 18611
-        },
-        {
-          "date": "2026-11-05",
-          "used": 18611
-        },
-        {
-          "date": "2026-11-06",
-          "used": 20735
-        },
-        {
-          "date": "2026-11-07",
-          "used": 21272
-        },
-        {
-          "date": "2026-11-08",
-          "used": 21786
-        },
-        {
-          "date": "2026-11-09",
-          "used": 23058
-        },
-        {
-          "date": "2026-11-10",
-          "used": 25456
-        },
-        {
-          "date": "2026-11-11",
-          "used": 27739
-        },
-        {
-          "date": "2026-11-12",
-          "used": 28285
-        },
-        {
-          "date": "2026-11-13",
-          "used": 30619
-        },
-        {
-          "date": "2026-11-14",
-          "used": 31119
-        },
-        {
-          "date": "2026-11-15",
-          "used": 31609
-        },
-        {
-          "date": "2026-11-16",
-          "used": 32878
-        },
-        {
-          "date": "2026-11-17",
-          "used": 35158
-        },
-        {
-          "date": "2026-11-18",
-          "used": 37545
-        },
-        {
-          "date": "2026-11-19",
-          "used": 38089
-        },
-        {
-          "date": "2026-11-20",
-          "used": 41111
-        },
-        {
-          "date": "2026-11-21",
-          "used": 41664
+          "date": "2026-11-22",
+          "used": 532
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-11-21T11:56:00.456Z",
+    "ranAt": "2026-11-22T11:56:18.983Z",
     "findingsCount": 2,
     "findings": [
       {
@@ -1465,7 +1345,7 @@
         "signal": true,
         "job": "insights:river-risk",
         "expected": "elevated",
-        "message": "River freight risk is ELEVATED (62/100). St. Louis 4.3 ft; barges $21.14/ton (1.95x normal). https://insights.stluker.com/#river"
+        "message": "River freight risk is ELEVATED (64/100). St. Louis 3.7 ft; barges $21.14/ton (1.95x normal). https://insights.stluker.com/#river"
       }
     ]
   },
@@ -1478,7 +1358,7 @@
     },
     {
       "icon": "🟠",
-      "title": "River freight risk is ELEVATED (62/100). St. Louis 4.3 ft; barges $21.14/ton (1.95x normal). https://insights.stluker.com/#river",
+      "title": "River freight risk is ELEVATED (64/100). St. Louis 3.7 ft; barges $21.14/ton (1.95x normal). https://insights.stluker.com/#river",
       "detail": "Auto-detected by stl-status-sync reconciliation (signal_river_risk).",
       "cat": "SIGNAL"
     }
