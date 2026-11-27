@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdated": "2026-11-26",
-    "version": "3.179"
+    "lastUpdated": "2026-11-27",
+    "version": "3.180"
   },
   "stats": {
     "totalSites": 30,
@@ -796,7 +796,7 @@
       "USGS HANS"
     ],
     "workers": {
-      "generatedAt": "2026-11-26T11:56:07.757Z",
+      "generatedAt": "2026-11-27T11:56:50.713Z",
       "source": "cloudflare-api",
       "scripts": {
         "ai-daily": {
@@ -1308,17 +1308,17 @@
       }
     },
     "elevenlabs": {
-      "fetchedAt": "2026-11-26T11:55:54.629Z",
+      "fetchedAt": "2026-11-27T11:56:06.897Z",
       "tier": "creator",
       "limit": 263972,
-      "used": 6906,
-      "remaining": 257066,
+      "used": 9661,
+      "remaining": 254311,
       "resetAt": "2026-12-22T00:15:38.000Z",
-      "daysLeft": 25.5,
-      "burnPerDay": 1594,
-      "burnBasis": "last 4 days",
-      "projectedAtReset": 216410,
-      "projectedMonthly": 47805,
+      "daysLeft": 24.5,
+      "burnPerDay": 1826,
+      "burnBasis": "last 5 days",
+      "projectedAtReset": 209554,
+      "projectedMonthly": 54774,
       "runOutAt": null,
       "history": [
         {
@@ -1336,19 +1336,23 @@
         {
           "date": "2026-11-26",
           "used": 6906
+        },
+        {
+          "date": "2026-11-27",
+          "used": 9661
         }
       ]
     }
   },
   "verification": {
-    "ranAt": "2026-11-26T11:56:07.757Z",
+    "ranAt": "2026-11-27T11:56:50.713Z",
     "findingsCount": 3,
     "findings": [
       {
         "type": "heartbeat_degraded",
         "severity": "warning",
         "job": "civicsignal:brief",
-        "lastSuccess": "2026-11-26T11:00:46.689Z",
+        "lastSuccess": "2026-11-27T11:00:46.088Z",
         "message": "civicsignal:brief ran but was unhealthy: stale=1."
       },
       {
@@ -1364,7 +1368,7 @@
         "signal": true,
         "job": "insights:river-risk",
         "expected": "elevated",
-        "message": "River freight risk is ELEVATED (65/100). St. Louis 4.3 ft; barges $20.73/ton (2.18x normal). https://insights.stluker.com/#river"
+        "message": "River freight risk is ELEVATED (65/100). St. Louis 4.5 ft; barges $20.73/ton (2.18x normal). https://insights.stluker.com/#river"
       }
     ]
   },
@@ -1383,7 +1387,7 @@
     },
     {
       "icon": "🟠",
-      "title": "River freight risk is ELEVATED (65/100). St. Louis 4.3 ft; barges $20.73/ton (2.18x normal). https://insights.stluker.com/#river",
+      "title": "River freight risk is ELEVATED (65/100). St. Louis 4.5 ft; barges $20.73/ton (2.18x normal). https://insights.stluker.com/#river",
       "detail": "Auto-detected by stl-status-sync reconciliation (signal_river_risk).",
       "cat": "SIGNAL"
     }
